@@ -1,8 +1,28 @@
 <template>
   <div>
+    <nav-bar />
+
     <nuxt />
   </div>
 </template>
+
+<script>
+import NavBar from '@/components/NavBar.vue';
+import { defineComponent, ref } from '@vue/composition-api';
+
+export default defineComponent({
+  // props: ['error'],
+  // layout: 'blog' // you can set a custom layout for the error page
+  components: {
+    NavBar
+  },
+  setup() {
+    const posts = ref(null);
+
+    return { posts };
+  }
+});
+</script>
 
 <style>
 html {

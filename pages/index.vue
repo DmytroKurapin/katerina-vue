@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div>
-      <logo />
       <h1 class="title">
         katerina-vue
       </h1>
@@ -21,13 +20,15 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue';
+import { defineComponent, ref } from '@vue/composition-api';
 
-export default {
-  components: {
-    Logo
+export default defineComponent({
+  setup() {
+    const posts = ref(null);
+
+    return { posts };
   }
-};
+});
 </script>
 
 <style>
