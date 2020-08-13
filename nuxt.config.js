@@ -27,7 +27,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/composition-api'],
+  plugins: ['@/plugins/composition-api', '@/plugins/i18n.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -43,13 +43,31 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-i18n'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
   axios: {},
+  i18n: {
+    locales: [
+      {
+        code: 'he',
+        name: 'עברית',
+        dir: 'rtl',
+        file: 'he-IL.json'
+      },
+      {
+        code: 'en',
+        name: 'English',
+        dir: 'ltr',
+        file: 'en-US.json'
+      }
+    ],
+    lazy: true,
+    langDir: 'lang/',
+    vueI18nLoader: true,
+    defaultLocale: 'he',
+    vueI18n: { fallbackLocale: 'he' }
+  },
   /*
    ** Build configuration
    */

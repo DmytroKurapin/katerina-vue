@@ -46,7 +46,7 @@ module.exports = {
         '10xl': '10rem'
       },
       fontFamily: {
-        lato: ['Lato', 'sans-serif']
+        body: ['Quicksand', 'Raleway', 'sans-serif']
       },
       minHeight: {
         750: '750px'
@@ -54,7 +54,7 @@ module.exports = {
     }
   },
   variants: {},
-  plugins: [],
+  plugins: [require('tailwindcss-rtl')],
   purge: {
     // enable remove unused CSS only in production
     enabled: process.env.NODE_ENV === 'production',

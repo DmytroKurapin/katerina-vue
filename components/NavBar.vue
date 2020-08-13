@@ -6,7 +6,7 @@
 
     <nav>
       <nuxt-link v-for="navObj in navData" :key="navObj.link" to="/wedding">
-        {{ navObj.label }}
+        {{ $t(navObj.label) }}
       </nuxt-link>
     </nav>
   </div>
@@ -19,9 +19,9 @@ import { NavData } from '@/types';
 export default defineComponent({
   setup() {
     const navData: Array<NavData> = [
-      { link: '/wedding', label: 'חתונה' },
-      { link: '/mitzvah', label: 'בר\\בת מצווה' },
-      { link: '/giftcard', label: 'שובר מתנה' }
+      { link: '/wedding', label: 'navbar.wedding' },
+      { link: '/mitzvah', label: 'navbar.mitzvah' },
+      { link: '/giftcard', label: 'navbar.giftcard' }
     ];
     const posts = ref(null);
 
