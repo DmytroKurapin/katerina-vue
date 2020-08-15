@@ -14,8 +14,7 @@
 module.exports = {
   theme: {
     container: {
-      center: true,
-      padding: '1rem'
+      center: true
     },
     screens: {
       sm: '640px',
@@ -24,6 +23,10 @@ module.exports = {
       xl: '1280px'
     },
     extend: {
+      spacing: {
+        72: '18rem',
+        80: '20rem'
+      },
       colors: {
         green: {
           default: '#59981A',
@@ -41,10 +44,10 @@ module.exports = {
           200: '#e8f6e9'
         }
       },
-      fontSize: {
-        '7xl': '5rem',
-        '10xl': '10rem'
-      },
+      // fontSize: {
+      //   '7xl': '5rem',
+      //   '10xl': '10rem'
+      // },
       fontFamily: {
         body: ['Quicksand', 'Raleway', 'sans-serif']
       },

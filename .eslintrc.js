@@ -19,7 +19,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     'prettier/prettier': 'error',
-    'max-len': ['error', 120],
+    'max-len': ['error', { "ignoreUrls": true, code: 120 }],
     'func-names': 'off',
     'default-case': 'off',
     'global-require': 0,
@@ -41,5 +41,7 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'operator-linebreak': 'off',
     "semi": [2, "always"],
+    "vue/html-closing-bracket-newline": "off",
+    "vue/html-self-closing": "off"
   }
 }

@@ -1,5 +1,7 @@
 <template>
-  <div />
+  <div>
+    {{ $route.params.product }}
+  </div>
 </template>
 
 <script>
