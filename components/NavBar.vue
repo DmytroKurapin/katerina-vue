@@ -4,7 +4,7 @@
   <header class="bg-gray-900 sm:flex sm:items-center sm:justify-between xl:bg-white">
     <div class="flex justify-between px-4 py-3 xl:bg-gray-900 xl:justify-center xl:py-5">
       <div id="logo-container">
-        <nuxt-link to="/">
+        <nuxt-link :to="localePath('/')">
           <img src="/logo.jpg" alt="Katerina Kurapin" class="h-8 w-auto" />
         </nuxt-link>
 
@@ -86,9 +86,9 @@
         <div class="relative px-5 py-5 sm:py-0 sm:ms-4 sm:px-0">
           <div class="flex items-center sm:hidden">
             <img
+              src="/logo.jpg"
+              alt="Katerina Kurapin"
               class="h-10 w-10 object-cover rounded-full border-2 border-gray-600"
-              src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80"
-              alt=""
             />
             <span class="ms-4 font-semibold text-gray-200 sm:hidden">Isla Schoger</span>
           </div>

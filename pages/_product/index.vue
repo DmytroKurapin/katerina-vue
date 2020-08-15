@@ -1,17 +1,31 @@
 <template>
   <div>
-    {{ $route.params.product }}
+    <div class="flex flex-wrap -mx-1 lg:-mx-4">
+      <ProductCard v-for="prod in productData" :key="prod.articul" :product="prod" />
+    </div>
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from '@vue/composition-api';
+<script lang="ts">
+import { defineComponent, onBeforeMount, Ref, ref } from '@vue/composition-api';
+import axios from 'axios';
+import ProductCard from '@/components/ProductCard.vue';
+import { Product } from '@/types';
 
 export default defineComponent({
+  components: {
+    ProductCard
+  },
   setup() {
-    const posts = ref(null);
+    const productData: Ref<Array<Product>> = ref([]);
 
-    return { posts };
+    onBeforeMount(() => {
+      axios.get('http://localhost:3000/_fake-data/content.json').then(response => {
+        productData.value = response.data;
+      });
+    });
+
+    return { productData };
   }
 });
 </script>
