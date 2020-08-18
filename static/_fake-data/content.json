@@ -15,7 +15,7 @@
       "price": null,
       "isNew": null
     },
-    "articul": "w123"
+    "vendorCode": "w123"
   },
   {
     "title": "wedding Invitation 2",
@@ -31,7 +31,7 @@
       "price": null,
       "isNew": null
     },
-    "articul": "w124"
+    "vendorCode": "w124"
   },
   {
     "title": "wedding Invitation 3",
@@ -47,7 +47,7 @@
       "price": null,
       "isNew": null
     },
-    "articul": "w125"
+    "vendorCode": "w125"
   },
   {
     "title": "wedding Invitation 4",
@@ -63,7 +63,7 @@
       "price": null,
       "isNew": null
     },
-    "articul": "w126"
+    "vendorCode": "w126"
   },
   {
     "title": "wedding Invitation 6",
@@ -79,7 +79,7 @@
       "price": null,
       "isNew": null
     },
-    "articul": "w128"
+    "vendorCode": "w128"
   },
   {
     "title": "wedding Invitation 5",
@@ -95,7 +95,7 @@
       "price": null,
       "isNew": null
     },
-    "articul": "w127"
+    "vendorCode": "w127"
   },
   {
     "title": "wedding Invitation 6",
@@ -113,6 +113,6 @@
       "price": null,
       "isNew": null
     },
-    "articul": "w129"
+    "vendorCode": "w129"
   }
 ]

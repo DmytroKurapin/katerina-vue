@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
-      <ProductCard v-for="prod in productData" :key="prod.articul" :product="prod" />
+      <ProductCard v-for="prod in productData" :key="prod.vendorCode" :product="prod" />
     </div>
   </div>
 </template>

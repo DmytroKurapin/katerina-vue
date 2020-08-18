@@ -2,7 +2,7 @@
   <div class="my-1 px-1 w-full sm:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
     {{ $route.params }}
     <article class="overflow-hidden rounded-lg shadow-lg">
-      <nuxt-link :to="localePath(`/${$route.params.product}/${product.articul}`)">
+      <nuxt-link :to="localePath(`/${$route.params.product}/${product.vendorCode}`)">
         <img alt="Placeholder" class="block h-auto w-full" :src="product.thumbnail" />
       </nuxt-link>
 
@@ -45,8 +45,12 @@ export default defineComponent({
       required: true
     }
   },
-  setup() {
-    // const prodPath = localePath(`/${this.$route.params.product}/${this.product.articul}`);
+  setup(props) {
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    console.log(props);
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    // const prodPath = localePath(`/${this.$route.params.product}/${this.product.vendorCode}`);
+    return {};
   }
 });
 </script>

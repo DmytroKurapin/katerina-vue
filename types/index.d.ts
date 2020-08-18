@@ -6,7 +6,7 @@ export interface NavData {
 export interface Product {
   title: string;
   description: string;
-  articul: string;
+  vendorCode: string;
   images: string[];
   thumbnail: string;
   order: number;
