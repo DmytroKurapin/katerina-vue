@@ -1,8 +1,8 @@
 [
   {
-    "title": "wedding Invitation 1",
+    "title": "giftcard Invitation 1",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
-    "page": "wedding",
+    "type": "giftcard",
     "images": [
       "/_fake-data/20171213_153242copy.jpg",
       "/_fake-data/20171216_134646copy.jpg",
@@ -18,9 +18,9 @@
     "vendorCode": "w123"
   },
   {
-    "title": "wedding Invitation 2",
+    "title": "giftcard Invitation 2",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
-    "page": "wedding",
+    "type": "giftcard",
     "images": [
       "/_fake-data/20171216_134646copy.jpg"
     ],
@@ -34,9 +34,9 @@
     "vendorCode": "w124"
   },
   {
-    "title": "wedding Invitation 3",
+    "title": "giftcard Invitation 3",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
-    "page": "wedding",
+    "type": "giftcard",
     "images": [
       "/_fake-data/20180121_122657copy.jpg"
     ],
@@ -50,9 +50,9 @@
     "vendorCode": "w125"
   },
   {
-    "title": "wedding Invitation 4",
+    "title": "giftcard Invitation 4",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
-    "page": "wedding",
+    "type": "giftcard",
     "images": [
       "/_fake-data/20180121_122657copy.jpg"
     ],
@@ -66,9 +66,9 @@
     "vendorCode": "w126"
   },
   {
-    "title": "wedding Invitation 6",
+    "title": "giftcard Invitation 6",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
-    "page": "wedding",
+    "type": "giftcard",
     "images": [
       "/_fake-data/20171213_153242copy.jpg"
     ],
@@ -82,9 +82,9 @@
     "vendorCode": "w128"
   },
   {
-    "title": "wedding Invitation 5",
+    "title": "giftcard Invitation 5",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
-    "page": "wedding",
+    "type": "giftcard",
     "images": [
       "/_fake-data/20171216_134646copy.jpg"
     ],
@@ -98,9 +98,9 @@
     "vendorCode": "w127"
   },
   {
-    "title": "wedding Invitation 6",
+    "title": "giftcard Invitation 6",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
-    "page": "wedding",
+    "type": "giftcard",
     "images": [
       "/_fake-data/20171213_153242copy.jpg",
       "/_fake-data/20171216_134646copy.jpg",

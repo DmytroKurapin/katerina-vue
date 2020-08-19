@@ -7,7 +7,7 @@
       An error occurred
     </h1>
     <NuxtLink to="/">
-      Home page
+      Go to Home page
     </NuxtLink>
   </div>
 </template>
@@ -16,7 +16,7 @@
 import { defineComponent, ref } from '@vue/composition-api';
 
 export default defineComponent({
-  // props: ['error'],
+  props: ['error'],
   // layout: 'blog' // you can set a custom layout for the error page
   setup() {
     const posts = ref(null);

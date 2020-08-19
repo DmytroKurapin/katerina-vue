@@ -42,6 +42,7 @@ module.exports = {
     'operator-linebreak': 'off',
     "semi": [2, "always"],
     "vue/html-closing-bracket-newline": "off",
-    "vue/html-self-closing": "off"
+    "vue/html-self-closing": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "args": "after-used" }]
   }
 }

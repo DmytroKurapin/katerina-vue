@@ -3,6 +3,8 @@ export interface NavData {
   label: string;
 }
 
+export type ProductTypes = 'wedding' | 'mitzvah' | 'giftcard';
+
 export interface Product {
   title: string;
   description: string;
@@ -10,4 +12,11 @@ export interface Product {
   images: string[];
   thumbnail: string;
   order: number;
+  type: ProductTypes;
+}
+
+export interface ProductsState {
+  wedding: Product[];
+  mitzvah: Product[];
+  giftcard: Product[];
 }

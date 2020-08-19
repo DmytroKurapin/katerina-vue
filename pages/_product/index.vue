@@ -1,29 +1,31 @@
 <template>
   <div>
-    <div class="flex flex-wrap -mx-1 lg:-mx-4">
+    <div class="flex flex-wrap sm:-mx-1 lg:-mx-4 mx-1">
       <ProductCard v-for="prod in productData" :key="prod.vendorCode" :product="prod" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeMount, Ref, ref } from '@vue/composition-api';
-import axios from 'axios';
+import { defineComponent, ref } from '@vue/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
-import { Product } from '@/types';
+import { Product, ProductTypes } from '@/types';
+import { getProductsByType } from '@/composables/useProducts';
+import { loadProductsByType } from '~/composables/useApiService';
 
 export default defineComponent({
   components: {
     ProductCard
   },
-  setup() {
-    const productData: Ref<Array<Product>> = ref([]);
+  setup(props, ctx) {
+    // todo check if product in url is instance of Product Types
+    const prodType = ctx.root.$route.params.product as ProductTypes;
+    const productData = ref<Array<Product>>(getProductsByType(prodType).value);
+    // init products list for current product page
+    loadProductsByType(prodType);
 
-    onBeforeMount(() => {
-      axios.get('http://localhost:3000/_fake-data/content.json').then(response => {
-        productData.value = response.data;
-      });
-    });
+    // getProductsByVendorCode(['sdasdasdw']);
+    // root.$nuxt.context.app.$apiService.getByVendorCodes(['sdasdasdw']);
 
     return { productData };
   }

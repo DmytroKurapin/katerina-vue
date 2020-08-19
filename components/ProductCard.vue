@@ -1,6 +1,5 @@
 <template>
   <div class="my-1 px-1 w-full sm:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-    {{ $route.params }}
     <article class="overflow-hidden rounded-lg shadow-lg">
       <nuxt-link :to="localePath(`/${$route.params.product}/${product.vendorCode}`)">
         <img alt="Placeholder" class="block h-auto w-full" :src="product.thumbnail" />
@@ -26,7 +25,8 @@
         <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
           <span class="hidden">Like</span>
 
-          <!--          no font awesome. use other icons-->
+          <!--     todo     no font awesome. use other icons-->
+
           <i class="fa fa-heart"></i>
         </a>
       </footer>
@@ -45,10 +45,7 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log(props);
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+  setup() {
     // const prodPath = localePath(`/${this.$route.params.product}/${this.product.vendorCode}`);
     return {};
   }

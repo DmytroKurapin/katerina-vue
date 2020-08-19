@@ -27,7 +27,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/composition-api', '@/plugins/i18n.js'],
+  plugins: ['@/plugins/composition-api', '@/plugins/i18n.js', '@/plugins/axios'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -46,7 +46,14 @@ export default {
     '@nuxtjs/axios',
     'nuxt-i18n'
   ],
-  axios: {},
+  // todo make baseUrl dynamic for dev and prod
+  axios: {
+    baseURL: 'http://localhost:3000',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  },
   i18n: {
     locales: [
       {
