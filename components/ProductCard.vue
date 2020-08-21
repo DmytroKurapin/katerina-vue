@@ -11,9 +11,7 @@
             {{ product.title }}
           </a>
         </h1>
-        <p class="text-grey-darker text-sm">
-          11/1/19
-        </p>
+        <p class="text-grey-darker text-sm">{{ product.price }} ₪</p>
       </header>
 
       <footer class="flex items-center justify-between leading-none p-2 sm:p-4">
@@ -22,20 +20,23 @@
             {{ product.description }}
           </p>
         </a>
-        <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-          <span class="hidden">Like</span>
-
-          <!--     todo     no font awesome. use other icons-->
-
-          <i class="fa fa-heart"></i>
-        </a>
+        <svg
+          :class="isLiked ? 'text-primary' : 'text-primary-light'"
+          class="h-6 w-6 cursor-pointer fill-current"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          @click="toggleFavorites"
+        >
+          <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
+        </svg>
       </footer>
     </article>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@vue/composition-api';
+import { computed, defineComponent, PropType } from '@vue/composition-api';
+import { getFavoriteVendorCodes, pushPopFavorites } from '@/composables/useFavorites';
 import { Product } from '@/types';
 
 export default defineComponent({
@@ -45,9 +46,16 @@ export default defineComponent({
       required: true
     }
   },
-  setup() {
+  setup(props) {
+    const { product } = props;
     // const prodPath = localePath(`/${this.$route.params.product}/${this.product.vendorCode}`);
-    return {};
+
+    const isLiked = computed<boolean>(() => getFavoriteVendorCodes.value.includes(product.vendorCode));
+
+    function toggleFavorites() {
+      pushPopFavorites(product, isLiked.value);
+    }
+    return { isLiked, toggleFavorites };
   }
 });
 </script>

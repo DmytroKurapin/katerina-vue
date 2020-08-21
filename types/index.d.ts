@@ -13,6 +13,7 @@ export interface Product {
   thumbnail: string;
   order: number;
   type: ProductTypes;
+  price: number;
 }
 
 export interface ProductsState {

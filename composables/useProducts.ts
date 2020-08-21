@@ -14,10 +14,6 @@ function getProductsByType(prodType: ProductTypes): ComputedRef<Product[]> {
 }
 
 function addToProductsByType({ prodType, value }: { prodType: ProductTypes; value: Product[] }): void {
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-  console.log(prodType);
-  console.log(value);
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
   // set products by type only if it is exists in state
   if (productsState.value[prodType]) {
     productsState.value[prodType].push(...value);

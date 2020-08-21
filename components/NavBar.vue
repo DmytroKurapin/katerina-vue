@@ -1,9 +1,24 @@
 <!-- eslint-disable max-len -->
 
 <template>
-  <header class="bg-gray-900 sm:flex sm:items-center sm:justify-between xl:bg-white">
+  <header class="bg-gray-900 flex sm:items-center sm:justify-between xl:bg-white">
     <div class="flex justify-between px-4 py-3 xl:bg-gray-900 xl:justify-center xl:py-5">
-      <div id="logo-container">
+      <div class="flex">
+        <div class="heart-icon-cont relative inline-flex">
+          <!--  Heart icon  -->
+          <svg
+            class="h-8 w-8 cursor-pointer fill-current text-primary"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
+          </svg>
+          <span
+            class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 likes-counter text-gray-100"
+          >
+            {{ favoriteCounter }}
+          </span>
+        </div>
         <nuxt-link :to="localePath('/')">
           <img src="/logo.jpg" alt="Katerina Kurapin" class="h-8 w-auto" />
         </nuxt-link>
@@ -104,23 +119,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api';
+import { computed, defineComponent, ref } from '@vue/composition-api';
 import { NavData } from '@/types';
+// import { getFavoriteProducts } from '@/composables/useFavorites';
 
 export default defineComponent({
   setup() {
+    const test = require('@/composables/useFavorites').getFavoriteProducts;
+
     const navData: Array<NavData> = [
       { link: '/wedding', label: 'navbar.wedding' },
       { link: '/mitzvah', label: 'navbar.mitzvah' },
       { link: '/giftcard', label: 'navbar.giftcard' }
     ];
     const isMenuOpened = ref(false);
+    const favoriteCounter = computed(() => test.value.length);
 
     function toggleMenu() {
       isMenuOpened.value = !isMenuOpened.value;
     }
 
-    return { isMenuOpened, navData, toggleMenu };
+    return { isMenuOpened, navData, toggleMenu, favoriteCounter };
   }
 });
 </script>

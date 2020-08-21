@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
 import { defineComponent, ref } from '@vue/composition-api';
+import NavBar from '@/components/NavBar.vue';
 
 export default defineComponent({
   // props: ['error'],

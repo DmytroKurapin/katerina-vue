@@ -15,7 +15,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w123"
+    "vendorCode": "g123"
   },
   {
     "title": "giftcard Invitation 2",
@@ -31,7 +31,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w124"
+    "vendorCode": "g124"
   },
   {
     "title": "giftcard Invitation 3",
@@ -47,7 +47,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w125"
+    "vendorCode": "g125"
   },
   {
     "title": "giftcard Invitation 4",
@@ -63,7 +63,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w126"
+    "vendorCode": "g126"
   },
   {
     "title": "giftcard Invitation 6",
@@ -79,7 +79,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w128"
+    "vendorCode": "g128"
   },
   {
     "title": "giftcard Invitation 5",
@@ -95,7 +95,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w127"
+    "vendorCode": "g127"
   },
   {
     "title": "giftcard Invitation 6",
@@ -113,6 +113,6 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w129"
+    "vendorCode": "g129"
   }
 ]

@@ -42,7 +42,14 @@ module.exports = {
           400: '#60c367',
           300: '#a4dda8',
           200: '#e8f6e9'
+        },
+        primary: {
+          default: '#ad726f',
+          light: '#ad726f5e'
         }
+      },
+      inset: {
+        '1/2': '50%'
       },
       // fontSize: {
       //   '7xl': '5rem',

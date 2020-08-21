@@ -15,7 +15,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w123"
+    "vendorCode": "m123"
   },
   {
     "title": "mitzvah Invitation 2",
@@ -31,7 +31,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w124"
+    "vendorCode": "m124"
   },
   {
     "title": "mitzvah Invitation 3",
@@ -47,7 +47,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w125"
+    "vendorCode": "m125"
   },
   {
     "title": "mitzvah Invitation 4",
@@ -63,7 +63,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w126"
+    "vendorCode": "m126"
   },
   {
     "title": "mitzvah Invitation 6",
@@ -79,7 +79,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w128"
+    "vendorCode": "m128"
   },
   {
     "title": "mitzvah Invitation 5",
@@ -95,7 +95,7 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w127"
+    "vendorCode": "m127"
   },
   {
     "title": "mitzvah Invitation 6",
@@ -113,6 +113,6 @@
       "price": null,
       "isNew": null
     },
-    "vendorCode": "w129"
+    "vendorCode": "m129"
   }
 ]
