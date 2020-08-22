@@ -2,7 +2,7 @@
 
 <template>
   <header class="bg-gray-900 flex sm:items-center sm:justify-between xl:bg-white">
-    <div class="flex justify-between px-4 py-3 xl:bg-gray-900 xl:justify-center xl:py-5">
+    <div class="flex w-full sm:w-auto justify-between px-4 py-3 xl:bg-gray-900 xl:justify-center xl:py-5">
       <div class="flex">
         <div class="heart-icon-cont relative inline-flex">
           <!--  Heart icon  -->

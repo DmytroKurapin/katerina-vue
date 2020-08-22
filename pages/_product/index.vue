@@ -5,7 +5,7 @@
         v-for="(prod, index) in productData"
         :key="`${prod.vendorCode}_${index}`"
         :product="prod"
-        class="my-1 px-1 w-full sm:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 animate-show-up transform translate-y-64 scale-50 "
+        :class="index === 0 ? 'pt-3' : null"
       />
     </div>
   </div>

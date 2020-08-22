@@ -1,6 +1,9 @@
 <template>
-  <div :class="didLoad ? 'visible' : 'invisible'">
-    <article class="overflow-hidden rounded-lg shadow-lg">
+  <div
+    class="my-4 px-6 w-full sm:w-1/2 sm:my-4 sm:px-4 lg:w-1/3 animate-show-up transform translate-y-64 scale-50"
+    :class="didLoad ? 'visible' : 'invisible'"
+  >
+    <article class="overflow-hidden shadow-lg">
       <nuxt-link :to="localePath(`/${$route.params.product}/${product.vendorCode}`)">
         <img alt="Placeholder" class="h-auto w-full" :src="product.thumbnail" @load="didLoad = !didLoad" />
 
