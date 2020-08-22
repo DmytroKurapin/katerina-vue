@@ -60,6 +60,16 @@ module.exports = {
       },
       minHeight: {
         750: '750px'
+      },
+      keyframes: {
+        'show-up': {
+          '0%': { opacity: 0 },
+          '50%': { opacity: 1 },
+          '100%': { '-webkit-transform': 'scale(1)', transform: 'scale(1)', opacity: 1 }
+        }
+      },
+      animation: {
+        'show-up': 'show-up 1s 0.2s ease-in-out forwards'
       }
     }
   },
