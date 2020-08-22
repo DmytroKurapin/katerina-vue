@@ -1,8 +1,7 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios';
 import { Context } from '@nuxt/types';
 import { NuxtError } from '@nuxt/types/app';
-import { ProductTypes } from '~/types';
-import { addToProductsByType } from '~/composables/useProducts';
+import { Product, ProductTypes } from '~/types';
 
 let $axios: NuxtAxiosInstance;
 // eslint-disable-next-line
@@ -22,10 +21,10 @@ export const getProductsByVendorCode = (vendorCodes: string[]) => {
   });
 };
 
-export const loadProductsByType = async (prodType: ProductTypes) => {
+export const getProducts = async (prodType: ProductTypes): Promise<Product[]> => {
   try {
     const response = await $axios.get(`/_fake-data/${prodType}.json`);
-    addToProductsByType({ prodType, value: response.data });
+    return response.data;
   } catch (e) {
     // todo maybe not errors which returned from server must navigate user to error page
     console.log('~~~~~error in reaching product type data~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
@@ -33,6 +32,7 @@ export const loadProductsByType = async (prodType: ProductTypes) => {
     console.log(e);
     console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     // navigate user to default error page
-    return nuxtError({ statusCode: 404, message: 'err message' });
+    nuxtError({ statusCode: 404, message: 'err message' });
+    return [];
   }
 };

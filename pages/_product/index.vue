@@ -2,8 +2,8 @@
   <div>
     <div class="flex flex-wrap sm:-mx-1 lg:-mx-4 mx-1">
       <ProductCard
-        v-for="prod in productData"
-        :key="prod.vendorCode"
+        v-for="(prod, index) in productData"
+        :key="`${prod.vendorCode}_${index}`"
         :product="prod"
         class="my-1 px-1 w-full sm:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 animate-show-up transform translate-y-64 scale-50 "
       />
@@ -12,11 +12,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@vue/composition-api';
+import { defineComponent, reactive, onUnmounted } from '@vue/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
 import { Product, ProductTypes } from '@/types';
-import { getProductsByType } from '@/composables/useProducts';
-import { loadProductsByType } from '~/composables/useApiService';
+import { getProductsByType, resetProductsByType, loadProductsByType } from '@/composables/useProducts';
 
 export default defineComponent({
   components: {
@@ -29,8 +28,11 @@ export default defineComponent({
     // init products list for current product page
     loadProductsByType(prodType);
 
-    // getProductsByVendorCode(['sdasdasdw']);
     // root.$nuxt.context.app.$apiService.getByVendorCodes(['sdasdasdw']);
+
+    onUnmounted(() => {
+      resetProductsByType(prodType);
+    });
 
     return { productData };
   }
