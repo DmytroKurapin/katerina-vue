@@ -1,4 +1,5 @@
-import { computed, ComputedRef, reactive } from '@vue/composition-api';
+import { computed, reactive } from '@nuxtjs/composition-api';
+import { ComputedRef } from '@vue/composition-api';
 import { Product, ProductsState, ProductTypes } from '~/types';
 import { getProducts } from '~/composables/useApiService';
 

@@ -33,14 +33,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from '@vue/composition-api';
+import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
 import { getFavoriteVendorCodes, pushPopFavorites } from '@/composables/useFavorites';
 import { Product } from '@/types';
 
 export default defineComponent({
   props: {
     product: {
-      type: Object as PropType<Product>,
+      type: Object as () => Product,
       required: true
     }
   },

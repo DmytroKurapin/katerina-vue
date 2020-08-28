@@ -1,4 +1,4 @@
-import { computed, ref } from '@vue/composition-api';
+import { computed, ref } from '@nuxtjs/composition-api';
 import { Product } from '~/types';
 
 const INITIAL_FAVORITES = { objs: [], vendorCodes: [] };

@@ -1,18 +1,8 @@
-import { NuxtAxiosInstance } from '@nuxtjs/axios';
-import { Context } from '@nuxt/types';
-import { NuxtError } from '@nuxt/types/app';
+import { useContext } from '@nuxtjs/composition-api';
 import { Product, ProductTypes } from '~/types';
 
-let $axios: NuxtAxiosInstance;
-// eslint-disable-next-line
-let nuxtError = (params: NuxtError) => {};
-
-export function initApiService(ctx: Context) {
-  $axios = ctx.$axios;
-  nuxtError = ctx.error;
-}
-
 export const getProductsByVendorCode = (vendorCodes: string[]) => {
+  const { $axios } = useContext();
   $axios.get('/_fake-data/wedding.json').then((response: any) => {
     console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     console.log(response);
@@ -22,6 +12,7 @@ export const getProductsByVendorCode = (vendorCodes: string[]) => {
 };
 
 export const getProducts = async (prodType: ProductTypes): Promise<Product[]> => {
+  const { $axios, error: nuxtError } = useContext();
   try {
     const response = await $axios.get(`/_fake-data/${prodType}.json`);
     return response.data;

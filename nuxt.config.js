@@ -27,11 +27,12 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/composition-api', '@/plugins/i18n.js', '@/plugins/axios'],
+  plugins: ['@/plugins/i18n.js'],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
+    '@nuxtjs/composition-api',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss

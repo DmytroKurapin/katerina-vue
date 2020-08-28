@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, onUnmounted } from '@vue/composition-api';
+import { defineComponent, reactive, onUnmounted } from '@nuxtjs/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
 import { Product, ProductTypes } from '@/types';
 import { getProductsByType, resetProductsByType, loadProductsByType } from '@/composables/useProducts';

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from '@vue/composition-api';
+import { defineComponent, ref } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   setup() {
