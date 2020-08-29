@@ -63,13 +63,20 @@ module.exports = {
       },
       keyframes: {
         'show-up': {
-          '0%': { opacity: 0 },
-          '50%': { opacity: 1 },
-          '100%': { '-webkit-transform': 'scale(1)', transform: 'scale(1)', opacity: 1 }
+          '0%': {
+            opacity: 0,
+            '-webkit-transform': 'scale(0.5) translateY(16rem)',
+            transform: 'scale(0.5) translateY(16rem)'
+          },
+          '100%': {
+            '-webkit-transform': 'scale(1) translateY(0)',
+            transform: 'scale(1) translateY(0)',
+            opacity: 1
+          }
         }
       },
       animation: {
-        'show-up': 'show-up 1s 0.2s ease-in-out forwards'
+        showUp: 'show-up 1s 0.2s ease-in-out forwards'
       }
     }
   },

@@ -1,11 +1,12 @@
 <template>
-  <div
-    class="my-4 px-6 w-full sm:w-1/2 sm:my-4 sm:px-4 lg:w-1/3 animate-show-up transform translate-y-64 scale-50"
-    :class="didLoad ? 'visible' : 'invisible'"
+  <article
+    v-lazyload
+    class="my-4 px-6 w-full sm:w-1/2 sm:my-4 sm:px-4 lg:w-1/3 opacity-0"
+    :class="{ 'animate-showUp': didLoad }"
   >
-    <article class="overflow-hidden shadow-lg">
-      <nuxt-link :to="localePath(`/${$route.params.product}/${product.vendorCode}`)">
-        <img alt="Placeholder" class="h-auto w-full" :src="product.thumbnail" @load="didLoad = !didLoad" />
+    <nuxt-link :to="localePath(`/${$route.params.product}/${product.vendorCode}`)">
+      <figure>
+        <img :alt="product.title" :data-url="product.thumbnail" class="h-auto w-full" @load="didLoad = !didLoad" />
 
         <header class="flex items-center justify-between leading-tight p-2 sm:p-4">
           <h1 class="text-lg">
@@ -13,23 +14,23 @@
           </h1>
           <p class="text-grey-darker text-sm">{{ product.price }} ₪</p>
         </header>
-      </nuxt-link>
-      <footer class="flex items-center justify-between leading-none p-2 sm:p-4">
-        <p class="ml-2 text-sm">
-          {{ product.description }}
-        </p>
-        <svg
-          :class="isLiked ? 'text-primary' : 'text-primary-light'"
-          class="h-6 w-6 cursor-pointer fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          @click.prevent="toggleFavorites"
-        >
-          <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
-        </svg>
-      </footer>
-    </article>
-  </div>
+      </figure>
+    </nuxt-link>
+    <footer class="flex items-center justify-between leading-none p-2 sm:p-4">
+      <p class="ml-2 text-sm">
+        {{ product.description }}
+      </p>
+      <svg
+        :class="isLiked ? 'text-primary' : 'text-primary-light'"
+        class="h-6 w-6 cursor-pointer fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        @click.prevent="toggleFavorites"
+      >
+        <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
+      </svg>
+    </footer>
+  </article>
 </template>
 
 <script lang="ts">
