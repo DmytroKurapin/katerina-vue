@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <div class="flex flex-wrap sm:-mx-1 lg:-mx-4 mx-1">
-      <ProductCard
-        v-for="(prod, index) in productData"
-        :key="`${prod.vendorCode}_${index}`"
-        :product="prod"
-        :class="index === 0 ? 'pt-3' : null"
-      />
-    </div>
+  <div class="flex flex-wrap sm:-mx-1 lg:-mx-4 mx-1">
+    <ProductCard
+      v-for="(prod, index) in productData"
+      :key="`${prod.vendorCode}_${index}`"
+      :product="prod"
+      :class="index === 0 ? 'pt-3 sm:pt-0' : null"
+    />
   </div>
 </template>
 
