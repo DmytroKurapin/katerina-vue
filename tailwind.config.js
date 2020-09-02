@@ -45,7 +45,8 @@ module.exports = {
         },
         primary: {
           default: '#ad726f',
-          light: '#ad726f5e'
+          light: '#ad726f5e',
+          dark: '#ad726fb3'
         }
       },
       inset: {
@@ -80,7 +81,10 @@ module.exports = {
       }
     }
   },
-  variants: {},
+  variants: {
+    padding: ['responsive', 'hover', 'focus'],
+    borderWidth: ['responsive', 'hover', 'focus']
+  },
   plugins: [require('tailwindcss-rtl')],
   purge: {
     // enable remove unused CSS only in production
