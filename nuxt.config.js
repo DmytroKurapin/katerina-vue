@@ -76,6 +76,11 @@ export default {
     defaultLocale: 'he',
     vueI18n: { fallbackLocale: 'he' }
   },
+  generate: {
+    // When generated files are produced, async functions or serverPrefetches don't correctly populate the Nuxt context
+    // change interval according to the size of the project
+    interval: 1000
+  },
   /*
    ** Build configuration
    */
