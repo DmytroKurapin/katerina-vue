@@ -5,6 +5,7 @@
       :key="`${prod.vendorCode}_${index}`"
       :product="prod"
       :class="index === 0 ? 'pt-3 sm:pt-0' : null"
+      @chooseProduct="chooseProduct(prod)"
     />
   </div>
 </template>
@@ -13,7 +14,12 @@
 import { defineComponent, reactive, onUnmounted } from '@nuxtjs/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
 import { Product, ProductTypes } from '@/types';
-import { getProductsByType, resetProductsByType, loadProductsByType } from '@/composables/useProducts';
+import {
+  getProductsByType,
+  resetProductsByType,
+  loadProductsByType,
+  setActiveProduct
+} from '@/composables/useProducts';
 
 export default defineComponent({
   components: {
@@ -21,18 +27,22 @@ export default defineComponent({
   },
   setup(props, ctx) {
     // todo check if product in url is instance of Product Types
+
     const prodType = ctx.root.$route.params.product as ProductTypes;
-    const productData = reactive<Array<Product>>(getProductsByType(prodType).value);
     // init products list for current product page
     loadProductsByType(prodType);
+    const productData = reactive<Product[]>(getProductsByType(prodType).value);
+    const test = reactive([]);
 
-    // root.$nuxt.context.app.$apiService.getByVendorCodes(['sdasdasdw']);
+    function chooseProduct(prodData: Product) {
+      setActiveProduct(prodData);
+    }
 
     onUnmounted(() => {
       resetProductsByType(prodType);
     });
 
-    return { productData };
+    return { productData, chooseProduct, test };
   }
 });
 </script>

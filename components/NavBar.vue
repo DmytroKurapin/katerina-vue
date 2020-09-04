@@ -27,7 +27,6 @@
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api';
 import NavMenu from '@/components/NavMenu.vue';
-// import { getFavoriteProducts } from '@/composables/useFavorites';
 
 export default defineComponent({
   components: {

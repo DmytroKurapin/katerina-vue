@@ -62,6 +62,12 @@ module.exports = {
       minHeight: {
         750: '750px'
       },
+      maxWidth: {
+        '1/5': '20%'
+      },
+      transitionDuration: {
+        2000: '2000ms'
+      },
       keyframes: {
         'show-up': {
           '0%': {

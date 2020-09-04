@@ -17,7 +17,11 @@ export interface Product {
 }
 
 export interface ProductsState {
-  wedding: Product[];
-  mitzvah: Product[];
-  giftcard: Product[];
+  types: {
+    wedding: Product[];
+    mitzvah: Product[];
+    giftcard: Product[];
+  };
+  activeProduct: Product;
+  // activeProduct: Product | null; // currently activeProduct has initial dummy value, because setup() can't be async
 }
