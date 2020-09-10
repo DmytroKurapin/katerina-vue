@@ -8,8 +8,10 @@ async function findFakeProdTypeByVendor(vendorCodes: string[]): Promise<Product[
     let prodType = '';
     if (firstChar === 'w') {
       prodType = 'wedding';
-    } else if (firstChar === 'm') {
-      prodType = 'mitzvah';
+    } else if (firstChar === 't') {
+      prodType = 'batMitzvah';
+    } else if (firstChar === 'r') {
+      prodType = 'barMitzvah';
     } else if (firstChar === 'g') {
       prodType = 'giftcard';
     }

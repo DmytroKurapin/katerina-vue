@@ -1,7 +1,8 @@
 {
   "navbar": {
     "wedding": "חתונה",
-    "mitzvah": "בר\\בת מצווה",
+    "bar_mitzvah": "בר מצווה",
+    "bat_mitzvah": "בת מצווה",
     "giftcard": "שובר מתנה"
   }
 }

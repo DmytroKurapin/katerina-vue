@@ -1,7 +1,8 @@
 {
   "navbar": {
     "wedding": "Wedding",
-    "mitzvah": "Bar/Bat Mitzvah",
+    "bar_mitzvah": "Bar Mitzvah",
+    "bat_mitzvah": "Bat Mitzvah",
     "giftcard": "Gift Card"
   }
 }

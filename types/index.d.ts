@@ -3,7 +3,7 @@ export interface NavData {
   label: string;
 }
 
-export type ProductTypes = 'wedding' | 'mitzvah' | 'giftcard';
+export type ProductTypes = 'wedding' | 'batMitzvah' | 'barMitzvah' | 'giftcard';
 
 export interface Product {
   title: string;
@@ -19,7 +19,8 @@ export interface Product {
 export interface ProductsState {
   types: {
     wedding: Product[];
-    mitzvah: Product[];
+    batMitzvah: Product[];
+    barMitzvah: Product[];
     giftcard: Product[];
   };
   activeProduct: Product;

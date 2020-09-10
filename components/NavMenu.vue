@@ -77,7 +77,8 @@ export default defineComponent({
 
     const navData: Array<NavData> = [
       { link: '/wedding', label: 'navbar.wedding' },
-      { link: '/mitzvah', label: 'navbar.mitzvah' },
+      { link: '/batMitzvah', label: 'navbar.bat_mitzvah' },
+      { link: '/barMitzvah', label: 'navbar.bar_mitzvah' },
       { link: '/giftcard', label: 'navbar.giftcard' }
     ];
 

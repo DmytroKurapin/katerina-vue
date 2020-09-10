@@ -17,7 +17,8 @@ const INITIAL_DUMMY_PRODUCT: Product = {
 const INITIAL_PRODUCTS_STATE: ProductsState = {
   types: {
     wedding: [],
-    mitzvah: [],
+    batMitzvah: [],
+    barMitzvah: [],
     giftcard: []
   },
   activeProduct: INITIAL_DUMMY_PRODUCT
@@ -27,6 +28,10 @@ const INITIAL_PRODUCTS_STATE: ProductsState = {
 const productsState = reactive<ProductsState>(JSON.parse(JSON.stringify(INITIAL_PRODUCTS_STATE)));
 
 export const getProductsByType = (prodType: ProductTypes): ComputedRef<Product[]> => {
+  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+  console.log(prodType);
+  console.log(productsState.types);
+  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
   return computed(() => productsState.types[prodType] || []);
 };
 
