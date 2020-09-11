@@ -1,6 +1,6 @@
 import { computed, reactive } from '@nuxtjs/composition-api';
 import { ComputedRef } from '@vue/composition-api';
-import { Product, ProductsState, ProductTypes } from '~/types';
+import { Product, ProductsState, ProductCategories } from '~/types';
 import { getProducts, getProductsByVendorCode } from '~/composables/useApiService';
 
 const INITIAL_DUMMY_PRODUCT: Product = {
@@ -10,12 +10,12 @@ const INITIAL_DUMMY_PRODUCT: Product = {
   images: [],
   thumbnail: '',
   order: 0,
-  type: 'wedding',
+  category: 'wedding',
   price: 0
 };
 
 const INITIAL_PRODUCTS_STATE: ProductsState = {
-  types: {
+  categories: {
     wedding: [],
     batMitzvah: [],
     barMitzvah: [],
@@ -27,30 +27,36 @@ const INITIAL_PRODUCTS_STATE: ProductsState = {
 // JSON parse and stringify are needed to prevent making INITIAL_PRODUCTS_STATE to be mutated
 const productsState = reactive<ProductsState>(JSON.parse(JSON.stringify(INITIAL_PRODUCTS_STATE)));
 
-export const getProductsByType = (prodType: ProductTypes): ComputedRef<Product[]> => {
+export const getProductsByCategory = (prodCategory: ProductCategories): ComputedRef<Product[]> => {
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-  console.log(prodType);
-  console.log(productsState.types);
+  console.log(prodCategory);
+  console.log(productsState.categories);
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-  return computed(() => productsState.types[prodType] || []);
+  return computed(() => productsState.categories[prodCategory] || []);
 };
 
-export const addToProductsByType = ({ prodType, value }: { prodType: ProductTypes; value: Product[] }): void => {
+export const addToProductsByCategory = ({
+  prodCategory,
+  value
+}: {
+  prodCategory: ProductCategories;
+  value: Product[];
+}): void => {
   // set products by type only if it is exists in state
-  if (productsState.types[prodType]) {
-    productsState.types[prodType].push(...value);
+  if (productsState.categories[prodCategory]) {
+    productsState.categories[prodCategory].push(...value);
   }
 };
 
-export const resetProductsByType = (prodType: ProductTypes): void => {
-  if (productsState.types[prodType]) {
-    productsState.types[prodType] = [...INITIAL_PRODUCTS_STATE.types[prodType]];
+export const resetProductsByCategory = (prodCategory: ProductCategories): void => {
+  if (productsState.categories[prodCategory]) {
+    productsState.categories[prodCategory] = [...INITIAL_PRODUCTS_STATE.categories[prodCategory]];
   }
 };
 
-export const loadProductsByType = async (prodType: ProductTypes) => {
-  const data = await getProducts(prodType);
-  addToProductsByType({ prodType, value: data });
+export const loadProductsByCategory = async (prodCategory: ProductCategories) => {
+  const data = await getProducts(prodCategory);
+  addToProductsByCategory({ prodCategory, value: data });
 };
 
 export const setActiveProduct = (prodData: Product): void => {

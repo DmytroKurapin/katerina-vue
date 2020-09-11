@@ -13,11 +13,11 @@
 <script lang="ts">
 import { defineComponent, reactive, onUnmounted } from '@nuxtjs/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
-import { Product, ProductTypes } from '@/types';
+import { Product, ProductCategories } from '@/types';
 import {
-  getProductsByType,
-  resetProductsByType,
-  loadProductsByType,
+  getProductsByCategory,
+  resetProductsByCategory,
+  loadProductsByCategory,
   setActiveProduct
 } from '@/composables/useProducts';
 
@@ -26,12 +26,12 @@ export default defineComponent({
     ProductCard
   },
   setup(props, ctx) {
-    // todo check if product in url is instance of Product Types
+    // todo check if product in url is instance of Product Categories
 
-    const prodType = ctx.root.$route.params.product as ProductTypes;
+    const prodCategory = ctx.root.$route.params.product as ProductCategories;
     // init products list for current product page
-    loadProductsByType(prodType);
-    const productData = reactive<Product[]>(getProductsByType(prodType).value);
+    loadProductsByCategory(prodCategory);
+    const productData = reactive<Product[]>(getProductsByCategory(prodCategory).value);
     const test = reactive([]);
 
     function chooseProduct(prodData: Product) {
@@ -39,7 +39,7 @@ export default defineComponent({
     }
 
     onUnmounted(() => {
-      resetProductsByType(prodType);
+      resetProductsByCategory(prodCategory);
     });
 
     return { productData, chooseProduct, test };

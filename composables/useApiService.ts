@@ -1,29 +1,29 @@
 import { useContext } from '@nuxtjs/composition-api';
-import { Product, ProductTypes } from '~/types';
+import { Product, ProductCategories } from '~/types';
 
-async function findFakeProdTypeByVendor(vendorCodes: string[]): Promise<Product[]> {
+async function findFakeProdCategoryByVendor(vendorCodes: string[]): Promise<Product[]> {
   const { $axios } = useContext();
   const requestsArr = vendorCodes.reduce((prev: string[], curr) => {
     const firstChar = curr.charAt(0);
-    let prodType = '';
+    let prodCategory = '';
     if (firstChar === 'w') {
-      prodType = 'wedding';
+      prodCategory = 'wedding';
     } else if (firstChar === 't') {
-      prodType = 'batMitzvah';
+      prodCategory = 'batMitzvah';
     } else if (firstChar === 'r') {
-      prodType = 'barMitzvah';
+      prodCategory = 'barMitzvah';
     } else if (firstChar === 'g') {
-      prodType = 'giftcard';
+      prodCategory = 'giftcard';
     }
 
-    if (prodType !== '' && prev.findIndex(str => str.includes(prodType)) === -1) {
-      prev.push(`/_fake-data/${prodType}.json`);
+    if (prodCategory !== '' && prev.findIndex(str => str.includes(prodCategory)) === -1) {
+      prev.push(`/_fake-data/${prodCategory}.json`);
     }
     return prev;
   }, []);
-  const allProdsByType = await Promise.all(requestsArr.map(reqStr => $axios.get<Product[]>(reqStr)));
+  const allProdsByCategory = await Promise.all(requestsArr.map(reqStr => $axios.get<Product[]>(reqStr)));
   return vendorCodes.reduce((res: Product[], vCode) => {
-    allProdsByType.find(prods => {
+    allProdsByCategory.find(prods => {
       const foundProd = prods.data.find(prod => prod.vendorCode === vCode);
       if (foundProd) {
         res.push(foundProd);
@@ -38,7 +38,7 @@ async function findFakeProdTypeByVendor(vendorCodes: string[]): Promise<Product[
 export const getProductsByVendorCode = async (vendorCodes: string[]): Promise<Product[]> => {
   const { error: nuxtError } = useContext();
   try {
-    const prods = await findFakeProdTypeByVendor(vendorCodes);
+    const prods = await findFakeProdCategoryByVendor(vendorCodes);
     if (prods.length === 0) {
       nuxtError({ statusCode: 404, message: 'err message' });
     }
@@ -52,14 +52,14 @@ export const getProductsByVendorCode = async (vendorCodes: string[]): Promise<Pr
   }
 };
 
-export const getProducts = async (prodType: ProductTypes): Promise<Product[]> => {
+export const getProducts = async (prodCategory: ProductCategories): Promise<Product[]> => {
   const { $axios, error: nuxtError } = useContext();
   try {
-    const response = await $axios.get(`/_fake-data/${prodType}.json`);
+    const response = await $axios.get(`/_fake-data/${prodCategory}.json`);
     return response.data;
   } catch (e) {
-    console.log('~~~~~error in reaching product type data~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log(prodType);
+    console.log('~~~~~error in reaching product category data~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    console.log(prodCategory);
     console.log(e);
     console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     // navigate user to default error page
