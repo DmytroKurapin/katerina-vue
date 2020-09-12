@@ -11,7 +11,8 @@ const INITIAL_DUMMY_PRODUCT: Product = {
   thumbnail: '',
   order: 0,
   category: 'wedding',
-  price: 0
+  price: 0,
+  subCategories: []
 };
 
 const INITIAL_PRODUCTS_STATE: ProductsState = {

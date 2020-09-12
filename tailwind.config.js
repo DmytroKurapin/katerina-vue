@@ -63,7 +63,8 @@ module.exports = {
         750: '750px'
       },
       maxWidth: {
-        '1/5': '20%'
+        '1/5': '20%',
+        content: 'max-content'
       },
       transitionDuration: {
         2000: '2000ms'

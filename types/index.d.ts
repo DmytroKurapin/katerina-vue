@@ -1,6 +1,7 @@
 export interface NavData {
   link: string;
   label: string;
+  subCategories: string[];
 }
 
 export type ProductCategories = 'wedding' | 'batMitzvah' | 'barMitzvah' | 'giftcard';
@@ -14,6 +15,7 @@ export interface Product {
   order: number;
   category: ProductCategories;
   price: number;
+  subCategories: string[];
 }
 
 export interface ProductsState {

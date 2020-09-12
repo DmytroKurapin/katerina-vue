@@ -3,6 +3,7 @@
     "title": "wedding Invitation 1",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
     "category": "wedding",
+    "subCategories": ["physical"],
     "images": [
       "/_fake-data/20171213_153242copy.jpg",
       "/_fake-data/20171216_134646copy.jpg",
@@ -22,6 +23,7 @@
     "title": "wedding Invitation 2",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
     "category": "wedding",
+    "subCategories": ["digital"],
     "images": [
       "/_fake-data/20171216_134646copy.jpg"
     ],
@@ -38,6 +40,7 @@
     "title": "wedding Invitation 3",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
     "category": "wedding",
+    "subCategories": ["digital"],
     "images": [
       "/_fake-data/20180121_122657copy.jpg"
     ],
@@ -54,6 +57,7 @@
     "title": "wedding Invitation 4",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
     "category": "wedding",
+    "subCategories": ["digital"],
     "images": [
       "/_fake-data/20180121_122657copy.jpg"
     ],
@@ -70,6 +74,7 @@
     "title": "wedding Invitation 6",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
     "category": "wedding",
+    "subCategories": ["physical"],
     "images": [
       "/_fake-data/20171213_153242copy.jpg"
     ],
@@ -86,6 +91,7 @@
     "title": "wedding Invitation 5",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
     "category": "wedding",
+    "subCategories": ["physical"],
     "images": [
       "/_fake-data/20171216_134646copy.jpg"
     ],
@@ -102,6 +108,7 @@
     "title": "wedding Invitation 6",
     "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
     "category": "wedding",
+    "subCategories": ["digital"],
     "images": [
       "/_fake-data/20171213_153242copy.jpg",
       "/_fake-data/20171216_134646copy.jpg",
