@@ -6,5 +6,11 @@
     "giftcard": "שובר מתנה",
     "digital": "דיגיטלי",
     "physical": "פיזי"
+  },
+  "products": {
+    "all": "הכל"
+  },
+  "product": {
+
   }
 }

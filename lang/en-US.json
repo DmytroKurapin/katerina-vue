@@ -6,5 +6,11 @@
     "giftcard": "Gift Card",
     "digital": "Digital",
     "physical": "Physical"
+  },
+  "products": {
+    "all": "All"
+  },
+  "product": {
+
   }
 }

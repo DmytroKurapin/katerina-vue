@@ -69,7 +69,7 @@
                 expandSubcategories(idx);
               "
             >
-              <nuxt-link :to="localePath(`${navObj.link}?f=${sub}`)">
+              <nuxt-link :to="localePath(`${navObj.link}?s=${sub}`)">
                 {{ $t(`navbar.${sub}`) }}
               </nuxt-link>
             </li>
@@ -101,23 +101,17 @@
 <script lang="ts">
 import NavMenuIcon from '@/components/NavMenuIcon.vue';
 import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
-import { NavData } from '@/types';
+import navDataList from '@/constatnts/navData';
 
 export default defineComponent({
   components: {
     NavMenuIcon
   },
   setup(props, ctx) {
+    const navData = navDataList;
     const isOpen = ref(false);
     const show = ref(false);
     const expandedCategoryIdx = ref<number | null>(null);
-
-    const navData: Array<NavData> = [
-      { link: '/wedding', label: 'navbar.wedding', subCategories: ['digital', 'physical'] },
-      { link: '/batMitzvah', label: 'navbar.bat_mitzvah', subCategories: ['digital', 'physical'] },
-      { link: '/barMitzvah', label: 'navbar.bar_mitzvah', subCategories: ['digital', 'physical'] },
-      { link: '/giftcard', label: 'navbar.giftcard', subCategories: ['digital', 'physical'] }
-    ];
 
     const closedSubcategoriesClass = computed(() => {
       const isRtl = ctx.root.$dir() === 'rtl';

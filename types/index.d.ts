@@ -1,10 +1,13 @@
+import { ProductSubCategoriesList } from '~/constatnts/productSubCategories';
+
 export interface NavData {
   link: string;
   label: string;
-  subCategories: string[];
+  subCategories: typeof ProductSubCategoriesList;
 }
 
 export type ProductCategories = 'wedding' | 'batMitzvah' | 'barMitzvah' | 'giftcard';
+export type ProductSubCategories = typeof ProductSubCategoriesList[number];
 
 export interface Product {
   title: string;
