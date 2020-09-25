@@ -27,7 +27,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/i18n.js', '@/plugins/directives.js'],
+  plugins: ['@/plugins/i18n.js', '@/plugins/directives.js', '@/plugins/toKebabCase.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -75,6 +75,9 @@ export default {
     vueI18nLoader: true,
     defaultLocale: 'he',
     vueI18n: { fallbackLocale: 'he' }
+  },
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL
   },
   generate: {
     // When generated files are produced, async functions or serverPrefetches don't correctly populate the Nuxt context

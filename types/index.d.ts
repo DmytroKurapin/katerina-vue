@@ -3,7 +3,8 @@ import { ProductSubCategoriesList } from '~/constatnts/productSubCategories';
 export interface NavData {
   link: string;
   label: string;
-  subCategories: typeof ProductSubCategoriesList;
+  subCategories: typeof ProductSubCategoriesList | [];
+  isLastItem?: boolean; // need it for breadcrumbs.
 }
 
 export type ProductCategories = 'wedding' | 'batMitzvah' | 'barMitzvah' | 'giftcard';

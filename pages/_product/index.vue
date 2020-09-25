@@ -1,32 +1,39 @@
 <template>
-  <div class="flex flex-wrap justify-center sm:-mx-1 lg:-mx-4 mx-1">
-    <div class="inline-flex">
-      <button :class="filterBtnClasses(null)" @click="selectNewFilter(null)">
-        {{ $t('products.all') }}
-      </button>
-      <button
-        v-for="(sub, idx) in currNavObj.subCategories"
-        :key="`${sub}_${idx}`"
-        :class="filterBtnClasses(sub)"
-        @click="selectNewFilter(sub)"
-      >
-        {{ $t(`navbar.${sub}`) }}
-      </button>
-    </div>
-
-    <ProductCard
-      v-for="(prod, index) in productData"
-      :key="`${prod.vendorCode}_${index}`"
-      :product="prod"
-      :class="index === 0 ? 'pt-3 sm:pt-0' : null"
-      @select="chooseProduct(prod)"
-    />
+  <div class="flex flex-wrap flex-col sm:-mx-1 lg:-mx-4 mx-1">
+    <section>
+      <Breadcrumbs />
+    </section>
+    <section class="flex justify-center">
+      <div class="inline-flex">
+        <button :class="filterBtnClasses(null)" @click="selectNewFilter(null)">
+          {{ $t('products.all') }}
+        </button>
+        <button
+          v-for="(sub, idx) in currNavObj.subCategories"
+          :key="`${sub}_${idx}`"
+          :class="filterBtnClasses(sub)"
+          @click="selectNewFilter(sub)"
+        >
+          {{ $t(`navbar.${sub}`) }}
+        </button>
+      </div>
+    </section>
+    <section>
+      <ProductCard
+        v-for="(prod, index) in productData"
+        :key="`${prod.vendorCode}_${index}`"
+        :product="prod"
+        :class="index === 0 ? 'pt-3 sm:pt-0' : null"
+        @select="chooseProduct(prod)"
+      />
+    </section>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, onUnmounted } from '@nuxtjs/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
+import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import { Product, ProductCategories, ProductSubCategories } from '@/types';
 import navDataList from '@/constatnts/navData';
 import {
@@ -39,9 +46,7 @@ import { ComputedRef } from '@vue/composition-api';
 import { ProductSubCategoriesList } from '~/constatnts/productSubCategories';
 
 export default defineComponent({
-  components: {
-    ProductCard
-  },
+  components: { ProductCard, Breadcrumbs },
   setup(props, ctx) {
     // todo check if product in url is instance of Product Categories
 

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <section>
+    <Breadcrumbs />
+
+    <section class="text-4xl mb-3">
       <h1>{{ productData.title }}</h1>
     </section>
     <figure class="relative img-wrapper">
@@ -30,8 +32,10 @@
 <script>
 import { defineComponent, reactive, ref } from '@nuxtjs/composition-api';
 import { getActiveProduct } from '@/composables/useProducts';
+import Breadcrumbs from '@/components/Breadcrumbs.vue';
 
 export default defineComponent({
+  components: { Breadcrumbs },
   setup(props, ctx) {
     const { id: vendorCode } = ctx.root.$route.params;
     // const { product } = ctx.root.$route.params;
