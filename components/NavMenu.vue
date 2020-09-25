@@ -104,9 +104,7 @@ import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
 import navDataList from '@/constatnts/navData';
 
 export default defineComponent({
-  components: {
-    NavMenuIcon
-  },
+  components: { NavMenuIcon },
   setup(props, ctx) {
     const navData = navDataList;
     const isOpen = ref(false);

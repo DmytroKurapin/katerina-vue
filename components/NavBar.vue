@@ -18,26 +18,24 @@
         <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
       </svg>
       <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 likes-counter text-gray-100">
-        {{ favoriteCounter }}
+        {{ favoriteProducts.length }}
       </span>
     </div>
   </header>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@nuxtjs/composition-api';
+import { defineComponent } from '@nuxtjs/composition-api';
+import { ComputedRef } from '@vue/composition-api';
 import NavMenu from '@/components/NavMenu.vue';
+import { Product } from '~/types';
 
 export default defineComponent({
-  components: {
-    NavMenu
-  },
+  components: { NavMenu },
   setup() {
-    const favoriteProducts = require('@/composables/useFavorites').getFavoriteProducts;
+    const favoriteProducts: ComputedRef<Product[]> = require('@/composables/useFavorites').getFavoriteProducts;
 
-    const favoriteCounter = computed(() => favoriteProducts.value.length);
-
-    return { favoriteCounter };
+    return { favoriteProducts };
   }
 });
 </script>

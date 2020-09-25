@@ -5,7 +5,7 @@
     :class="{ 'animate-showUp': didLoad }"
   >
     <nuxt-link :to="localePath(`/${$route.params.product}/${product.vendorCode}`)">
-      <figure @click="$emit('chooseProduct')">
+      <figure @click="$emit('select')">
         <img :alt="product.title" :data-url="product.thumbnail" class="h-auto w-full" @load="didLoad = !didLoad" />
 
         <header class="flex items-center justify-between leading-tight p-2 sm:p-4">
@@ -45,6 +45,7 @@ export default defineComponent({
       required: true
     }
   },
+  // emits: ['select'],
   setup(props) {
     const { product } = props;
     const didLoad = ref(false);

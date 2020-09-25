@@ -58,8 +58,7 @@ export const getProducts = async (prodCategory: ProductCategories): Promise<Prod
     const response = await $axios.get(`/_fake-data/${prodCategory}.json`);
     return response.data;
   } catch (e) {
-    console.log('~~~~~error in reaching product category data~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log(prodCategory);
+    console.log(`~~~~~error in reaching product category data~~~~${prodCategory} ~~~~~~`);
     console.log(e);
     console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     // navigate user to default error page

@@ -29,10 +29,6 @@ const INITIAL_PRODUCTS_STATE: ProductsState = {
 const productsState = reactive<ProductsState>(JSON.parse(JSON.stringify(INITIAL_PRODUCTS_STATE)));
 
 export const getProductsByCategory = (prodCategory: ProductCategories): ComputedRef<Product[]> => {
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-  console.log(prodCategory);
-  console.log(productsState.categories);
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
   return computed(() => productsState.categories[prodCategory] || []);
 };
 

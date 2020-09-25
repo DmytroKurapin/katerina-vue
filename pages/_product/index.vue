@@ -19,7 +19,7 @@
       :key="`${prod.vendorCode}_${index}`"
       :product="prod"
       :class="index === 0 ? 'pt-3 sm:pt-0' : null"
-      @chooseProduct="chooseProduct(prod)"
+      @select="chooseProduct(prod)"
     />
   </div>
 </template>
@@ -35,6 +35,7 @@ import {
   loadProductsByCategory,
   setActiveProduct
 } from '@/composables/useProducts';
+import { ComputedRef } from '@vue/composition-api';
 import { ProductSubCategoriesList } from '~/constatnts/productSubCategories';
 
 export default defineComponent({
@@ -44,19 +45,21 @@ export default defineComponent({
   setup(props, ctx) {
     // todo check if product in url is instance of Product Categories
 
+    const {
+      $route: { params: routeParams, query },
+      $router
+    } = ctx.root;
+    const prodCategory = routeParams.product as ProductCategories;
+    // init products list for current product page
+    loadProductsByCategory(prodCategory);
     const selectedFilter = reactive<{ subCat: ProductSubCategories | null }>({ subCat: null });
-    const { params: routeParams, path: routePath, query } = ctx.root.$route;
     const subCatFromUrl: any = query.s;
     if (subCatFromUrl && ProductSubCategoriesList.includes(subCatFromUrl)) {
       selectedFilter.subCat = subCatFromUrl;
     }
 
-    const prodCategory = routeParams.product as ProductCategories;
-    // init products list for current product page
-    loadProductsByCategory(prodCategory);
-
-    const currNavObj = navDataList.find(navData => navData.link === routePath);
-    const productData = reactive<Product[]>(getProductsByCategory(prodCategory).value);
+    const currNavObj = navDataList.find(navData => navData.link === `/${prodCategory}`) || {};
+    const productData = reactive<ComputedRef<Product[]>>(getProductsByCategory(prodCategory));
 
     const activeClasses = ['bg-primary', 'text-white', 'border-transparent'];
     const mainFilterBtnClasses = `bg-transparent font-semibold py-2 px-4 border border-primary focus:outline-none
@@ -85,7 +88,7 @@ export default defineComponent({
         queries.s = flag;
       }
       // update url with new query data
-      ctx.root.$router.replace({ query: queries });
+      $router.replace({ query: queries });
     }
 
     onUnmounted(() => {
