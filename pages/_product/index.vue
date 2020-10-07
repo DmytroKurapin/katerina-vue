@@ -4,19 +4,7 @@
       <Breadcrumbs />
     </section>
     <section class="flex justify-center">
-      <div class="inline-flex">
-        <button :class="filterBtnClasses(null)" @click="selectNewFilter(null)">
-          {{ $t('products.all') }}
-        </button>
-        <button
-          v-for="(sub, idx) in currNavObj.subCategories"
-          :key="`${sub}_${idx}`"
-          :class="filterBtnClasses(sub)"
-          @click="selectNewFilter(sub)"
-        >
-          {{ $t(`navbar.${sub}`) }}
-        </button>
-      </div>
+      <ProductFilterButtons />
     </section>
     <section>
       <ProductCard
@@ -31,76 +19,75 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, onUnmounted } from '@nuxtjs/composition-api';
+import { defineComponent, ref, onUnmounted } from '@nuxtjs/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import { Product, ProductCategories, ProductSubCategories } from '@/types';
-import navDataList from '@/constatnts/navData';
+import ProductFilterButtons from '@/components/ProductFilterButtons.vue';
+import { Product } from '@/types';
 import {
-  getProductsByCategory,
+  productsByCategory,
   resetProductsByCategory,
   loadProductsByCategory,
   setActiveProduct
 } from '@/composables/useProducts';
-import { ComputedRef } from '@vue/composition-api';
-import { ProductSubCategoriesList } from '~/constatnts/productSubCategories';
+import { createSEOMeta } from '@/utils/seo.js';
 
 export default defineComponent({
-  components: { ProductCard, Breadcrumbs },
+  components: { ProductCard, Breadcrumbs, ProductFilterButtons },
+  head() {
+    const { metaTitle: title, metaDescription: description, prodCategory } = this;
+
+    // todo add image url of one of the products
+
+    return {
+      title,
+      meta: createSEOMeta({ title, description, image: '/logo.png', url: prodCategory })
+    };
+  },
   setup(props, ctx) {
     // todo check if product in url is instance of Product Categories
 
-    const {
-      $route: { params: routeParams, query },
-      $router
-    } = ctx.root;
-    const prodCategory = routeParams.product as ProductCategories;
+    const prodCategory = ctx.root.$route.params.product;
+
+    /*
+    TODO SSR returns product = '<no source>' on refresh the page. Check it when issue will be solved
+    https://github.com/nuxt/nuxt.js/issues/7696
+    https://github.com/nuxt/nuxt.js/pull/8068
+    https://github.com/nuxt/nuxt.js/pull/8132
+    */
+
+    const metaTitle = ref(ctx.root.$t(`navbar.${ctx.root.$toKebabCase(prodCategory)}`));
+    const metaDescription = ref(ctx.root.$t('general.site_description'));
+
+    /*
+    TODO uncomment useMeta and update head using this function once nuxt fix its issues (do it in each component)
+    https://github.com/nuxt-community/composition-api/issues/244
+    */
+    // useMeta({
+    //   title: metaTitle,
+    //   meta: createSEOMeta({ title: metaTitle, description: metaDescription, image: '/logo.png', url: prodCategory })
+    // });
+
     // init products list for current product page
     loadProductsByCategory(prodCategory);
-    const selectedFilter = reactive<{ subCat: ProductSubCategories | null }>({ subCat: null });
-    const subCatFromUrl: any = query.s;
-    if (subCatFromUrl && ProductSubCategoriesList.includes(subCatFromUrl)) {
-      selectedFilter.subCat = subCatFromUrl;
-    }
 
-    const currNavObj = navDataList.find(navData => navData.link === `/${prodCategory}`) || {};
-    const productData = reactive<ComputedRef<Product[]>>(getProductsByCategory(prodCategory));
+    const productData = productsByCategory(prodCategory);
 
-    const activeClasses = ['bg-primary', 'text-white', 'border-transparent'];
-    const mainFilterBtnClasses = `bg-transparent font-semibold py-2 px-4 border border-primary focus:outline-none
-    ${activeClasses.reduce((res, cl) => `${res}hover:${cl}`, '')}`;
-
-    function filterBtnClasses(catToCompare: string) {
-      return [mainFilterBtnClasses, selectedFilter.subCat === catToCompare ? activeClasses : 'text-primary-dark'];
-    }
-
-    function chooseProduct(prodData: Product) {
+    const chooseProduct = (prodData: Product) => {
       setActiveProduct(prodData);
-    }
-
-    function selectNewFilter(flag: ProductSubCategories | null) {
-      // clicked on the same filter
-      if (selectedFilter.subCat === flag) {
-        return;
-      }
-      selectedFilter.subCat = flag;
-      const queries = JSON.parse(JSON.stringify(query));
-      // selected 'all'. Remove query param if existed
-      if (flag === null) {
-        delete queries.s;
-      } else {
-        // assign new filter
-        queries.s = flag;
-      }
-      // update url with new query data
-      $router.replace({ query: queries });
-    }
+    };
 
     onUnmounted(() => {
-      resetProductsByCategory(prodCategory);
+      resetProductsByCategory(prodCategory.value);
     });
 
-    return { productData, chooseProduct, filterBtnClasses, selectedFilter, currNavObj, selectNewFilter };
+    return {
+      metaTitle,
+      metaDescription,
+      prodCategory,
+      productData,
+      chooseProduct
+    };
   }
 });
 </script>

@@ -8,20 +8,27 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from '@nuxtjs/composition-api';
 import NavBar from '@/components/NavBar.vue';
+import { createSEOMeta } from '@/utils/seo.js';
 
 export default defineComponent({
-  // props: ['error'],
-  // layout: 'blog' // you can set a custom layout for the error page
   components: {
     NavBar
   },
-  setup() {
-    const posts = ref(null);
+  head() {
+    const { title, description } = this;
+    return {
+      titleTemplate: `%s | ${title}`,
+      meta: createSEOMeta({ title, description, image: '/logo.png', url: '' })
+    };
+  },
+  setup(props, ctx) {
+    const title = ref(ctx.root.$t('general.site_title'));
+    const description = ref(ctx.root.$t('general.site_description'));
 
-    return { posts };
+    return { title, description };
   }
 });
 </script>

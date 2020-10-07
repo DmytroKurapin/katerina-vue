@@ -1,4 +1,8 @@
 {
+  "general": {
+    "site_title": "יקטרינה קורפין",
+    "site_description": "הזמנות חתונה, בר ובת מצווה"
+  },
   "navbar": {
     "wedding": "חתונה",
     "bar_mitzvah": "בר מצווה",

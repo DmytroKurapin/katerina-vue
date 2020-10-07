@@ -1,4 +1,8 @@
 {
+  "general": {
+    "site_title": "Katerina Kurapin",
+    "site_description": "Wedding Invitations, Bar and Bat Mitzvah"
+  },
   "navbar": {
     "wedding": "Wedding",
     "bar_mitzvah": "Bar Mitzvah",
@@ -6,7 +10,7 @@
     "giftcard": "Gift Card",
     "digital": "Digital",
     "physical": "Physical",
-    "home_page": "Home"
+    "home_page": "Home page"
   },
   "products": {
     "all": "All"

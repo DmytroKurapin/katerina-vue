@@ -32,6 +32,7 @@ import { defineComponent } from '@nuxtjs/composition-api';
 import { NavData } from '@/types';
 
 export default defineComponent({
+  components: {},
   setup(props, ctx) {
     const {
       $route: { params: routeParams },

@@ -1,18 +1,18 @@
+import { createSEOMeta } from './utils/seo';
+
 export default {
   mode: 'universal',
-  /*
-   ** Headers of the page
-   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'יקטרינה קורפין',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+      ...createSEOMeta({
+        title: 'יקטרינה קורפין',
+        description: 'הזמנות חתונה, בר ובת מצווה',
+        image: '/logo.png',
+        url: ''
+      })
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }]
   },

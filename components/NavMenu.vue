@@ -30,8 +30,8 @@
       </nuxt-link>
     </ul>
     <aside
-      class="flex flex-col justify-between opacity-0 w-full top-0 right-0 w-0 bg-primary-dark fixed h-full overflow-auto z-10 transform ease-in-out transition-all duration-300"
-      :class="[isOpen ? 'opacity-100 ps-10 py-20' : 'opacity-0 w-0']"
+      class="flex flex-col justify-between top-0 right-0 bg-primary-dark fixed h-full overflow-auto z-10 transform ease-in-out transition-all duration-300"
+      :class="[isOpen ? 'opacity-100 ps-10 py-20 w-full' : 'opacity-0 w-0']"
     >
       <section>
         <article v-for="(navObj, idx) in navData" :key="navObj.link" class="flex-column text-white">
