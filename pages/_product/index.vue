@@ -6,7 +6,7 @@
     <section class="flex justify-center">
       <ProductFilterButtons />
     </section>
-    <section>
+    <section class="flex flex-wrap">
       <ProductCard
         v-for="(prod, index) in productData"
         :key="`${prod.vendorCode}_${index}`"

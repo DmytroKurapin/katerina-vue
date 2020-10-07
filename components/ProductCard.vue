@@ -1,7 +1,7 @@
 <template>
   <article
     v-lazyload
-    class="my-4 px-6 w-full sm:w-1/2 sm:my-4 sm:px-4 lg:w-1/3 opacity-0"
+    class="my-4 mx-auto px-6 w-full sm:w-1/2 sm:my-4 sm:px-4 lg:w-1/3 opacity-0"
     :class="{ 'animate-showUp': didLoad }"
   >
     <nuxt-link :to="localePath(`/${$route.params.product}/${product.vendorCode}`)">
