@@ -94,7 +94,11 @@ module.exports = {
   },
   variants: {
     padding: ['responsive', 'hover', 'focus'],
-    borderWidth: ['responsive', 'hover', 'focus']
+    borderWidth: ['responsive', 'hover', 'focus'],
+    visibility: ['responsive', 'hover', 'focus', 'group-hover'],
+    opacity: ['responsive', 'hover', 'focus', 'group-hover'],
+    translate: ['responsive', 'hover', 'focus', 'group-hover'],
+    scale: ['responsive', 'hover', 'focus', 'group-hover']
   },
   plugins: [require('tailwindcss-rtl')],
   purge: {

@@ -39,10 +39,7 @@ export default defineComponent({
 
     // todo add image url of one of the products
 
-    return {
-      title,
-      meta: createSEOMeta({ title, description, image: '/logo.png', url: prodCategory })
-    };
+    return { title, meta: createSEOMeta({ title, description, image: '/logo.png', url: prodCategory }) };
   },
   setup(props, ctx) {
     // todo check if product in url is instance of Product Categories
@@ -56,8 +53,8 @@ export default defineComponent({
     https://github.com/nuxt/nuxt.js/pull/8132
     */
 
-    const metaTitle = ref(ctx.root.$t(`navbar.${ctx.root.$toKebabCase(prodCategory)}`));
-    const metaDescription = ref(ctx.root.$t('general.site_description'));
+    const metaTitle = ref<string>(ctx.root.$t(`navbar.${ctx.root.$toKebabCase(prodCategory)}`));
+    const metaDescription = ref<string>(ctx.root.$t('general.site_description'));
 
     /*
     TODO uncomment useMeta and update head using this function once nuxt fix its issues (do it in each component)

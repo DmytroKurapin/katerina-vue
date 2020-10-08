@@ -1,5 +1,3 @@
-<!-- eslint-disable max-len -->
-
 <template>
   <header class="flex justify-between px-6 sm:px-2 py-3 sm:py-5">
     <NavMenu class="flex lg:px-4 lg:flex-1 lg:items-center justify-between" />

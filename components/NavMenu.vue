@@ -1,5 +1,3 @@
-<!-- eslint-disable max-len -->
-
 <template>
   <nav>
     <!-- hamburger menu icon for screens up to lg-->
@@ -9,29 +7,57 @@
         fill="#fff"
         fill-rule="evenodd"
         clip-rule="evenodd"
-        d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
+        :d="
+          `M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1
+           1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z`
+        "
       />
       <path
         v-else
         fill-rule="evenodd"
-        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+        :d="
+          `M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1
+           0-2z`
+        "
       />
     </NavMenuIcon>
 
     <!--      <LanguageSwitcher />-->
 
     <ul class="hidden px-2 pt-2 pb-5 lg:flex lg:border-b-0 lg:py-0 lg:px-0 border-b border-gray-800">
-      <nuxt-link v-for="navObj in navData" :key="navObj.link" :to="localePath(navObj.link)">
-        <li
-          class="block px-3 py-1 rounded text-white hover:bg-gray-800 sm:text-sm sm:px-2 sm:text-gray-900 sm:hover:bg-gray-200"
-        >
+      <nuxt-link v-for="navObj in navData" :key="navObj.link" :to="localePath(navObj.link)" class="relative group">
+        <li :class="`block px-3 py-1 rounded menu-item-hover text-gray-900`">
           {{ $t(navObj.label) }}
         </li>
+        <div
+          :class="
+            `z-10 invisible origin-top-right absolute w-56 rounded-md shadow-lg
+             transition ease-out duration-300 transform opacity-0 translate-y-4 scale-80
+             group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100`
+          "
+        >
+          <div class="rounded-md bg-white shadow-xs">
+            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <nuxt-link
+                v-for="sub in navObj.subCategories"
+                :key="`${navObj.link}_${sub}`"
+                :to="localePath(`${navObj.link}?s=${sub}`)"
+                role="menuitem"
+                class="block px-4 py-2 text-sm leading-5 text-gray-700 menu-item-hover"
+              >
+                {{ $t(`navbar.${sub}`) }}
+              </nuxt-link>
+            </div>
+          </div>
+        </div>
       </nuxt-link>
     </ul>
     <aside
-      class="flex flex-col justify-between top-0 right-0 bg-primary-dark fixed h-full overflow-auto z-10 transform ease-in-out transition-all duration-300"
-      :class="[isOpen ? 'opacity-100 ps-10 py-20 w-full' : 'opacity-0 w-0']"
+      :class="[
+        `fixed z-10 flex flex-col justify-between top-0 right-0 bg-primary-dark h-full overflow-auto
+         transform ease-in-out transition-all duration-300`,
+        isOpen ? 'opacity-100 ps-10 py-20 w-full' : 'opacity-0 w-0'
+      ]"
     >
       <section>
         <article v-for="(navObj, idx) in navData" :key="navObj.link" class="flex-column text-white">
@@ -44,7 +70,12 @@
                 {{ $t(navObj.label) }}
               </nuxt-link>
             </span>
-            <button type="button" class="px-2 focus:outline-none lg:hidden z-20" @click="expandSubcategories(idx)">
+            <button
+              v-if="navObj.subCategories.length > 0"
+              type="button"
+              class="px-2 focus:outline-none lg:hidden z-20"
+              @click="expandSubcategories(idx)"
+            >
               <svg
                 class="h-6 w-6 fill-current transform ease duration-300"
                 :class="expandedCategoryIdx === idx ? 'rotate-0' : closedSubcategoriesClass"
@@ -56,6 +87,7 @@
             </button>
           </header>
           <ul
+            v-if="navObj.subCategories.length > 0"
             class="h-0 overflow-hidden ease transition-all duration-300"
             :class="{ [`h-${4 * 2 * navObj.subCategories.length}`]: expandedCategoryIdx === idx }"
           >
@@ -128,4 +160,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.menu-item-hover:hover {
+  @apply bg-primary-light text-gray-100;
+}
+</style>
