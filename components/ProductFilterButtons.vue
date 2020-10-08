@@ -70,10 +70,20 @@ export default defineComponent({
 
 <style scoped>
 .filter-btn {
-  @apply font-semibold py-2 px-4 border border-primary;
+  @apply font-semibold py-2 px-8 border border-primary;
 }
 .filter-btn:focus {
   @apply outline-none;
+}
+@screen sm {
+  .filter-btn {
+    @apply px-12;
+  }
+}
+@screen md {
+  .filter-btn {
+    @apply px-16;
+  }
 }
 .selected-filter-btn {
   @apply text-white bg-primary;
