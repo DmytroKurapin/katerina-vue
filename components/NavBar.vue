@@ -25,7 +25,7 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
 import { ComputedRef } from '@vue/composition-api';
-import NavMenu from '@/components/NavMenu.vue';
+import NavMenu from '~/components/NavMenuWrapper.vue';
 import { Product } from '~/types';
 
 export default defineComponent({

@@ -1,20 +1,13 @@
 <template>
-  <div class="inline-flex">
+  <div v-if="currNavObj" class="inline-flex">
     <button
-      :class="selectedFilter.subCat === null ? 'selected-filter-btn' : 'unselected-filter-btn'"
-      class="filter-btn"
-      @click="selectNewFilter(null)"
-    >
-      {{ $t('products.all') }}
-    </button>
-    <button
-      v-for="(sub, idx) in currNavObj.subCategories"
-      :key="`${sub}_${idx}`"
+      v-for="(sub, idx) in [null, ...currNavObj.subCategories]"
+      :key="`filter_button_${idx}`"
       :class="selectedFilter.subCat === sub ? 'selected-filter-btn' : 'unselected-filter-btn'"
-      class="filter-btn"
+      class="font-semibold py-2 px-6 border border-primary focus:outline-none sm:px-12 md:px-16"
       @click="selectNewFilter(sub)"
     >
-      {{ $t(`navbar.${sub}`) }}
+      {{ sub === null ? $t('products.all') : $t(`navbar.${sub}`) }}
     </button>
   </div>
 </template>
@@ -43,7 +36,7 @@ export default defineComponent({
       selectedFilter.subCat = subCatFromUrl;
     }
 
-    const currNavObj = navDataList.find(navData => navData.link === `/${prodCategory}`) || {};
+    const currNavObj = navDataList.find(navData => navData.link === `/${prodCategory}`);
 
     const selectNewFilter = (flag: ProductSubCategories | null) => {
       // clicked on the same filter
@@ -69,29 +62,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.filter-btn {
-  @apply font-semibold py-2 px-8 border border-primary;
-}
-.filter-btn:focus {
-  @apply outline-none;
-}
-@screen sm {
-  .filter-btn {
-    @apply px-12;
-  }
-}
-@screen md {
-  .filter-btn {
-    @apply px-16;
-  }
-}
 .selected-filter-btn {
   @apply text-white bg-primary;
 }
 .unselected-filter-btn {
   @apply text-primary-dark bg-transparent;
 }
-.filter-btn:hover {
+.unselected-filter-btn:hover {
   @apply selected-filter-btn bg-primary;
 }
 </style>
