@@ -27,7 +27,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/i18n.js', '@/plugins/directives.js', '@/plugins/toKebabCase.js'],
+  plugins: ['@/plugins/i18n.js', '@/plugins/directives.js', '@/plugins/toKebabCase.js', '@/plugins/sanitize.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -42,11 +42,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    'nuxt-i18n'
-  ],
+  modules: ['@nuxtjs/axios', 'nuxt-i18n', 'v-sanitize/nuxt'],
   // todo make baseUrl dynamic for dev and prod
   axios: {
     baseURL: 'http://localhost:3000',

@@ -10,9 +10,14 @@ export interface NavData {
 export type ProductCategories = 'wedding' | 'batMitzvah' | 'barMitzvah' | 'giftcard';
 export type ProductSubCategories = typeof ProductSubCategoriesList[number];
 
+interface ProductDescription {
+  en: string;
+  he: string;
+}
 export interface Product {
   title: string;
-  description: string;
+  description: ProductDescription;
+  shortDescription: ProductDescription;
   vendorCode: string;
   images: string[];
   thumbnail: string;

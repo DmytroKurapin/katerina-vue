@@ -17,8 +17,8 @@
       </figure>
     </nuxt-link>
     <footer class="flex items-center justify-between leading-none p-2 sm:p-4">
-      <p class="ml-2 text-sm">
-        {{ product.description }}
+      <p class="ml-2 text-sm truncate">
+        {{ product.shortDescription[$i18n.locale] }}
       </p>
       <svg
         :class="isLiked ? 'text-primary' : 'text-primary-light'"

@@ -15,7 +15,8 @@
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/composition-api": "^0.12.3",
     "nuxt": "2.14.6",
-    "nuxt-i18n": "^6.13.12"
+    "nuxt-i18n": "^6.13.12",
+    "v-sanitize": "^0.0.2"
   },
   "devDependencies": {
     "@nuxt/types": "2.14.6",

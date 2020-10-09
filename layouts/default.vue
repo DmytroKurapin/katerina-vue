@@ -1,5 +1,5 @@
 <template>
-  <div :dir="$dir()" class="container sm:px-4">
+  <div :dir="$dir()" class="lg:container px-4">
     <NavBar />
 
     <main role="main">

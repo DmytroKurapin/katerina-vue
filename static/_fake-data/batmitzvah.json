@@ -1,7 +1,14 @@
 [
   {
     "title": "mitzvah Invitation 1",
-    "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
+    "description": {
+      "en": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br><p>There are many variations of passages of <strong>Lorem Ipsum</strong> available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>",
+      "he": "<p><strong>Lorem Ipsum</strong> הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.</p><br><p>יש המון גרסאות זמינות לפסקאות של <strong>Lorem Ipsum</strong>. אבל רובם עברו שינויים בצורה זו או אחרת, על ידי השתלת הומור או מילים אקראיות שלא נראות אפילו מעט אמינות. אם אתה הולך להשתמש במקטעים של של Lorem Ipsum אתה צריך להיות בטוח שאין משהו מביך חבוי בתוך הטקסט.</p>"
+    },
+    "shortDescription": {
+      "en": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ",
+      "he": "Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה."
+    },
     "category": "mitzvah",
     "subCategories": ["digital", "physical"],
     "images": [
@@ -20,7 +27,14 @@
   },
   {
     "title": "mitzvah Invitation 2",
-    "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
+    "description": {
+      "en": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br><p>There are many variations of passages of <strong>Lorem Ipsum</strong> available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>",
+      "he": "<p><strong>Lorem Ipsum</strong> הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.</p><br><p>יש המון גרסאות זמינות לפסקאות של <strong>Lorem Ipsum</strong>. אבל רובם עברו שינויים בצורה זו או אחרת, על ידי השתלת הומור או מילים אקראיות שלא נראות אפילו מעט אמינות. אם אתה הולך להשתמש במקטעים של של Lorem Ipsum אתה צריך להיות בטוח שאין משהו מביך חבוי בתוך הטקסט.</p>"
+    },
+    "shortDescription": {
+      "en": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ",
+      "he": "Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה."
+    },
     "category": "mitzvah",
     "subCategories": ["digital", "physical"],
     "images": [
@@ -37,7 +51,14 @@
   },
   {
     "title": "mitzvah Invitation 3",
-    "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
+    "description": {
+      "en": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br><p>There are many variations of passages of <strong>Lorem Ipsum</strong> available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>",
+      "he": "<p><strong>Lorem Ipsum</strong> הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.</p><br><p>יש המון גרסאות זמינות לפסקאות של <strong>Lorem Ipsum</strong>. אבל רובם עברו שינויים בצורה זו או אחרת, על ידי השתלת הומור או מילים אקראיות שלא נראות אפילו מעט אמינות. אם אתה הולך להשתמש במקטעים של של Lorem Ipsum אתה צריך להיות בטוח שאין משהו מביך חבוי בתוך הטקסט.</p>"
+    },
+    "shortDescription": {
+      "en": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ",
+      "he": "Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה."
+    },
     "category": "mitzvah",
     "subCategories": ["digital", "physical"],
     "images": [
@@ -54,7 +75,14 @@
   },
   {
     "title": "mitzvah Invitation 4",
-    "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
+    "description": {
+      "en": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br><p>There are many variations of passages of <strong>Lorem Ipsum</strong> available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>",
+      "he": "<p><strong>Lorem Ipsum</strong> הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.</p><br><p>יש המון גרסאות זמינות לפסקאות של <strong>Lorem Ipsum</strong>. אבל רובם עברו שינויים בצורה זו או אחרת, על ידי השתלת הומור או מילים אקראיות שלא נראות אפילו מעט אמינות. אם אתה הולך להשתמש במקטעים של של Lorem Ipsum אתה צריך להיות בטוח שאין משהו מביך חבוי בתוך הטקסט.</p>"
+    },
+    "shortDescription": {
+      "en": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ",
+      "he": "Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה."
+    },
     "category": "mitzvah",
     "subCategories": ["digital", "physical"],
     "images": [
@@ -71,7 +99,14 @@
   },
   {
     "title": "mitzvah Invitation 6",
-    "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
+    "description": {
+      "en": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br><p>There are many variations of passages of <strong>Lorem Ipsum</strong> available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>",
+      "he": "<p><strong>Lorem Ipsum</strong> הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.</p><br><p>יש המון גרסאות זמינות לפסקאות של <strong>Lorem Ipsum</strong>. אבל רובם עברו שינויים בצורה זו או אחרת, על ידי השתלת הומור או מילים אקראיות שלא נראות אפילו מעט אמינות. אם אתה הולך להשתמש במקטעים של של Lorem Ipsum אתה צריך להיות בטוח שאין משהו מביך חבוי בתוך הטקסט.</p>"
+    },
+    "shortDescription": {
+      "en": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ",
+      "he": "Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה."
+    },
     "category": "mitzvah",
     "subCategories": ["digital", "physical"],
     "images": [
@@ -88,7 +123,14 @@
   },
   {
     "title": "mitzvah Invitation 5",
-    "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
+    "description": {
+      "en": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br><p>There are many variations of passages of <strong>Lorem Ipsum</strong> available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>",
+      "he": "<p><strong>Lorem Ipsum</strong> הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.</p><br><p>יש המון גרסאות זמינות לפסקאות של <strong>Lorem Ipsum</strong>. אבל רובם עברו שינויים בצורה זו או אחרת, על ידי השתלת הומור או מילים אקראיות שלא נראות אפילו מעט אמינות. אם אתה הולך להשתמש במקטעים של של Lorem Ipsum אתה צריך להיות בטוח שאין משהו מביך חבוי בתוך הטקסט.</p>"
+    },
+    "shortDescription": {
+      "en": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ",
+      "he": "Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה."
+    },
     "category": "mitzvah",
     "subCategories": ["digital", "physical"],
     "images": [
@@ -105,7 +147,14 @@
   },
   {
     "title": "mitzvah Invitation 6",
-    "description": "asdas dasdlasd ;lwef,er; l,wd;lf msd;l,m",
+    "description": {
+      "en": "<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br><p>There are many variations of passages of <strong>Lorem Ipsum</strong> available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>",
+      "he": "<p><strong>Lorem Ipsum</strong> הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה. Lorem Ipsum היה טקסט סטנדרטי עוד במאה ה-16, כאשר הדפסה לא ידועה לקחה מגש של דפוס ועירבלה אותו כדי ליצור סוג של ספר דגימה. ספר זה שרד לא רק חמש מאות שנים אלא גם את הקפיצה לתוך ההדפסה האלקטרונית, ונותר כמו שהוא ביסודו. ספר זה הפך פופולרי יותר בשנות ה-60 עם ההוצאה לאור של גליון פונטי המכיל פסקאות של Lorem Ipsum. ועוד יותר לאחרונה עם פרסום תוכנות המחשב האישי כגון Aldus page maker שמכיל גרסאות של Lorem Ipsum.</p><br><p>יש המון גרסאות זמינות לפסקאות של <strong>Lorem Ipsum</strong>. אבל רובם עברו שינויים בצורה זו או אחרת, על ידי השתלת הומור או מילים אקראיות שלא נראות אפילו מעט אמינות. אם אתה הולך להשתמש במקטעים של של Lorem Ipsum אתה צריך להיות בטוח שאין משהו מביך חבוי בתוך הטקסט.</p>"
+    },
+    "shortDescription": {
+      "en": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ",
+      "he": "Lorem Ipsum הוא פשוט טקסט גולמי של תעשיית ההדפסה וההקלדה."
+    },
     "category": "mitzvah",
     "subCategories": ["digital", "physical"],
     "images": [
