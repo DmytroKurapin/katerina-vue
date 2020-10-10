@@ -1,6 +1,6 @@
 <template>
   <header class="flex justify-between py-3 sm:py-5">
-    <NavMenu class="flex items-center" />
+    <NavMenu class="flex items-center relative" />
 
     <!-- Logo -->
     <div class="inline-flex items-center justify-end flex-1 px-4">

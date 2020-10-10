@@ -1,9 +1,8 @@
 <template>
   <div>
-    <NavMenuIcon class="focus:outline-none z-20" @toggle="toggleIsOpen(!isOpen)">
+    <NavMenuIcon :class="isOpen ? 'fixed' : null" class="focus:outline-none z-20" @toggle="toggleIsOpen(!isOpen)">
       <path
         v-if="isOpen"
-        fill="#fff"
         fill-rule="evenodd"
         clip-rule="evenodd"
         :d="
@@ -23,18 +22,18 @@
 
     <aside
       :class="[
-        `fixed z-10 flex flex-col justify-between top-0 right-0 bg-primary-dark h-full overflow-auto
+        `fixed z-10 flex flex-col justify-between top-0 start-0 bg-white bg-opacity-80 h-full overflow-auto
          transform ease-in-out transition-all duration-300`,
-        isOpen ? 'opacity-100 ps-10 py-20 w-full' : 'opacity-0 w-0'
+        isOpen ? 'opacity-100 ps-10 pb-20 pt-40 w-full' : 'opacity-0 w-0'
       ]"
     >
-      <LanguageSwitcher class="inline-flex absolute end-0 -my-16 me-2" />
+      <LanguageSwitcher class="inline-flex absolute end-0 -my-32 me-2" />
 
       <section>
-        <article v-for="(navObj, idx) in navData" :key="navObj.link" class="flex-column text-white">
+        <article v-for="(navObj, idx) in navData" :key="navObj.link" class="flex-column text-gray-800">
           <header class="flex">
             <span
-              class="flex hover:border-s-4 hover:ps-5 text-3xl ease transition-all duration-300"
+              class="flex hover:border-s-4 border-gray-800 hover:ps-5 text-3xl ease transition-all duration-300"
               @click="toggleIsOpen(false)"
             >
               <nuxt-link :to="localePath(navObj.link)">
@@ -78,10 +77,13 @@
           </ul>
         </article>
       </section>
-      <section class="w-1/2 border-t-2">
+      <section class="w-1/2 border-t-2 border-gray-800">
         <nuxt-link :to="localePath('/about')">
           <span
-            class="flex hover:border-s-4 hover:ps-5 text-white text-3xl w-full ease transition-all duration-300"
+            :class="
+              `flex hover:border-s-4 border-gray-800 hover:ps-5 text-gray-800 text-3xl w-full
+               ease transition-all duration-300`
+            "
             @click="toggleIsOpen(false)"
           >
             About
@@ -89,7 +91,10 @@
         </nuxt-link>
         <nuxt-link :to="localePath('/contacts')">
           <span
-            class="flex hover:border-s-4 hover:ps-5 text-white text-3xl w-full ease transition-all duration-300"
+            :class="
+              `flex hover:border-s-4 border-gray-800 hover:ps-5 text-gray-800 text-3xl w-full
+               ease transition-all duration-300`
+            "
             @click="toggleIsOpen(false)"
           >
             Contacts

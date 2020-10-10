@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <NavMenuSmall class="lg:hidden flex" />
+    <NavMenuSmall class="lg:hidden flex self-start" />
 
     <NavMenuLarge class="hidden lg:flex" />
   </nav>

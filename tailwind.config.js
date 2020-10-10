@@ -73,6 +73,9 @@ module.exports = {
       transitionDuration: {
         2000: '2000ms'
       },
+      opacity: {
+        80: '.8'
+      },
       keyframes: {
         'show-up': {
           '0%': {
