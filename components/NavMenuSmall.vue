@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavMenuIcon class="px-2 focus:outline-none z-20" @toggle="toggleIsOpen(!isOpen)">
+    <NavMenuIcon class="focus:outline-none z-20" @toggle="toggleIsOpen(!isOpen)">
       <path
         v-if="isOpen"
         fill="#fff"
@@ -28,6 +28,8 @@
         isOpen ? 'opacity-100 ps-10 py-20 w-full' : 'opacity-0 w-0'
       ]"
     >
+      <LanguageSwitcher class="inline-flex absolute end-0 -my-16 me-2" />
+
       <section>
         <article v-for="(navObj, idx) in navData" :key="navObj.link" class="flex-column text-white">
           <header class="flex">
@@ -100,11 +102,12 @@
 
 <script lang="ts">
 import NavMenuIcon from '@/components/NavMenuIcon.vue';
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
 import navDataList from '@/constatnts/navData';
 
 export default defineComponent({
-  components: { NavMenuIcon },
+  components: { NavMenuIcon, LanguageSwitcher },
   setup(props, ctx) {
     const navData = navDataList;
     const isOpen = ref(false);

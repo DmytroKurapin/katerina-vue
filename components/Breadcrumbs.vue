@@ -1,5 +1,5 @@
 <template>
-  <nav class="my-6" aria-label="Breadcrumb">
+  <nav class="mb-6" aria-label="Breadcrumb">
     <ol class="list-none p-0 text-xs inline-flex">
       <li
         v-for="(bData, idx) in breadcrumbsList"
