@@ -1,4 +1,4 @@
-import { ProductSubCategoriesList } from '~/constatnts/productSubCategories';
+import { ProductSubCategoriesList } from '@/constatnts/productSubCategories';
 
 export interface NavData {
   link: string;

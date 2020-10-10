@@ -41,6 +41,9 @@ export default defineComponent({
       $route: { params: routeParams },
       $toKebabCase
     } = ctx.root;
+
+    const basePath = routeParams.product !== undefined ? '/products' : '';
+
     const breadcrumbsList: NavData[] = [
       { link: '/', label: ctx.root.$t('navbar.home_page'), subCategories: [], isLastItem: false },
       ...Object.values(routeParams).reduce((res, curr, idx, srcArr) => {
@@ -52,7 +55,7 @@ export default defineComponent({
         }
 
         res.push({
-          link: `${idx === 0 ? '' : res[idx - 1].link}/${curr}`,
+          link: `${idx === 0 ? basePath : res[idx - 1].link}/${curr}`,
           label: itemLabel,
           subCategories: [],
           isLastItem

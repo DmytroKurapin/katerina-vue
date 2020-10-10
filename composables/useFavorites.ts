@@ -1,5 +1,5 @@
 import { computed, ref } from '@nuxtjs/composition-api';
-import { Product } from '~/types';
+import { Product } from '@/types';
 
 const INITIAL_FAVORITES = { objs: [], vendorCodes: [] };
 const favorites = ref<{ objs: Product[]; vendorCodes: string[] }>(INITIAL_FAVORITES);

@@ -1,7 +1,7 @@
 import { computed, reactive } from '@nuxtjs/composition-api';
 import { ComputedRef } from '@vue/composition-api';
 import { Product, ProductsState, ProductCategories } from '@/types';
-import { getProducts, getProductsByVendorCode } from '~/composables/useApiService';
+import { getProducts, getProductsByVendorCode } from '@/composables/useApiService';
 
 const INITIAL_DUMMY_PRODUCT: Product = {
   title: '',

@@ -1,7 +1,9 @@
 {
   "general": {
     "site_title": "Katerina Kurapin",
-    "site_description": "Wedding Invitations, Bar and Bat Mitzvah"
+    "site_description": "Wedding Invitations, Bar and Bat Mitzvah",
+    "order_via_wassap": "Order via Wassap",
+    "no_favorites_selected": "No chosen products"
   },
   "navbar": {
     "wedding": "Wedding",

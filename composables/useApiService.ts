@@ -1,5 +1,5 @@
 import { useContext } from '@nuxtjs/composition-api';
-import { Product, ProductCategories } from '~/types';
+import { Product, ProductCategories } from '@/types';
 
 async function findFakeProdCategoryByVendor(vendorCodes: string[]): Promise<Product[]> {
   const { $axios } = useContext();

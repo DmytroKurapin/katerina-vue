@@ -1,7 +1,9 @@
 {
   "general": {
     "site_title": "יקטרינה קורפין",
-    "site_description": "הזמנות חתונה, בר ובת מצווה"
+    "site_description": "הזמנות חתונה, בר ובת מצווה",
+    "order_via_wassap": "להזמין דרך ווצאפ",
+    "no_favorites_selected": "לא נבחרו אף מוצרים"
   },
   "navbar": {
     "wedding": "חתונה",

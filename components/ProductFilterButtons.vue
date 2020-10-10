@@ -14,9 +14,9 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from '@nuxtjs/composition-api';
-import { ProductSubCategories } from '~/types';
-import { ProductSubCategoriesList } from '~/constatnts/productSubCategories';
-import navDataList from '~/constatnts/navData';
+import { ProductSubCategories } from '@/types';
+import { ProductSubCategoriesList } from '@/constatnts/productSubCategories';
+import navDataList from '@/constatnts/navData';
 
 export default defineComponent({
   components: {},

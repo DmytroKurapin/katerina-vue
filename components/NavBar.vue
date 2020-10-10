@@ -13,7 +13,7 @@
       <LanguageSwitcher class="hidden lg:inline-flex my-1" />
 
       <!--  Heart icon -->
-      <span class="flex justify-center">
+      <nuxt-link :to="localePath('/favorites')" class="flex justify-center">
         <span class="relative cursor-pointer">
           <svg class="h-8 w-8 fill-current text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
@@ -24,7 +24,7 @@
             {{ favoriteProducts.length }}
           </span>
         </span>
-      </span>
+      </nuxt-link>
     </div>
   </header>
 </template>

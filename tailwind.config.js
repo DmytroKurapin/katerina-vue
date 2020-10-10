@@ -34,18 +34,16 @@ module.exports = {
       colors: {
         green: {
           default: '#59981A',
-          yellow: '#ECF87F',
-          lime: '#81B622',
-          olive: '#3D550C'
-        },
-        developmint: {
           800: '#08330b',
           700: '#0e5513',
           600: '#13761a',
           500: '#199922',
           400: '#60c367',
           300: '#a4dda8',
-          200: '#e8f6e9'
+          200: '#e8f6e9',
+          yellow: '#ECF87F',
+          lime: '#81B622',
+          olive: '#3D550C'
         },
         primary: {
           default: '#ad726f',
