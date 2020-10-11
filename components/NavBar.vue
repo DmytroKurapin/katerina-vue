@@ -1,5 +1,5 @@
 <template>
-  <header class="flex justify-between py-3 sm:py-5">
+  <header>
     <NavMenu class="flex items-center relative" />
 
     <!-- Logo -->

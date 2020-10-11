@@ -16,13 +16,13 @@
         </header>
       </figure>
     </nuxt-link>
-    <footer class="flex items-center justify-between leading-none p-2 sm:p-4">
-      <p class="ml-2 text-sm truncate">
+    <footer class="flex items-center justify-between p-2 sm:p-4">
+      <p class="flex-1 truncate">
         {{ product.shortDescription[$i18n.locale] }}
       </p>
       <svg
         :class="isLiked ? 'text-primary' : 'text-primary-light'"
-        class="h-6 w-6 cursor-pointer fill-current"
+        class="w-6 xl:w-8 cursor-pointer fill-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         @click.prevent="toggleFavorites"

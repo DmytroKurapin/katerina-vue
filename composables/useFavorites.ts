@@ -30,7 +30,7 @@ function initFavorites() {
     const vendorCodesListStr = localStorage.getItem('favorites');
     if (vendorCodesListStr) {
       // const vendorCodesList = JSON.parse(vendorCodesListStr);
-      // todo send GET request to server to get products by vendorCode
+      // todo send GET request to server to get products by vendorCode. Save them locally in objs
     }
   } catch (e) {}
 }

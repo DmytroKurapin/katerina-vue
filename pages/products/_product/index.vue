@@ -1,12 +1,12 @@
 <template>
-  <div class="flex flex-wrap flex-col sm:-mx-1 lg:-mx-4 mx-1">
-    <section>
+  <div class="w-full">
+    <section class="ps-4">
       <Breadcrumbs />
     </section>
     <section class="flex justify-center">
       <ProductFilterButtons />
     </section>
-    <section class="flex flex-wrap">
+    <section class="flex flex-wrap px-1">
       <ProductCard
         v-for="(prod, index) in productData"
         :key="`${prod.vendorCode}_${index}`"

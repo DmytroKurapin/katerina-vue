@@ -1,8 +1,15 @@
 <template>
-  <div :dir="$dir()" class="lg:container px-4">
-    <NavBar />
+  <div :dir="$dir()" class="flex flex-col xl:container h-screen">
+    <NavBar
+      :class="{ 'shadow-xl': didScrolled }"
+      class="flex justify-between py-3 sm:py-5 px-4 transition-shadow ease duration-700"
+    />
 
-    <main role="main">
+    <main
+      class="flex flex-wrap justify-center overflow-x-hidden"
+      role="main"
+      @scroll="onScroll($event.target.scrollTop)"
+    >
       <nuxt />
     </main>
   </div>
@@ -14,9 +21,7 @@ import NavBar from '@/components/NavBar.vue';
 import { createSEOMeta } from '@/utils/seo.js';
 
 export default defineComponent({
-  components: {
-    NavBar
-  },
+  components: { NavBar },
   head() {
     const { title, description } = this;
     return {
@@ -27,8 +32,17 @@ export default defineComponent({
   setup(props, ctx) {
     const title = ref(ctx.root.$t('general.site_title'));
     const description = ref(ctx.root.$t('general.site_description'));
+    const didScrolled = ref(false);
 
-    return { title, description };
+    const onScroll = (scrollTop: number) => {
+      if (scrollTop && !didScrolled.value) {
+        didScrolled.value = true;
+      } else if (!scrollTop && didScrolled.value) {
+        didScrolled.value = false;
+      }
+    };
+
+    return { title, description, onScroll, didScrolled };
   }
 });
 </script>

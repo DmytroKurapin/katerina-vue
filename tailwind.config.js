@@ -61,6 +61,9 @@ module.exports = {
       fontFamily: {
         body: ['Quicksand', 'Raleway', 'sans-serif']
       },
+      width: {
+        '1/10': '10%'
+      },
       minHeight: {
         750: '750px'
       },
