@@ -37,3 +37,14 @@ export interface ProductsState {
   activeProduct: Product;
   // activeProduct: Product | null; // currently activeProduct has initial dummy value, because setup() can't be async
 }
+
+export interface FooterGroup {
+  title: string;
+  items: [
+    {
+      label: string;
+      link: string;
+    }
+  ];
+  isExternalSrc: boolean;
+}

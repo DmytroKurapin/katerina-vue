@@ -12,7 +12,7 @@
           <h1 class="text-lg">
             {{ product.title }}
           </h1>
-          <p class="text-grey-darker text-sm">{{ product.price }} ₪</p>
+          <p class="text-grey-darker text-lg">{{ product.price }} ₪</p>
         </header>
       </figure>
     </nuxt-link>

@@ -19,5 +19,16 @@
   },
   "product": {
 
+  },
+  "footer": {
+    "info": "קישורים שימושיים",
+    "social": "מדיה חברתית",
+    "instagram": "Instagram",
+    "pinterest": "Pinterest",
+    "facebook": "Facebook",
+    "terms_and_cond": "תקנון ותנאי שימוש",
+    "about": "אודות",
+    "faq": "שאלות נפוצות",
+    "contacts": "צור קשר"
   }
 }

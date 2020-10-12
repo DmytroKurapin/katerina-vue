@@ -19,5 +19,16 @@
   },
   "product": {
 
+  },
+  "footer": {
+    "info": "Info",
+    "social": "Social",
+    "instagram": "Instagram",
+    "pinterest": "Pinterest",
+    "facebook": "Facebook",
+    "terms_and_cond": "Terms and Conditions",
+    "about": "About",
+    "faq": "FAQ",
+    "contacts": "Contacts"
   }
 }

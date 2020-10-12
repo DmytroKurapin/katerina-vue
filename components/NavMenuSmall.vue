@@ -78,7 +78,7 @@
         </article>
       </section>
       <section class="w-1/2 border-t-2 border-gray-800">
-        <nuxt-link :to="localePath('/about')">
+        <nuxt-link :to="localePath('/info/about')">
           <span
             :class="
               `flex hover:border-s-4 border-gray-800 hover:ps-5 text-gray-800 text-3xl w-full
@@ -86,10 +86,10 @@
             "
             @click="toggleIsOpen(false)"
           >
-            About
+            {{ $t('footer.about') }}
           </span>
         </nuxt-link>
-        <nuxt-link :to="localePath('/contacts')">
+        <nuxt-link :to="localePath('/info/contacts')">
           <span
             :class="
               `flex hover:border-s-4 border-gray-800 hover:ps-5 text-gray-800 text-3xl w-full
@@ -97,7 +97,7 @@
             "
             @click="toggleIsOpen(false)"
           >
-            Contacts
+            {{ $t('footer.contacts') }}
           </span>
         </nuxt-link>
       </section>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div>
     <section class="ps-4">
       <Breadcrumbs />
     </section>

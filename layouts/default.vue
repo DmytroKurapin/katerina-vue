@@ -10,7 +10,9 @@
       role="main"
       @scroll="onScroll($event.target.scrollTop)"
     >
-      <nuxt />
+      <nuxt class="min-h-100 w-full" />
+
+      <Footer class="h-64 w-full mx-4 mt-4 py-8 border-t" />
     </main>
   </div>
 </template>
@@ -18,10 +20,11 @@
 <script lang="ts">
 import { defineComponent, ref } from '@nuxtjs/composition-api';
 import NavBar from '@/components/NavBar.vue';
+import Footer from '@/components/Footer.vue';
 import { createSEOMeta } from '@/utils/seo.js';
 
 export default defineComponent({
-  components: { NavBar },
+  components: { NavBar, Footer },
   head() {
     const { title, description } = this;
     return {

@@ -42,43 +42,6 @@ import { getFavoriteProducts } from '@/composables/useFavorites';
 export default defineComponent({
   components: { Breadcrumbs },
   setup() {
-    // const prodCategory = ctx.root.$route.params.product;
-    //
-    // /*
-    // TODO SSR returns product = '<no source>' on refresh the page. Check it when issue will be solved
-    // https://github.com/nuxt/nuxt.js/issues/7696
-    // https://github.com/nuxt/nuxt.js/pull/8068
-    // https://github.com/nuxt/nuxt.js/pull/8132
-    // */
-    //
-    // const metaTitle = ref<string>(ctx.root.$t(`navbar.${ctx.root.$toKebabCase(prodCategory)}`));
-    // const metaDescription = ref<string>(ctx.root.$t('general.site_description'));
-    //
-    // /*
-    // TODO uncomment useMeta and update head using this function once nuxt fix its issues (do it in each component)
-    // https://github.com/nuxt-community/composition-api/issues/244
-    // */
-    //
-    // // init products list for current product page
-    // loadProductsByCategory(prodCategory);
-    //
-    // const productData = productsByCategory(prodCategory);
-    //
-    // const chooseProduct = (prodData: Product) => {
-    //   setActiveProduct(prodData);
-    // };
-    //
-    // onUnmounted(() => {
-    //   resetProductsByCategory(prodCategory.value);
-    // });
-    //
-    // return {
-    //   metaTitle,
-    //   metaDescription,
-    //   prodCategory,
-    //   productData,
-    //   chooseProduct
-    // };
     const orderViaWassap = () => {
       alert(this.$t('general.order_via_wassap'));
     };
