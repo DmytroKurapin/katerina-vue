@@ -6,11 +6,16 @@
   >
     <nuxt-link :to="localePath(`/products/${$route.params.product}/${product.vendorCode}`)">
       <figure @click="$emit('select')">
-        <img :alt="product.title" :data-url="product.thumbnail" class="h-auto w-full" @load="didLoad = !didLoad" />
+        <img
+          :alt="product.title[$i18n.locale]"
+          :data-url="product.thumbnail"
+          class="h-auto w-full"
+          @load="didLoad = !didLoad"
+        />
 
         <header class="flex items-center justify-between leading-tight p-2 sm:p-4">
           <h1 class="text-lg">
-            {{ product.title }}
+            {{ product.title[$i18n.locale] }}
           </h1>
           <p class="text-grey-darker text-lg">{{ product.price }} ₪</p>
         </header>

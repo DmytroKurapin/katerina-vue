@@ -4,7 +4,7 @@
 
     <section class="sm:flex mb-3">
       <h1 class="sm:hidden text-3xl mb-3">
-        {{ productData.title }}
+        {{ productData.title[$i18n.locale] }}
       </h1>
       <section class="sm:w-2/5 md:w-1/2">
         <div class="relative img-wrapper">
@@ -14,7 +14,7 @@
             class="absolute inset-0 duration-2000 ease-in-out transition"
             :class="selectedImgIdx === idx ? 'opacity-100' : 'opacity-0'"
           >
-            <img :src="img" :alt="productData.title" class="" />
+            <img :src="img" :alt="productData.title[$i18n.locale]" class="" />
           </figure>
         </div>
         <div class="flex flex-row justify-start">
@@ -31,7 +31,7 @@
 
       <article class="hidden sm:block sm:w-3/5 md:w-1/2 px-8">
         <h1 class="text-3xl lg:text-4xl">
-          {{ productData.title }}
+          {{ productData.title[$i18n.locale] }}
         </h1>
 
         <ProductItemDetailsSection :product-data="productData" />

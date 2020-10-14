@@ -4,7 +4,7 @@ import { Product, ProductsState, ProductCategories } from '@/types';
 import { getProducts, getProductsByVendorCode } from '@/composables/useApiService';
 
 const INITIAL_DUMMY_PRODUCT: Product = {
-  title: '',
+  title: { en: '', he: '' },
   description: { en: '', he: '' },
   shortDescription: { en: '', he: '' },
   vendorCode: '',

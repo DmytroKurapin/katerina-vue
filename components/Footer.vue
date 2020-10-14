@@ -45,12 +45,10 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import NavMenu from '@/components/NavMenuWrapper.vue';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { FooterGroup } from '@/types';
 
 export default defineComponent({
-  components: { NavMenu, LanguageSwitcher },
+  components: {},
   setup(props, ctx) {
     const footerGroups: FooterGroup[] = [
       {

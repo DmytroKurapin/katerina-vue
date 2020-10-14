@@ -5,11 +5,11 @@
         <template v-if="favoriteProducts.length > 0">
           <div v-for="(prod, idx) in favoriteProducts" :key="`favorite_${idx}`" class="flex flex-wrap py-4">
             <figure class="w-1/3">
-              <img :src="prod.thumbnail" :alt="prod.title" class="" />
+              <img :src="prod.thumbnail" :alt="prod.title[$i18n.locale]" class="" />
             </figure>
 
             <div class="w-2/3 ps-4 lg:ps-8">
-              <p>{{ prod.title }}</p>
+              <p>{{ prod.title[$i18n.locale] }}</p>
               <p>{{ prod.shortDescription[$i18n.locale] }}</p>
               <p>
                 <b>{{ prod.vendorCode }}</b>

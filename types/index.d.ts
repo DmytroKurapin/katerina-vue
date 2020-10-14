@@ -15,7 +15,7 @@ interface ProductDescription {
   he: string;
 }
 export interface Product {
-  title: string;
+  title: ProductDescription;
   description: ProductDescription;
   shortDescription: ProductDescription;
   vendorCode: string;
@@ -40,11 +40,9 @@ export interface ProductsState {
 
 export interface FooterGroup {
   title: string;
-  items: [
-    {
-      label: string;
-      link: string;
-    }
-  ];
+  items: {
+    label: string;
+    link: string;
+  }[];
   isExternalSrc: boolean;
 }
