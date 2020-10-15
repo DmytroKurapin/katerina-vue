@@ -43,18 +43,33 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from '@nuxtjs/composition-api';
-import { getActiveProduct } from '@/composables/useProducts';
+import { defineComponent, reactive, ref, useMeta } from '@nuxtjs/composition-api';
+import { activeProduct$ } from '@/composables/useProducts';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import ProductItemDetailsSection from '@/components/ProductItemDetailsSection.vue';
+import { createSEOMeta } from '@/utils/seo';
 
 export default defineComponent({
   components: { Breadcrumbs, ProductItemDetailsSection },
+  head: {},
   setup(props, ctx) {
     const { id: vendorCode } = ctx.root.$route.params;
-    // const { product } = ctx.root.$route.params;
-    const productData = reactive(getActiveProduct(vendorCode));
+    const productData = reactive(activeProduct$(vendorCode));
     const selectedImgIdx = ref(0);
+    const metaTitle = ref<string>(productData.value.title && productData.value.title[ctx.root.$i18n.locale]);
+    const metaDescription = ref<string>(
+      productData.value.shortDescription && productData.value.shortDescription[ctx.root.$i18n.locale]
+    );
+
+    useMeta({
+      title: metaTitle.value,
+      meta: createSEOMeta({
+        title: metaTitle.value,
+        description: metaDescription.value,
+        image: productData.value.thumbnail,
+        url: ctx.root.$route.path
+      })
+    });
 
     return { productData, selectedImgIdx };
   }

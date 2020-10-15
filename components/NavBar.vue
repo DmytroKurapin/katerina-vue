@@ -39,7 +39,7 @@ import { Product } from '@/types';
 export default defineComponent({
   components: { NavMenu, LanguageSwitcher },
   setup() {
-    const favoriteProducts: ComputedRef<Product[]> = require('@/composables/useFavorites').getFavoriteProducts;
+    const favoriteProducts: ComputedRef<Product[]> = require('@/composables/useFavorites').favoriteProducts$;
 
     return { favoriteProducts };
   }

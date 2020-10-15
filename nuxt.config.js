@@ -1,4 +1,5 @@
 import { createSEOMeta } from './utils/seo';
+import appConfig from './config';
 
 export default {
   mode: 'universal',
@@ -73,7 +74,7 @@ export default {
     vueI18n: { fallbackLocale: 'he' }
   },
   publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL
+    baseURL: appConfig.base
   },
   generate: {
     // When generated files are produced, async functions or serverPrefetches don't correctly populate the Nuxt context
@@ -99,5 +100,11 @@ export default {
         files: './**/*.{ts,js,vue}'
       }
     }
+  },
+  /*
+   ** environment variables client side
+   */
+  env: {
+    ...appConfig
   }
 };

@@ -18,24 +18,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api';
+import { defineComponent, reactive, ref, useMeta } from '@nuxtjs/composition-api';
 import NavBar from '@/components/NavBar.vue';
 import Footer from '@/components/Footer.vue';
 import { createSEOMeta } from '@/utils/seo.js';
 
 export default defineComponent({
   components: { NavBar, Footer },
-  head() {
-    const { title, description } = this;
-    return {
-      titleTemplate: `%s | ${title}`,
-      meta: createSEOMeta({ title, description, image: '/logo.png', url: '' })
-    };
-  },
+  head() {},
   setup(props, ctx) {
-    const title = ref(ctx.root.$t('general.site_title'));
-    const description = ref(ctx.root.$t('general.site_description'));
+    const metaTitle = reactive(ctx.root.$t('general.site_title'));
+    const metaDescription = ref(ctx.root.$t('general.site_description'));
     const didScrolled = ref(false);
+
+    useMeta({
+      title: metaTitle,
+      titleTemplate: ` %s | ${metaTitle}`,
+      meta: createSEOMeta({ title: metaTitle, description: metaDescription.value, image: '/logo.png', url: '' })
+    });
 
     const onScroll = (scrollTop: number) => {
       if (scrollTop && !didScrolled.value) {
@@ -45,7 +45,7 @@ export default defineComponent({
       }
     };
 
-    return { title, description, onScroll, didScrolled };
+    return { onScroll, didScrolled };
   }
 });
 </script>

@@ -44,7 +44,7 @@ function initFavorites() {
 //   setPost(post)
 // }
 
-const getFavoriteProducts = computed<Product[]>(() => favorites.value.objs);
-const getFavoriteVendorCodes = computed<string[]>(() => favorites.value.vendorCodes);
+const favoriteProducts$ = computed<Product[]>(() => favorites.value.objs);
+const favoriteVendorCodes$ = computed<string[]>(() => favorites.value.vendorCodes);
 
-export { initFavorites, pushPopFavorites, getFavoriteProducts, getFavoriteVendorCodes };
+export { initFavorites, pushPopFavorites, favoriteProducts$, favoriteVendorCodes$ };

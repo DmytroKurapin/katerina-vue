@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
-import { getFavoriteVendorCodes, pushPopFavorites } from '@/composables/useFavorites';
+import { favoriteVendorCodes$, pushPopFavorites } from '@/composables/useFavorites';
 import { Product } from '@/types';
 
 export default defineComponent({
@@ -56,7 +56,7 @@ export default defineComponent({
     const didLoad = ref(false);
     // const prodPath = localePath(`/${this.$route.params.product}/${this.product.vendorCode}`);
 
-    const isLiked = computed<boolean>(() => getFavoriteVendorCodes.value.includes(product.vendorCode));
+    const isLiked = computed<boolean>(() => favoriteVendorCodes$.value.includes(product.vendorCode));
 
     function toggleFavorites() {
       pushPopFavorites(product, isLiked.value);

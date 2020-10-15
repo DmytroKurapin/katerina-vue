@@ -35,17 +35,36 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
+import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import { getFavoriteProducts } from '@/composables/useFavorites';
+import { favoriteProducts$ } from '@/composables/useFavorites';
+import { createSEOMeta } from '@/utils/seo';
 
 export default defineComponent({
   components: { Breadcrumbs },
-  setup() {
+  head: {},
+  setup(props, ctx) {
+    const metaTitle = ref<string>(ctx.root.$t('navbar.favorites'));
+    const metaDescription = ref<string>(`${metaTitle.value} | ${ctx.root.$t('general.site_description')}`);
+
+    const metaImg$ = computed(() =>
+      favoriteProducts$.value.length > 0 ? favoriteProducts$.value[0].thumbnail : '/logo.png'
+    );
+
+    useMeta({
+      title: metaTitle.value,
+      meta: createSEOMeta({
+        title: metaTitle.value,
+        description: metaDescription.value,
+        image: metaImg$.value,
+        url: ctx.root.$route.path
+      })
+    });
+
     const orderViaWassap = () => {
       alert(this.$t('general.order_via_wassap'));
     };
-    return { favoriteProducts: getFavoriteProducts, orderViaWassap };
+    return { favoriteProducts: favoriteProducts$, orderViaWassap };
   }
 });
 </script>

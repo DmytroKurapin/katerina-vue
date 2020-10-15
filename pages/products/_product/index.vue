@@ -19,13 +19,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onUnmounted } from '@nuxtjs/composition-api';
+import { defineComponent, ref, onUnmounted, useMeta } from '@nuxtjs/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import ProductFilterButtons from '@/components/ProductFilterButtons.vue';
 import { Product } from '@/types';
 import {
-  productsByCategory,
+  productsByCategory$,
   resetProductsByCategory,
   loadProductsByCategory,
   setActiveProduct
@@ -34,16 +34,8 @@ import { createSEOMeta } from '@/utils/seo.js';
 
 export default defineComponent({
   components: { ProductCard, Breadcrumbs, ProductFilterButtons },
-  head() {
-    const { metaTitle: title, metaDescription: description, prodCategory } = this;
-
-    // todo add image url of one of the products
-
-    return { title, meta: createSEOMeta({ title, description, image: '/logo.png', url: prodCategory }) };
-  },
+  head() {},
   setup(props, ctx) {
-    // todo check if product in url is instance of Product Categories
-
     const prodCategory = ctx.root.$route.params.product;
 
     /*
@@ -56,32 +48,32 @@ export default defineComponent({
     const metaTitle = ref<string>(ctx.root.$t(`navbar.${ctx.root.$toKebabCase(prodCategory)}`));
     const metaDescription = ref<string>(ctx.root.$t('general.site_description'));
 
-    /*
-    TODO uncomment useMeta and update head using this function once nuxt fix its issues (do it in each component)
-    https://github.com/nuxt-community/composition-api/issues/244
-    */
-    // useMeta({
-    //   title: metaTitle,
-    //   meta: createSEOMeta({ title: metaTitle, description: metaDescription, image: '/logo.png', url: prodCategory })
-    // });
+    useMeta({
+      title: metaTitle.value,
+      meta: createSEOMeta({
+        title: metaTitle.value,
+        description: metaDescription.value,
+        image: '/logo.png',
+        url: ctx.root.$route.path
+      })
+    });
+
+    // todo check if product in url is instance of Product Categories
 
     // init products list for current product page
     loadProductsByCategory(prodCategory);
 
-    const productData = productsByCategory(prodCategory);
+    const productData = productsByCategory$(prodCategory);
 
     const chooseProduct = (prodData: Product) => {
       setActiveProduct(prodData);
     };
 
     onUnmounted(() => {
-      resetProductsByCategory(prodCategory.value);
+      resetProductsByCategory(prodCategory);
     });
 
     return {
-      metaTitle,
-      metaDescription,
-      prodCategory,
       productData,
       chooseProduct
     };

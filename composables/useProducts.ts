@@ -29,7 +29,7 @@ const INITIAL_PRODUCTS_STATE: ProductsState = {
 // JSON parse and stringify are needed to prevent making INITIAL_PRODUCTS_STATE to be mutated
 const productsState = reactive<ProductsState>(JSON.parse(JSON.stringify(INITIAL_PRODUCTS_STATE)));
 
-export const productsByCategory = (prodCategory: ProductCategories): ComputedRef<Product[]> => {
+export const productsByCategory$ = (prodCategory: ProductCategories): ComputedRef<Product[]> => {
   return computed(() => productsState.categories[prodCategory] || []);
 };
 
@@ -61,7 +61,7 @@ export const setActiveProduct = (prodData: Product): void => {
   productsState.activeProduct = prodData;
 };
 
-export const getActiveProduct = (vendorCode: string): ComputedRef<Product> => {
+export const activeProduct$ = (vendorCode: string): ComputedRef<Product> => {
   if (productsState.activeProduct.vendorCode !== vendorCode) {
     getProductsByVendorCode([vendorCode]).then(prodData => setActiveProduct(prodData[0]));
   }

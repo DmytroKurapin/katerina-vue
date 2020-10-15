@@ -7,11 +7,11 @@ export const createSEOMeta = ({ title, description, url, image }) => {
       property: 'og:description',
       content: description
     },
-    { hid: 'og:image', property: 'og:image', content: image },
+    { hid: 'og:image', property: 'og:image', content: process.env.hostName + image },
     {
       hid: 'og:url',
       property: 'og:url',
-      content: process.env.HOST_NAME + '/' + url
+      content: process.env.hostName + url
     }
 
     // todo check instagramm, FB cards

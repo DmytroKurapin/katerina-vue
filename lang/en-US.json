@@ -12,7 +12,8 @@
     "giftcard": "Gift Card",
     "digital": "Digital",
     "physical": "Physical",
-    "home_page": "Home page"
+    "home_page": "Home page",
+    "favorites": "Favorites"
   },
   "products": {
     "all": "All"
