@@ -13,15 +13,17 @@
       >
         <div class="rounded-md bg-white shadow-xs">
           <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-            <nuxt-link
-              v-for="sub in navObj.subCategories"
-              :key="`${navObj.link}_${sub}`"
-              :to="localePath(`${navObj.link}?s=${sub}`)"
-              role="menuitem"
-              class="block px-4 py-2 text-sm leading-5 text-gray-700 menu-item-hover"
-            >
-              {{ $t(`navbar.${sub}`) }}
-            </nuxt-link>
+            <client-only>
+              <nuxt-link
+                v-for="sub in navObj.subCategories"
+                :key="`${navObj.link}_${sub}`"
+                :to="localePath(`${navObj.link}?s=${sub}`)"
+                role="menuitem"
+                class="block px-4 py-2 text-sm leading-5 text-gray-700 menu-item-hover"
+              >
+                {{ $t(`navbar.${sub}`) }}
+              </nuxt-link>
+            </client-only>
           </div>
         </div>
       </div>
