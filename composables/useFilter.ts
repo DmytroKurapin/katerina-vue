@@ -27,7 +27,7 @@ export const setActiveFilterProp = (filter: {
       break;
     }
     case 'subCat': {
-      if (ProductSubCategoriesList.includes(<ProductSubCategories>filterVal)) {
+      if (ProductSubCategoriesList.includes(<ProductSubCategories>filterVal) || filterVal === null) {
         Object.assign(filterState, { [filterProp]: filterVal });
       }
       break;
