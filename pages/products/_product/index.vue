@@ -19,12 +19,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, useMeta } from '@nuxtjs/composition-api';
+import { defineComponent, ref, onMounted, useMeta, watch } from '@nuxtjs/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import ProductFilterButtons from '@/components/ProductFilterButtons.vue';
 import { Product } from '@/types';
-import { currPageList$, initProductsPage, setActiveProduct } from '@/composables/useProducts';
+import { applyFilterToProductList, filteredList$, initProductsPage, setActiveProduct } from '@/composables/useProducts';
+import { activeFilter$ } from '@/composables/useFilter';
 import { createSEOMeta } from '@/utils/seo.js';
 
 export default defineComponent({
@@ -57,6 +58,14 @@ export default defineComponent({
       setActiveProduct(prodData);
     };
 
+    // listen on change of subCategory and apply new filter to products list
+    watch(
+      () => activeFilter$.value.subCat,
+      () => {
+        applyFilterToProductList();
+      }
+    );
+
     onMounted(() => {
       // init products list for current product page
       initProductsPage();
@@ -67,7 +76,7 @@ export default defineComponent({
     // });
 
     return {
-      productData: currPageList$,
+      productData: filteredList$,
       chooseProduct
     };
   }
