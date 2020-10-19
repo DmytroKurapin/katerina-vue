@@ -1,4 +1,4 @@
 export default {
   base: '/',
-  hostName: 'https://dmytrokurapin.github.io'
+  hostName: process.env.NODE_ENV === 'production' ? 'https://dmytrokurapin.github.io' : 'http://localhost:3030'
 };

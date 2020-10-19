@@ -44,23 +44,30 @@ export const getProductsByVendorCode = async (vendorCodes: string[]): Promise<Pr
     }
     return prods;
   } catch (e) {
-    console.log('~error~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log(e);
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    console.error('getProductsByVendorCode', e);
     nuxtError({ statusCode: 404, message: 'err message' });
     return [];
   }
 };
 
-export const getProducts = async (prodCategory: ProductCategories): Promise<Product[]> => {
+interface IProductsRequest {
+  category: ProductCategories;
+  skip: number;
+  amount: number;
+  sub: string | null;
+}
+
+export const fetchProducts = async (data: IProductsRequest): Promise<Product[]> => {
   const { $axios, error: nuxtError } = useContext();
   try {
-    const response = await $axios.get(`/_fake-data/${prodCategory}.json`);
+    // const { category, skip, amount, sub: subCat } = data;
+    // const queryStr = `skip=${skip}&amount=${amount}${subCat ? `&sub=${subCat}` : ''}`;
+    // const response = await $axios.get(`/api/${category}/?${queryStr}`);
+
+    const response = await $axios.get(`/_fake-data/${data.category}.json`);
     return response.data;
   } catch (e) {
-    console.log(`~~~~~error in reaching product category data~~~~${prodCategory} ~~~~~~`);
-    console.log(e);
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    console.error(`error in reaching product category data ${data.category}`, e);
     // navigate user to default error page
     nuxtError({ statusCode: 404, message: 'err message' });
     return [];

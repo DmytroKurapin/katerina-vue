@@ -1,1 +1,1 @@
-export const ProductSubCategoriesList = ['digital', 'physical'] as const;
+export default ['digital', 'physical'] as const;

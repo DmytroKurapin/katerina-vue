@@ -19,25 +19,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onUnmounted, useMeta } from '@nuxtjs/composition-api';
+import { defineComponent, ref, onMounted, useMeta } from '@nuxtjs/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import ProductFilterButtons from '@/components/ProductFilterButtons.vue';
 import { Product } from '@/types';
-import {
-  productsByCategory$,
-  resetProductsByCategory,
-  loadProductsByCategory,
-  setActiveProduct
-} from '@/composables/useProducts';
+import { currPageList$, initProductsPage, setActiveProduct } from '@/composables/useProducts';
 import { createSEOMeta } from '@/utils/seo.js';
 
 export default defineComponent({
   components: { ProductCard, Breadcrumbs, ProductFilterButtons },
   head() {},
   setup(props, ctx) {
-    const prodCategory = ctx.root.$route.params.product;
-
     /*
     TODO SSR returns product = '<no source>' on refresh the page. Check it when issue will be solved
     https://github.com/nuxt/nuxt.js/issues/7696
@@ -45,7 +38,7 @@ export default defineComponent({
     https://github.com/nuxt/nuxt.js/pull/8132
     */
 
-    const metaTitle = ref<string>(ctx.root.$t(`navbar.${ctx.root.$toKebabCase(prodCategory)}`));
+    const metaTitle = ref<string>(ctx.root.$t(`navbar.${ctx.root.$toKebabCase(ctx.root.$route.params.product)}`));
     const metaDescription = ref<string>(ctx.root.$t('general.site_description'));
 
     useMeta({
@@ -60,21 +53,21 @@ export default defineComponent({
 
     // todo check if product in url is instance of Product Categories
 
-    // init products list for current product page
-    loadProductsByCategory(prodCategory);
-
-    const productData = productsByCategory$(prodCategory);
-
     const chooseProduct = (prodData: Product) => {
       setActiveProduct(prodData);
     };
 
-    onUnmounted(() => {
-      resetProductsByCategory(prodCategory);
+    onMounted(() => {
+      // init products list for current product page
+      initProductsPage();
     });
 
+    // onUnmounted(() => {
+    //   resetProductsByCategory(prodCategory);
+    // });
+
     return {
-      productData,
+      productData: currPageList$,
       chooseProduct
     };
   }

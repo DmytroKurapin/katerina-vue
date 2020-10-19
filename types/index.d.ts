@@ -1,4 +1,5 @@
-import { ProductSubCategoriesList } from '@/constatnts/productSubCategories';
+import ProductSubCategoriesList from '@/constatnts/productSubCategories';
+import ProductCategoriesList from '@/constatnts/productCategories';
 
 export interface NavData {
   link: string;
@@ -7,7 +8,7 @@ export interface NavData {
   isLastItem?: boolean; // need it for breadcrumbs.
 }
 
-export type ProductCategories = 'wedding' | 'batMitzvah' | 'barMitzvah' | 'giftcard';
+export type ProductCategories = typeof ProductCategoriesList[number];
 export type ProductSubCategories = typeof ProductSubCategoriesList[number];
 
 interface ProductDescription {
@@ -35,7 +36,21 @@ export interface ProductsState {
     giftcard: Product[];
   };
   activeProduct: Product;
-  // activeProduct: Product | null; // currently activeProduct has initial dummy value, because setup() can't be async
+  currPageList: Product[];
+  // activeProduct: Product | null; // currently activeProduct has initial dummy value, coz setup() can't be async
+}
+
+type SortDirection = 'desc' | 'asc';
+interface ProductSorting {
+  order: SortDirection;
+  price: SortDirection;
+}
+
+export interface ProductFilter {
+  currCategory: ProductCategories;
+  subCat: ProductSubCategories | null;
+  activePage: number;
+  sort: ProductSorting;
 }
 
 export interface FooterGroup {

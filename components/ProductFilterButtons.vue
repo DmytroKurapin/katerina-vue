@@ -13,10 +13,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@nuxtjs/composition-api';
-import { ProductSubCategories } from '@/types';
-import { ProductSubCategoriesList } from '@/constatnts/productSubCategories';
+import { defineComponent } from '@nuxtjs/composition-api';
+import ProductSubCategories from '@/types';
+import ProductSubCategoriesList from '@/constatnts/productSubCategories';
 import navDataList from '@/constatnts/navData';
+import { activeFilter$, setActiveFilterProp } from '@/composables/useFilter';
+
+const toggleSubCategoryFromUrl = (subCat: ProductSubCategories) => {
+  if (subCat) {
+    // set active filter if specific query param exists in url
+    if (ProductSubCategoriesList.includes(subCat)) {
+      setActiveFilterProp({ prop: 'subCat', value: subCat });
+    }
+  } else if (activeFilter$.value.subCat !== null) {
+    // reset active filter if url does not contain specific filter query param, but object has value
+    setActiveFilterProp({ prop: 'subCat', value: null });
+  }
+};
 
 export default defineComponent({
   components: {},
@@ -29,21 +42,21 @@ export default defineComponent({
       $router
     } = ctx.root;
 
-    const selectedFilter = reactive<{ subCat: ProductSubCategories | null }>({ subCat: null });
-
+    const selectedFilter = activeFilter$;
     const subCatFromUrl: any = query.s;
-    if (subCatFromUrl && ProductSubCategoriesList.includes(subCatFromUrl)) {
-      selectedFilter.subCat = subCatFromUrl;
-    }
 
-    const currNavObj = navDataList.find(navData => navData.link === `/${prodCategory}`);
+    setActiveFilterProp({ prop: 'currCategory', value: prodCategory });
+    toggleSubCategoryFromUrl(subCatFromUrl);
+
+    const currNavObj = navDataList.find(navData => navData.link.indexOf(`/${prodCategory}`));
 
     const selectNewFilter = (flag: ProductSubCategories | null) => {
       // clicked on the same filter
-      if (selectedFilter.subCat === flag) {
+      if (selectedFilter.value.subCat === flag) {
         return;
       }
-      selectedFilter.subCat = flag;
+      setActiveFilterProp({ prop: 'subCat', value: flag });
+
       const queries = JSON.parse(JSON.stringify(query));
       // selected 'all'. Remove query param if existed
       if (flag === null) {

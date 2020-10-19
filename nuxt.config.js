@@ -46,7 +46,7 @@ export default {
   modules: ['@nuxtjs/axios', 'nuxt-i18n', 'v-sanitize/nuxt'],
   // todo make baseUrl dynamic for dev and prod
   axios: {
-    baseURL: 'http://localhost:3000',
+    baseURL: process.env.hostName,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'

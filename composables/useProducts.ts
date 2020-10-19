@@ -1,7 +1,11 @@
 import { computed, reactive } from '@nuxtjs/composition-api';
 import { ComputedRef } from '@vue/composition-api';
 import { Product, ProductsState, ProductCategories } from '@/types';
-import { getProducts, getProductsByVendorCode } from '@/composables/useApiService';
+import { Helpers } from '@/utils/helpers';
+import { fetchProducts, getProductsByVendorCode } from '@/composables/useApiService';
+import { activeFilter$ } from '@/composables/useFilter';
+
+const DEFAULT_AMOUNT_PER_PAGE = 10;
 
 const INITIAL_DUMMY_PRODUCT: Product = {
   title: { en: '', he: '' },
@@ -23,38 +27,59 @@ const INITIAL_PRODUCTS_STATE: ProductsState = {
     barMitzvah: [],
     giftcard: []
   },
-  activeProduct: INITIAL_DUMMY_PRODUCT
+  activeProduct: INITIAL_DUMMY_PRODUCT,
+  currPageList: []
 };
 
-// JSON parse and stringify are needed to prevent making INITIAL_PRODUCTS_STATE to be mutated
-const productsState = reactive<ProductsState>(JSON.parse(JSON.stringify(INITIAL_PRODUCTS_STATE)));
+const productsState = reactive<ProductsState>(Helpers.cloneDeep(INITIAL_PRODUCTS_STATE));
 
-export const productsByCategory$ = (prodCategory: ProductCategories): ComputedRef<Product[]> => {
-  return computed(() => productsState.categories[prodCategory] || []);
+const setProductsForCurrPageFromDB = (newProdList: Product[]) => {
+  productsState.currPageList = newProdList;
+  updateProductsByCategory({ prodCategory: activeFilter$.value.currCategory, value: newProdList });
 };
 
-export const addToProductsByCategory = ({
+const setProductsForCurrPageFromState = () => {
+  const { currCategory, activePage } = activeFilter$.value;
+  const prodListFromState = productsState.categories[currCategory];
+  const amountProdListFromState = prodListFromState.length;
+
+  if (amountProdListFromState === 0 || amountProdListFromState < DEFAULT_AMOUNT_PER_PAGE * (activePage - 1)) {
+    productsState.currPageList = [];
+  } else {
+    const startIdx = DEFAULT_AMOUNT_PER_PAGE * (activePage - 1);
+    const endBeforeIdx = startIdx + DEFAULT_AMOUNT_PER_PAGE;
+    productsState.currPageList = prodListFromState.slice(startIdx, endBeforeIdx);
+  }
+};
+const updateProductsByCategory = ({
   prodCategory,
   value
 }: {
   prodCategory: ProductCategories;
   value: Product[];
 }): void => {
-  // set products by type only if it is exists in state
-  if (productsState.categories[prodCategory]) {
-    productsState.categories[prodCategory].push(...value);
-  }
+  const initialList = productsState.categories[prodCategory];
+  const clonedReceivedData = Helpers.cloneDeep<Product[]>(value);
+
+  productsState.categories[prodCategory] = initialList.map(prodObj => {
+    const foundObj = clonedReceivedData.find(obj => obj.vendorCode === prodObj.vendorCode);
+    if (foundObj) {
+      return foundObj;
+    }
+    return prodObj;
+  });
 };
 
-export const resetProductsByCategory = (prodCategory: ProductCategories): void => {
-  if (productsState.categories[prodCategory]) {
-    productsState.categories[prodCategory] = [...INITIAL_PRODUCTS_STATE.categories[prodCategory]];
-  }
-};
+/** **** Below EXPORTED variables **** **/
 
-export const loadProductsByCategory = async (prodCategory: ProductCategories) => {
-  const data = await getProducts(prodCategory);
-  addToProductsByCategory({ prodCategory, value: data });
+export const currPageList$: ComputedRef<Product[]> = computed(() => productsState.currPageList);
+
+export const initProductsPage = async () => {
+  setProductsForCurrPageFromState();
+
+  const { currCategory: category, subCat: sub } = activeFilter$.value;
+  const data = await fetchProducts({ category, sub, amount: DEFAULT_AMOUNT_PER_PAGE, skip: 0 });
+  setProductsForCurrPageFromDB(data);
 };
 
 export const setActiveProduct = (prodData: Product): void => {
@@ -66,4 +91,10 @@ export const activeProduct$ = (vendorCode: string): ComputedRef<Product> => {
     getProductsByVendorCode([vendorCode]).then(prodData => setActiveProduct(prodData[0]));
   }
   return computed(() => productsState.activeProduct);
+};
+
+export const resetProductsByCategory = (prodCategory: ProductCategories): void => {
+  if (productsState.categories[prodCategory]) {
+    productsState.categories[prodCategory] = [...INITIAL_PRODUCTS_STATE.categories[prodCategory]];
+  }
 };
