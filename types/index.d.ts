@@ -35,7 +35,7 @@ export interface ProductsState {
     barMitzvah: Product[];
     giftcard: Product[];
   };
-  activeProduct: Product;
+  activeProduct: Product | null;
   filteredList: Product[];
   // activeProduct: Product | null; // currently activeProduct has initial dummy value, coz setup() can't be async
 }

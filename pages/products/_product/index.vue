@@ -12,7 +12,7 @@
         :key="`${prod.vendorCode}_${index}`"
         :product="prod"
         :class="index === 0 ? 'pt-3 sm:pt-0' : null"
-        @select="chooseProduct(prod)"
+        @select="chooseProduct(prod.vendorCode, prod)"
       />
     </section>
   </div>
@@ -54,8 +54,8 @@ export default defineComponent({
 
     // todo check if product in url is instance of Product Categories
 
-    const chooseProduct = (prodData: Product) => {
-      setActiveProduct(prodData);
+    const chooseProduct = (vendorCode: string, prodData: Product) => {
+      setActiveProduct(vendorCode, prodData);
     };
 
     // listen on change of subCategory and apply new filter to products list

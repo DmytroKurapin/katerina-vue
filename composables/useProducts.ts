@@ -7,19 +7,6 @@ import { activeFilter$ } from '@/composables/useFilter';
 
 const DEFAULT_AMOUNT_PER_PAGE = 10;
 
-const INITIAL_DUMMY_PRODUCT: Product = {
-  title: { en: '', he: '' },
-  description: { en: '', he: '' },
-  shortDescription: { en: '', he: '' },
-  vendorCode: '',
-  images: [],
-  thumbnail: '',
-  order: 0,
-  category: 'wedding',
-  price: 0,
-  subCategories: []
-};
-
 const INITIAL_PRODUCTS_STATE: ProductsState = {
   categories: {
     wedding: [],
@@ -27,7 +14,7 @@ const INITIAL_PRODUCTS_STATE: ProductsState = {
     barMitzvah: [],
     giftcard: []
   },
-  activeProduct: INITIAL_DUMMY_PRODUCT,
+  activeProduct: null,
   filteredList: []
 };
 
@@ -61,16 +48,16 @@ export const initProductsPage = async () => {
   setCategoryProductsFromDB(data);
 };
 
-export const setActiveProduct = (prodData: Product): void => {
-  productsState.activeProduct = prodData;
+export const setActiveProduct = async (vendorCode: string, prodData?: Product): Promise<void> => {
+  if (!prodData && productsState.activeProduct?.vendorCode !== vendorCode) {
+    const respData = await getProductsByVendorCode([vendorCode]);
+    productsState.activeProduct = respData[0];
+  } else if (prodData) {
+    productsState.activeProduct = prodData;
+  }
 };
 
-export const activeProduct$ = (vendorCode: string): ComputedRef<Product> => {
-  if (productsState.activeProduct.vendorCode !== vendorCode) {
-    getProductsByVendorCode([vendorCode]).then(prodData => setActiveProduct(prodData[0]));
-  }
-  return computed(() => productsState.activeProduct);
-};
+export const activeProduct$: ComputedRef<Product | null> = computed(() => productsState.activeProduct);
 
 export const resetProductsByCategory = (prodCategory: ProductCategories): void => {
   if (productsState.categories[prodCategory]) {

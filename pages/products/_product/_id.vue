@@ -2,7 +2,7 @@
   <div>
     <Breadcrumbs />
 
-    <section class="sm:flex mb-3">
+    <section v-if="productData" class="sm:flex mb-3">
       <h1 class="sm:hidden text-3xl mb-3">
         {{ productData.title[$i18n.locale] }}
       </h1>
@@ -38,13 +38,13 @@
       </article>
     </section>
 
-    <ProductItemDetailsSection :product-data="productData" class="block sm:hidden" />
+    <ProductItemDetailsSection v-if="productData" :product-data="productData" class="block sm:hidden" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, useMeta } from '@nuxtjs/composition-api';
-import { activeProduct$ } from '@/composables/useProducts';
+import { defineComponent, ref, useMeta, watch } from '@nuxtjs/composition-api';
+import { activeProduct$, setActiveProduct } from '@/composables/useProducts';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import ProductItemDetailsSection from '@/components/ProductItemDetailsSection.vue';
 import { createSEOMeta } from '@/utils/seo';
@@ -54,24 +54,27 @@ export default defineComponent({
   head: {},
   setup(props, ctx) {
     const { id: vendorCode } = ctx.root.$route.params;
-    const productData = reactive(activeProduct$(vendorCode));
-    const selectedImgIdx = ref(0);
-    const metaTitle = ref<string>(productData.value.title && productData.value.title[ctx.root.$i18n.locale]);
-    const metaDescription = ref<string>(
-      productData.value.shortDescription && productData.value.shortDescription[ctx.root.$i18n.locale]
-    );
 
-    useMeta({
-      title: metaTitle.value,
-      meta: createSEOMeta({
-        title: metaTitle.value,
-        description: metaDescription.value,
-        image: productData.value.thumbnail,
+    setActiveProduct(vendorCode);
+
+    const selectedImgIdx = ref(0);
+    const { title, meta } = useMeta();
+
+    watch(activeProduct$, pObj => {
+      if (!pObj) {
+        return;
+      }
+      const metaTitle = pObj.title[ctx.root.$i18n.locale];
+      title.value = metaTitle;
+      meta.value = createSEOMeta({
+        title: metaTitle,
+        description: pObj.shortDescription[ctx.root.$i18n.locale],
+        image: pObj.thumbnail,
         url: ctx.root.$route.path
-      })
+      });
     });
 
-    return { productData, selectedImgIdx };
+    return { productData: activeProduct$, selectedImgIdx };
   }
 });
 </script>

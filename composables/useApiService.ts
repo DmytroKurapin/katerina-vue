@@ -1,11 +1,20 @@
 import { useContext } from '@nuxtjs/composition-api';
 import { Product, ProductCategories } from '@/types';
-import { findFakeProdCategoryByVendor } from '@/composables/useFakeData';
 
 export const getProductsByVendorCode = async (vendorCodes: string[]): Promise<Product[]> => {
-  const { error: nuxtError } = useContext();
+  const { $axios, error: nuxtError } = useContext();
   try {
-    const prods = await findFakeProdCategoryByVendor(vendorCodes);
+    let prods: Product[] = [];
+    if (vendorCodes.length === 1) {
+      const response = await $axios.get(`/api/products/vendor/${vendorCodes[0]}`);
+      prods = [response.data];
+    } else {
+      const queryStr = vendorCodes.reduce((arrStr, vCode) => `${arrStr}vc[]=${vCode}&`, '?');
+      const response = await $axios.get(`/api/products/vendors/${queryStr}`);
+      prods = response.data;
+    }
+
+    // todo improve behavior if prods is empty
     if (prods.length === 0) {
       nuxtError({ statusCode: 404, message: 'err message' });
     }

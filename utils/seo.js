@@ -1,4 +1,4 @@
-export const createSEOMeta = ({ title, description, url, image }) => {
+export const createSEOMeta = ({ title, description, url, image = '' }) => {
   return [
     { hid: 'og:title', property: 'og:title', content: title },
     { hid: 'description', name: 'description', content: description },
