@@ -1,20 +1,23 @@
 <template>
   <div v-if="currNavObj" class="inline-flex">
-    <button
+    <nuxt-link
       v-for="(sub, idx) in [null, ...currNavObj.subCategories]"
       :key="`filter_button_${idx}`"
-      :class="selectedFilter.subCat === sub ? 'selected-filter-btn' : 'unselected-filter-btn'"
-      class="font-semibold py-2 px-6 border border-primary focus:outline-none sm:px-12 md:px-16"
-      @click="selectNewFilter(sub)"
+      :to="localePath(`${currNavObj.link}${sub === null ? '' : `?s=${sub}`}`)"
     >
-      {{ sub === null ? $t('products.all') : $t(`navbar.${sub}`) }}
-    </button>
+      <span
+        :class="selectedFilter.subCat === sub ? 'selected-filter-btn' : 'unselected-filter-btn'"
+        class="font-semibold py-2 px-6 border border-primary focus:outline-none sm:px-12 md:px-16"
+      >
+        {{ sub === null ? $t('products.all') : $t(`navbar.${sub}`) }}
+      </span>
+    </nuxt-link>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
-import ProductSubCategories from '@/types';
+import { defineComponent, watch } from '@nuxtjs/composition-api';
+import { ProductSubCategories } from '@/types';
 import ProductSubCategoriesList from '@/constatnts/productSubCategories';
 import navDataList from '@/constatnts/navData';
 import { activeFilter$, setActiveFilterProp } from '@/composables/useFilter';
@@ -38,8 +41,7 @@ export default defineComponent({
       $route: {
         params: { product: prodCategory },
         query
-      },
-      $router
+      }
     } = ctx.root;
 
     const selectedFilter = activeFilter$;
@@ -50,26 +52,16 @@ export default defineComponent({
 
     const currNavObj = navDataList.find(navData => navData.link.indexOf(`/${prodCategory}`));
 
-    const selectNewFilter = (flag: ProductSubCategories | null) => {
-      // clicked on the same filter
-      if (selectedFilter.value.subCat === flag) {
-        return;
+    // watcher on query subCategory change
+    watch(
+      () => ctx.root.$route.query.s,
+      selectedSub => {
+        const value = selectedSub === undefined ? null : (selectedSub as ProductSubCategories);
+        setActiveFilterProp({ prop: 'subCat', value });
       }
-      setActiveFilterProp({ prop: 'subCat', value: flag });
+    );
 
-      const queries = JSON.parse(JSON.stringify(query));
-      // selected 'all'. Remove query param if existed
-      if (flag === null) {
-        delete queries.s;
-      } else {
-        // assign new filter
-        queries.s = flag;
-      }
-      // update url with new query data
-      $router.replace({ query: queries });
-    };
-
-    return { selectNewFilter, selectedFilter, currNavObj };
+    return { selectedFilter, currNavObj };
   }
 });
 </script>
