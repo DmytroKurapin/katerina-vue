@@ -62,7 +62,7 @@ export default defineComponent({
     });
 
     const orderViaWassap = () => {
-      alert(this.$t('general.order_via_wassap'));
+      alert(ctx.root.$t('general.order_via_wassap'));
     };
     return { favoriteProducts: favoriteProducts$, orderViaWassap };
   }

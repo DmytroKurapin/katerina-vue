@@ -22,6 +22,7 @@ import { defineComponent, reactive, ref, useMeta } from '@nuxtjs/composition-api
 import NavBar from '@/components/NavBar.vue';
 import Footer from '@/components/Footer.vue';
 import { createSEOMeta } from '@/utils/seo.js';
+import { initFavorites } from '@/composables/useFavorites';
 
 export default defineComponent({
   components: { NavBar, Footer },
@@ -36,6 +37,8 @@ export default defineComponent({
       titleTemplate: ` %s | ${metaTitle}`,
       meta: createSEOMeta({ title: metaTitle, description: metaDescription.value, image: '/logo.png', url: '' })
     });
+
+    initFavorites(); // init favorites if it still not initialized from products page
 
     const onScroll = (scrollTop: number) => {
       if (scrollTop && !didScrolled.value) {

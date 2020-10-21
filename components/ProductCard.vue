@@ -59,7 +59,7 @@ export default defineComponent({
     const isLiked = computed<boolean>(() => favoriteVendorCodes$.value.includes(product.vendorCode));
 
     function toggleFavorites() {
-      pushPopFavorites(product, isLiked.value);
+      pushPopFavorites([product], isLiked.value);
     }
     return { isLiked, toggleFavorites, didLoad };
   }
