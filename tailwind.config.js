@@ -94,6 +94,9 @@ module.exports = {
       animation: {
         showUp: 'show-up 1s 0.2s ease-in-out forwards'
       }
+    },
+    boxShadow: {
+      'outline-primary': '0 0 0px 1px #ad726f;'
     }
   },
   variants: {

@@ -15,11 +15,14 @@
         @select="chooseProduct(prod.vendorCode, prod)"
       />
     </section>
+    <section>
+      <Pagination :amount="pagesAmount" />
+    </section>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, useMeta, watch } from '@nuxtjs/composition-api';
+import { computed, defineComponent, ref, onMounted, useMeta, watch } from '@nuxtjs/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import ProductFilterButtons from '@/components/ProductFilterButtons.vue';
@@ -27,9 +30,12 @@ import { Product } from '@/types';
 import { applyFilterToProductList, filteredList$, initProductsPage, setActiveProduct } from '@/composables/useProducts';
 import { activeFilter$ } from '@/composables/useFilter';
 import { createSEOMeta } from '@/utils/seo.js';
+import Pagination from '@/components/Pagination.vue';
+
+const PRODUCTS_PER_PAGE = 10;
 
 export default defineComponent({
-  components: { ProductCard, Breadcrumbs, ProductFilterButtons },
+  components: { ProductCard, Breadcrumbs, ProductFilterButtons, Pagination },
   head() {},
   setup(props, ctx) {
     /*
@@ -41,6 +47,7 @@ export default defineComponent({
 
     const metaTitle = ref<string>(ctx.root.$t(`navbar.${ctx.root.$toKebabCase(ctx.root.$route.params.product)}`));
     const metaDescription = ref<string>(ctx.root.$t('general.site_description'));
+    const pagesAmount = computed(() => Math.ceil(filteredList$.value.length / PRODUCTS_PER_PAGE));
 
     useMeta({
       title: metaTitle.value,
@@ -77,7 +84,8 @@ export default defineComponent({
 
     return {
       productData: filteredList$,
-      chooseProduct
+      chooseProduct,
+      pagesAmount
     };
   }
 });
