@@ -8,7 +8,7 @@
     </section>
     <section class="flex flex-wrap px-1">
       <ProductCard
-        v-for="(prod, index) in productData"
+        v-for="(prod, index) in productData[currPage]"
         :key="`${prod.vendorCode}_${index}`"
         :product="prod"
         :class="index === 0 ? 'pt-3 sm:pt-0' : null"
@@ -16,7 +16,7 @@
       />
     </section>
     <section>
-      <Pagination :amount="pagesAmount" />
+      <Pagination :current-page="currPage" :amount="pagesAmount$" @change="setCurrPage" />
     </section>
   </div>
 </template>
@@ -28,11 +28,9 @@ import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import ProductFilterButtons from '@/components/ProductFilterButtons.vue';
 import { Product } from '@/types';
 import { applyFilterToProductList, filteredList$, initProductsPage, setActiveProduct } from '@/composables/useProducts';
-import { activeFilter$ } from '@/composables/useFilter';
+import { activeFilter$, activePage$, setActivePage } from '@/composables/useFilter';
 import { createSEOMeta } from '@/utils/seo.js';
 import Pagination from '@/components/Pagination.vue';
-
-const PRODUCTS_PER_PAGE = 10;
 
 export default defineComponent({
   components: { ProductCard, Breadcrumbs, ProductFilterButtons, Pagination },
@@ -47,7 +45,7 @@ export default defineComponent({
 
     const metaTitle = ref<string>(ctx.root.$t(`navbar.${ctx.root.$toKebabCase(ctx.root.$route.params.product)}`));
     const metaDescription = ref<string>(ctx.root.$t('general.site_description'));
-    const pagesAmount = computed(() => Math.ceil(filteredList$.value.length / PRODUCTS_PER_PAGE));
+    const pagesAmount$ = computed(() => Math.ceil(filteredList$.value.length));
 
     useMeta({
       title: metaTitle.value,
@@ -70,8 +68,27 @@ export default defineComponent({
       () => activeFilter$.value.subCat,
       () => {
         applyFilterToProductList();
+        setActivePage(0);
       }
     );
+    // listen on change of current page
+    watch(activePage$, newVal => {
+      const queries = JSON.parse(JSON.stringify(ctx.root.$route.query));
+      // newVal === 0 - means first page
+      if (newVal === 0 && !queries.p) {
+        // no need to update url if it does not contain this query property
+        return;
+      } else if (newVal === 0) {
+        // no need this query param in url for first page
+        delete queries.p;
+      } else {
+        // assign new page
+        queries.p = newVal;
+      }
+
+      // update url with new query data
+      ctx.root.$router.replace({ query: queries });
+    });
 
     onMounted(() => {
       // init products list for current product page
@@ -85,7 +102,9 @@ export default defineComponent({
     return {
       productData: filteredList$,
       chooseProduct,
-      pagesAmount
+      pagesAmount$,
+      currPage: activePage$,
+      setCurrPage: setActivePage
     };
   }
 });

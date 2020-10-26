@@ -36,9 +36,19 @@ const updateFilteredProductsFromState = () => {
   }
 };
 
+const paginateFilteredList = (arr: Product[]): Array<Product[]> => {
+  return arr.reduce((acc, val, i: number) => {
+    const idx = Math.floor(i / DEFAULT_AMOUNT_PER_PAGE);
+    const page = acc[idx] || (acc[idx] = []);
+    page.push(val);
+
+    return acc;
+  }, [] as Array<Product[]>);
+};
+
 /** **** Below only EXPORTED variables **** **/
 
-export const filteredList$: ComputedRef<Product[]> = computed(() => productsState.filteredList);
+export const filteredList$: ComputedRef<Array<Product[]>> = computed(() => productsState.filteredList);
 
 export const initProductsPage = async () => {
   updateFilteredProductsFromState();
@@ -69,8 +79,9 @@ export const applyFilterToProductList = () => {
   const { currCategory: category, subCat: sub } = activeFilter$.value;
   const entireProductList = productsState.categories[category];
   if (sub === null) {
-    productsState.filteredList = entireProductList;
+    productsState.filteredList = paginateFilteredList(entireProductList);
   } else {
-    productsState.filteredList = entireProductList.filter(prodObj => prodObj.subCategories.includes(sub));
+    const filteredProdList = entireProductList.filter(prodObj => prodObj.subCategories.includes(sub));
+    productsState.filteredList = paginateFilteredList(filteredProdList);
   }
 };

@@ -7,7 +7,7 @@ import ProductSubCategoriesList from '@/constatnts/productSubCategories';
 const INITIAL_FILTER_STATE: ProductFilter = {
   currCategory: 'wedding',
   subCat: null,
-  activePage: 1,
+  activePage: 0,
   sort: { order: 'desc', price: 'desc' }
 };
 
@@ -38,4 +38,9 @@ export const setActiveFilterProp = (filter: {
   }
 };
 
+export const setActivePage = (num: number) => {
+  filterState.activePage = num;
+};
+
 export const activeFilter$: ComputedRef<ProductFilter> = computed(() => filterState);
+export const activePage$: ComputedRef<number> = computed(() => filterState.activePage);
