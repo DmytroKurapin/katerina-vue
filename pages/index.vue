@@ -1,6 +1,6 @@
 <template>
   <div>
-    Main Page
+    {{ $t('navbar.home_page') }}
   </div>
 </template>
 
