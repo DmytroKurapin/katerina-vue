@@ -44,8 +44,10 @@ export default defineComponent({
   components: { Breadcrumbs },
   head: {},
   setup(props, ctx) {
-    const metaTitle = ref<string>(ctx.root.$t('navbar.favorites'));
-    const metaDescription = ref<string>(`${metaTitle.value} | ${ctx.root.$t('general.site_description')}`);
+    const { root } = ctx as any;
+
+    const metaTitle = ref<string>(root.$t('navbar.favorites'));
+    const metaDescription = ref<string>(`${metaTitle.value} | ${root.$t('general.site_description')}`);
 
     const metaImg$ = computed(() =>
       favoriteProducts$.value.length > 0 ? favoriteProducts$.value[0].thumbnail : '/logo.png'
@@ -57,12 +59,12 @@ export default defineComponent({
         title: metaTitle.value,
         description: metaDescription.value,
         image: metaImg$.value,
-        url: ctx.root.$route.path
+        url: root.$route.path
       })
     });
 
     const orderViaWassap = () => {
-      alert(ctx.root.$t('general.order_via_wassap'));
+      alert(root.$t('general.order_via_wassap'));
     };
     return { favoriteProducts: favoriteProducts$, orderViaWassap };
   }

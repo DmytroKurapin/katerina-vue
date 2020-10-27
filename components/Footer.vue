@@ -50,9 +50,11 @@ import { FooterGroup } from '@/types';
 export default defineComponent({
   components: {},
   setup(props, ctx) {
+    const { root } = ctx as any;
+
     const footerGroups: FooterGroup[] = [
       {
-        title: ctx.root.$t('footer.info'),
+        title: root.$t('footer.info'),
         items: [
           { label: 'footer.about', link: '/info/about' },
           { label: 'footer.faq', link: '/info/faq' },
@@ -62,7 +64,7 @@ export default defineComponent({
         isExternalSrc: false
       },
       {
-        title: ctx.root.$t('footer.social'),
+        title: root.$t('footer.social'),
         items: [
           { label: 'footer.instagram', link: 'https://instagram.com' },
           { label: 'footer.pinterest', link: 'https://pinterest.com' },

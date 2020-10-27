@@ -33,7 +33,7 @@
 import { defineComponent } from '@nuxtjs/composition-api';
 import { ComputedRef } from '@vue/composition-api';
 import NavMenu from '@/components/NavMenuWrapper.vue';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 import { Product } from '@/types';
 
 export default defineComponent({

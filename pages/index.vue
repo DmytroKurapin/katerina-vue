@@ -5,21 +5,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
+import { defineComponent, useMeta } from '@nuxtjs/composition-api';
 import { createSEOMeta } from '@/utils/seo';
 
 export default defineComponent({
   components: {},
-  head() {},
+  head: {},
   setup(props, ctx) {
+    const { root } = ctx as any;
+
     // const { fetchArticleForUserLang, article } = usePosts({ ctx });
     // const slug = ctx.root.$route.params?.article;
-    const metaTitle = ref(ctx.root.$t('navbar.home_page'));
+    const metaTitle = root.$t('navbar.home_page');
 
     useMeta({
-      title: metaTitle.value,
+      title: metaTitle,
       meta: createSEOMeta({
-        title: metaTitle.value,
+        title: metaTitle,
         description: null,
         image: '/logo.png',
         url: ''

@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, onMounted, useMeta, watch } from '@nuxtjs/composition-api';
+import { computed, defineComponent, onMounted, useMeta, watch } from '@nuxtjs/composition-api';
 import ProductCard from '@/components/ProductCard.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import ProductFilterButtons from '@/components/ProductFilterButtons.vue';
@@ -34,7 +34,7 @@ import Pagination from '@/components/Pagination.vue';
 
 export default defineComponent({
   components: { ProductCard, Breadcrumbs, ProductFilterButtons, Pagination },
-  head() {},
+  head: {},
   setup(props, ctx) {
     /*
     TODO SSR returns product = '<no source>' on refresh the page. Check it when issue will be solved
@@ -42,16 +42,17 @@ export default defineComponent({
     https://github.com/nuxt/nuxt.js/pull/8068
     https://github.com/nuxt/nuxt.js/pull/8132
     */
+    const { root } = ctx as any;
 
-    const metaTitle = ref<string>(ctx.root.$t(`navbar.${ctx.root.$toKebabCase(ctx.root.$route.params.product)}`));
-    const metaDescription = ref<string>(ctx.root.$t('general.site_description'));
+    const metaTitle = root.$t(`navbar.${root.$toKebabCase(ctx.root.$route.params.product)}`);
+    const metaDescription = root.$t('general.site_description');
     const pagesAmount$ = computed(() => Math.ceil(filteredList$.value.length));
 
     useMeta({
-      title: metaTitle.value,
+      title: metaTitle,
       meta: createSEOMeta({
-        title: metaTitle.value,
-        description: metaDescription.value,
+        title: metaTitle,
+        description: metaDescription,
         image: '/logo.png',
         url: ctx.root.$route.path
       })
@@ -73,7 +74,7 @@ export default defineComponent({
     );
     // listen on change of current page
     watch(activePage$, newVal => {
-      const queries = JSON.parse(JSON.stringify(ctx.root.$route.query));
+      const queries = JSON.parse(JSON.stringify(root.$route.query));
       // newVal === 0 - means first page
       if (newVal === 0 && !queries.p) {
         // no need to update url if it does not contain this query property
@@ -87,7 +88,7 @@ export default defineComponent({
       }
 
       // update url with new query data
-      ctx.root.$router.replace({ query: queries });
+      root.$router.replace({ query: queries });
     });
 
     onMounted(() => {

@@ -53,24 +53,25 @@ export default defineComponent({
   components: { Breadcrumbs, ProductItemDetailsSection },
   head: {},
   setup(props, ctx) {
-    const { id: vendorCode } = ctx.root.$route.params;
+    const { root } = ctx as any;
+
+    const { id: vendorCode } = root.$route.params;
 
     setActiveProduct(vendorCode);
 
     const selectedImgIdx = ref(0);
     const { title, meta } = useMeta();
-
     watch(activeProduct$, pObj => {
       if (!pObj) {
         return;
       }
-      const metaTitle = pObj.title[ctx.root.$i18n.locale];
+      const metaTitle = pObj.title[root.$i18n.locale as 'en' | 'he'];
       title.value = metaTitle;
       meta.value = createSEOMeta({
         title: metaTitle,
-        description: pObj.shortDescription[ctx.root.$i18n.locale],
+        description: pObj.shortDescription[root.$i18n.locale as 'en' | 'he'],
         image: pObj.thumbnail,
-        url: ctx.root.$route.path
+        url: root.$route.path
       });
     });
 

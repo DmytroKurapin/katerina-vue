@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent, watch } from '@nuxtjs/composition-api';
-import { ProductSubCategories } from '@/types';
+import { ProductFilter, ProductSubCategories } from '@/types';
 import ProductSubCategoriesList from '@/constatnts/productSubCategories';
 import navDataList from '@/constatnts/navData';
 import { activeFilter$, setActiveFilterProp } from '@/composables/useFilter';
@@ -47,7 +47,7 @@ export default defineComponent({
     const selectedFilter = activeFilter$;
     const subCatFromUrl: any = query.s;
 
-    setActiveFilterProp({ prop: 'currCategory', value: prodCategory });
+    setActiveFilterProp({ prop: 'currCategory', value: prodCategory as ProductFilter[keyof ProductFilter] });
     toggleSubCategoryFromUrl(subCatFromUrl);
 
     const currNavObj = navDataList.find(navData => navData.link.indexOf(`/${prodCategory}`));

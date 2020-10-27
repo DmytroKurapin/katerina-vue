@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, useMeta } from '@nuxtjs/composition-api';
+import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import NavBar from '@/components/NavBar.vue';
 import Footer from '@/components/Footer.vue';
 import { createSEOMeta } from '@/utils/seo.js';
@@ -26,11 +26,13 @@ import { initFavorites } from '@/composables/useFavorites';
 
 export default defineComponent({
   components: { NavBar, Footer },
-  head() {},
+  head: {},
   setup(props, ctx) {
-    const metaTitle = reactive(ctx.root.$t('general.site_title'));
-    const metaDescription = ref(ctx.root.$t('general.site_description'));
+    const { root } = ctx as any;
+
     const didScrolled = ref(false);
+    const metaTitle = root.$t('general.site_title');
+    const metaDescription = root.$t('general.site_description');
 
     useMeta({
       title: metaTitle,

@@ -33,22 +33,26 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
 import { NavData } from '@/types';
+import { NuxtRouteConfig } from '@nuxt/types/config/router';
 
 export default defineComponent({
   components: {},
   setup(props, ctx) {
+    const { root } = ctx as any;
     const {
-      $route: { params: routeParams },
+      $route: { params },
       $toKebabCase
-    } = ctx.root;
+    } = root;
 
-    const basePath = routeParams.product !== undefined ? '/products' : '';
+    const routeParams = params as NuxtRouteConfig;
+    // eslint-disable-next-line
+    const basePath = routeParams.hasOwnProperty('product') ? '/products' : '';
 
     const breadcrumbsList: NavData[] = [
-      { link: '/', label: ctx.root.$t('navbar.home_page'), subCategories: [], isLastItem: false },
+      { link: '/', label: root.$t('navbar.home_page'), subCategories: [], isLastItem: false },
       ...Object.values(routeParams).reduce((res, curr, idx, srcArr) => {
         const isLastItem = typeof srcArr[idx + 1] === 'undefined';
-        let itemLabel = ctx.root.$t(`navbar.${$toKebabCase(curr)}`);
+        let itemLabel = root.$t(`navbar.${$toKebabCase(curr)}`);
         // check if current translation is existed
         if (itemLabel === `navbar.${$toKebabCase(curr)}`) {
           itemLabel = curr;
