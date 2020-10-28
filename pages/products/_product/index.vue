@@ -6,6 +6,9 @@
     <section class="flex justify-center">
       <ProductFilterButtons />
     </section>
+
+    <LoadingIcon v-show="isLoading" />
+
     <section class="flex flex-wrap px-1">
       <ProductCard
         v-for="(prod, index) in productData[currPage]"
@@ -23,17 +26,19 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, useMeta, watch } from '@nuxtjs/composition-api';
+import ProductFilterButtons from '@/components/ProductFilterButtons.vue';
 import ProductCard from '@/components/ProductCard.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import ProductFilterButtons from '@/components/ProductFilterButtons.vue';
-import { Product } from '@/types';
+import LoadingIcon from '@/components/LoadingIcon.vue';
+import Pagination from '@/components/Pagination.vue';
 import { applyFilterToProductList, filteredList$, initProductsPage, setActiveProduct } from '@/composables/useProducts';
 import { activeFilter$, activePage$, setActivePage } from '@/composables/useFilter';
+import { isLoading } from '@/composables/useApiService';
 import { createSEOMeta } from '@/utils/seo.js';
-import Pagination from '@/components/Pagination.vue';
+import { Product } from '@/types';
 
 export default defineComponent({
-  components: { ProductCard, Breadcrumbs, ProductFilterButtons, Pagination },
+  components: { ProductCard, Breadcrumbs, ProductFilterButtons, Pagination, LoadingIcon },
   head: {},
   setup(props, ctx) {
     /*
@@ -105,7 +110,8 @@ export default defineComponent({
       chooseProduct,
       pagesAmount$,
       currPage: activePage$,
-      setCurrPage: setActivePage
+      setCurrPage: setActivePage,
+      isLoading
     };
   }
 });

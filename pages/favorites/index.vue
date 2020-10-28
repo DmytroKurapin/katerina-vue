@@ -24,10 +24,13 @@
             </button>
           </div>
         </template>
-        <template v-else>
+        <template v-else-if="!isLoading">
           <div class="text-center">
             {{ $t('general.no_favorites_selected') }}
           </div>
+        </template>
+        <template v-else>
+          <LoadingIcon />
         </template>
       </div>
     </section>
@@ -37,11 +40,13 @@
 <script lang="ts">
 import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
+import LoadingIcon from '@/components/LoadingIcon.vue';
 import { favoriteProducts$ } from '@/composables/useFavorites';
+import { isLoading } from '@/composables/useApiService';
 import { createSEOMeta } from '@/utils/seo';
 
 export default defineComponent({
-  components: { Breadcrumbs },
+  components: { Breadcrumbs, LoadingIcon },
   head: {},
   setup(props, ctx) {
     const { root } = ctx as any;
@@ -66,7 +71,7 @@ export default defineComponent({
     const orderViaWassap = () => {
       alert(root.$t('general.order_via_wassap'));
     };
-    return { favoriteProducts: favoriteProducts$, orderViaWassap };
+    return { favoriteProducts: favoriteProducts$, orderViaWassap, isLoading };
   }
 });
 </script>

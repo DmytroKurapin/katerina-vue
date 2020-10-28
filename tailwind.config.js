@@ -89,10 +89,19 @@ module.exports = {
             transform: 'scale(1) translateY(0)',
             opacity: 1
           }
+        },
+        loading: {
+          '0%, 100%': {
+            opacity: 1
+          },
+          '50%': {
+            opacity: 0
+          }
         }
       },
       animation: {
-        showUp: 'show-up 1s 0.2s ease-in-out forwards'
+        showUp: 'show-up 1s 0.2s ease-in-out forwards',
+        loading: 'loading 2.5s linear infinite'
       }
     },
     boxShadow: {
