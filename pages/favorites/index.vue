@@ -9,7 +9,11 @@
             </figure>
 
             <div class="w-2/3 ps-4 lg:ps-8">
-              <p>{{ prod.title[$i18n.locale] }}</p>
+              <p class="flex my-2 justify-between">
+                <span>{{ prod.title[$i18n.locale] }}</span>
+
+                <HeartIcon :is-liked="true" class="w-6 h-6 me-5" @click="removeFromFavorites(prod)" />
+              </p>
               <p>{{ prod.shortDescription[$i18n.locale] }}</p>
               <p>
                 <b>{{ prod.vendorCode }}</b>
@@ -41,12 +45,14 @@
 import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
-import { favoriteProducts$ } from '@/composables/useFavorites';
+import HeartIcon from '@/components/HeartIcon.vue';
+import { favoriteProducts$, pushPopFavorites } from '@/composables/useFavorites';
 import { isLoading } from '@/composables/useApiService';
 import { createSEOMeta } from '@/utils/seo';
+import { Product } from '@/types';
 
 export default defineComponent({
-  components: { Breadcrumbs, LoadingIcon },
+  components: { Breadcrumbs, LoadingIcon, HeartIcon },
   head: {},
   setup(props, ctx) {
     const { root } = ctx as any;
@@ -71,7 +77,12 @@ export default defineComponent({
     const orderViaWassap = () => {
       alert(root.$t('general.order_via_wassap'));
     };
-    return { favoriteProducts: favoriteProducts$, orderViaWassap, isLoading };
+
+    const removeFromFavorites = (prod: Product) => {
+      pushPopFavorites([prod], true);
+    };
+
+    return { favoriteProducts: favoriteProducts$, isLoading, orderViaWassap, removeFromFavorites };
   }
 });
 </script>

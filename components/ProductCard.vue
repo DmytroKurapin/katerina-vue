@@ -25,25 +25,20 @@
       <p class="flex-1 truncate">
         {{ product.shortDescription[$i18n.locale] }}
       </p>
-      <svg
-        :class="isLiked ? 'text-primary' : 'text-primary-light'"
-        class="w-6 xl:w-8 cursor-pointer fill-current"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        @click.prevent="toggleFavorites"
-      >
-        <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
-      </svg>
+
+      <HeartIcon :is-liked="isLiked" class="w-6 xl:w-8" @click="toggleFavorites" />
     </footer>
   </article>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
+import HeartIcon from '@/components/HeartIcon.vue';
 import { favoriteVendorCodes$, pushPopFavorites } from '@/composables/useFavorites';
 import { Product } from '@/types';
 
 export default defineComponent({
+  components: { HeartIcon },
   props: {
     product: {
       type: Object as () => Product,
@@ -58,9 +53,10 @@ export default defineComponent({
 
     const isLiked = computed<boolean>(() => favoriteVendorCodes$.value.includes(product.vendorCode));
 
-    function toggleFavorites() {
+    const toggleFavorites = () => {
       pushPopFavorites([product], isLiked.value);
-    }
+    };
+
     return { isLiked, toggleFavorites, didLoad };
   }
 });

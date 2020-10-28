@@ -15,12 +15,9 @@
       <!--  Heart icon -->
       <nuxt-link :to="localePath('/favorites')" class="flex justify-center">
         <span class="relative cursor-pointer">
-          <svg class="h-8 w-8 fill-current text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <path d="M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z" />
-          </svg>
-          <span
-            class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 likes-counter text-gray-100"
-          >
+          <HeartIcon class="h-8 w-8" :is-liked="true" />
+
+          <span class="absolute top-4/9 left-1/2 transform -translate-y-1/2 -translate-x-1/2 text-gray-100">
             {{ favoriteProducts.length }}
           </span>
         </span>
@@ -32,12 +29,13 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
 import { ComputedRef } from '@vue/composition-api';
-import NavMenu from '@/components/NavMenuWrapper.vue';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
+import NavMenu from '@/components/NavMenuWrapper.vue';
+import HeartIcon from '@/components/HeartIcon.vue';
 import { Product } from '@/types';
 
 export default defineComponent({
-  components: { NavMenu, LanguageSwitcher },
+  components: { NavMenu, LanguageSwitcher, HeartIcon },
   setup() {
     const favoriteProducts: ComputedRef<Product[]> = require('@/composables/useFavorites').favoriteProducts$;
 
