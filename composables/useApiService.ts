@@ -3,11 +3,10 @@ import { Product, ProductCategories } from '@/types';
 
 const requestsQueue = ref<number>(0);
 
-const errorHandling = (message: string) => {
-  const { error: nuxtError } = useContext();
+const errorHandling = (message: string, errCB: Function) => {
   requestsQueue.value = 0;
   // navigate user to default error page
-  nuxtError({ statusCode: 404, message });
+  errCB({ statusCode: 404, message });
 };
 
 export const isLoading = computed(() => {
@@ -16,8 +15,11 @@ export const isLoading = computed(() => {
 });
 
 export const getProductsByVendorCode = async (vendorCodes: string[]): Promise<Product[]> => {
+  if (vendorCodes.length === 0) {
+    return [];
+  }
   requestsQueue.value++;
-  const { $axios } = useContext();
+  const { $axios, error: nuxtError } = useContext();
   try {
     let prods: Product[] = [];
     if (vendorCodes.length === 1) {
@@ -30,14 +32,10 @@ export const getProductsByVendorCode = async (vendorCodes: string[]): Promise<Pr
     }
     requestsQueue.value--;
 
-    // todo improve behavior if prods is empty
-    if (prods.length === 0) {
-      errorHandling('err message');
-    }
     return prods;
   } catch (e) {
     console.error('getProductsByVendorCode', e);
-    errorHandling('err message');
+    errorHandling('err message', nuxtError);
     return [];
   }
 };
@@ -51,7 +49,7 @@ interface IProductsRequest {
 
 export const fetchProducts = async (data: IProductsRequest): Promise<Product[]> => {
   requestsQueue.value++;
-  const { $axios } = useContext();
+  const { $axios, error: nuxtError } = useContext();
   const { category } = data;
 
   try {
@@ -61,7 +59,7 @@ export const fetchProducts = async (data: IProductsRequest): Promise<Product[]> 
     return response.data;
   } catch (e) {
     console.error(`error in reaching product category data ${category}`, e);
-    errorHandling('err message');
+    errorHandling('err message', nuxtError);
     return [];
   }
 };
