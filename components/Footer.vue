@@ -8,7 +8,7 @@
         </div>
         <ul v-for="(itemData, itemIdx) in groupData.items" :key="`footer_group_${idx}_${itemIdx}`" class="leading-7">
           <li v-if="!groupData.isExternalSrc">
-            <nuxt-link :to="itemData.link">
+            <nuxt-link :to="localePath(itemData.link)">
               {{ $t(itemData.label) }}
             </nuxt-link>
           </li>

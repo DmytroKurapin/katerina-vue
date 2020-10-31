@@ -10,6 +10,7 @@ import { setMeta as setMetaOnInfoPage } from '@/composables/useMetaOnInfoPages';
 
 export default defineComponent({
   components: {},
+  head: {},
   setup() {
     setMetaOnInfoPage({ page: 'faq' });
     return {};
