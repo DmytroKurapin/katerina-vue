@@ -1,11 +1,6 @@
 <template>
   <div>
-    <section class="ps-4">
-      <Breadcrumbs />
-    </section>
-    <section class="flex justify-center">
-      <ProductFilterButtons />
-    </section>
+    <Breadcrumbs class="ps-4" />
 
     <LoadingIcon v-show="isLoading" />
 
@@ -26,7 +21,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, useMeta, watch } from '@nuxtjs/composition-api';
-import ProductFilterButtons from '@/components/ProductFilterButtons.vue';
 import ProductCard from '@/components/ProductCard.vue';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
@@ -38,7 +32,7 @@ import { createSEOMeta } from '@/utils/seo.js';
 import { Product } from '@/types';
 
 export default defineComponent({
-  components: { ProductCard, Breadcrumbs, ProductFilterButtons, Pagination, LoadingIcon },
+  components: { ProductCard, Breadcrumbs, Pagination, LoadingIcon },
   head: {},
   setup(props, ctx) {
     /*
