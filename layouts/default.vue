@@ -1,5 +1,5 @@
 <template>
-  <div :dir="$dir()" class="flex flex-col xl:container h-screen">
+  <div :dir="$dir()" class="flex flex-col h-screen">
     <NavBar
       :class="{ 'shadow-xl': didScrolled }"
       class="flex justify-between py-3 sm:py-5 px-4 transition-shadow ease duration-700"
