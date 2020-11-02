@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="px-6 sm:px-4">
     <Breadcrumbs />
 
     <section v-if="productData" class="sm:flex mb-3">
@@ -21,7 +21,7 @@
           <figure
             v-for="(img, idx) in productData.images"
             :key="idx"
-            class="py-2 m-2 max-w-1/5"
+            class="py-2 m-2 max-w-1/5 cursor-pointer"
             @click="selectedImgIdx = idx"
           >
             <img :src="img" alt="" class="min-w-10" />
