@@ -26,10 +26,10 @@ import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
 import Pagination from '@/components/Pagination.vue';
 import { applyFilterToProductList, filteredList$, initProductsPage, setActiveProduct } from '@/composables/useProducts';
-import { activeFilter$, activePage$, setActivePage } from '@/composables/useFilter';
+import { activePage$, setActiveFilterProp, setActivePage } from '@/composables/useFilter';
 import { isLoading } from '@/composables/useApiService';
 import { createSEOMeta } from '@/utils/seo.js';
-import { Product } from '@/types';
+import { Product, ProductSubCategories } from '@/types';
 
 export default defineComponent({
   components: { ProductCard, Breadcrumbs, Pagination, LoadingIcon },
@@ -63,14 +63,17 @@ export default defineComponent({
       setActiveProduct(vendorCode, prodData);
     };
 
-    // listen on change of subCategory and apply new filter to products list
+    // watcher on query subCategory change
     watch(
-      () => activeFilter$.value.subCat,
-      () => {
+      () => ctx.root.$route.query.s,
+      selectedSub => {
+        const value = selectedSub === undefined ? null : (selectedSub as ProductSubCategories);
+        setActiveFilterProp({ prop: 'subCat', value });
         applyFilterToProductList();
         setActivePage(0);
       }
     );
+
     // listen on change of current page
     watch(activePage$, newVal => {
       const queries = JSON.parse(JSON.stringify(root.$route.query));
