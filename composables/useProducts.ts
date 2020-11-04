@@ -5,7 +5,7 @@ import { Helpers } from '@/utils/helpers';
 import { fetchProducts, getProductsByVendorCode } from '@/composables/useApiService';
 import { activeFilter$ } from '@/composables/useFilter';
 
-const DEFAULT_AMOUNT_PER_PAGE = 10;
+const DEFAULT_AMOUNT_PER_PAGE = 12;
 
 const INITIAL_PRODUCTS_STATE: ProductsState = {
   categories: {
