@@ -31,21 +31,11 @@
 
       <section>
         <article v-for="(navObj, idx) in navData" :key="navObj.link" class="flex-column text-gray-800">
-          <header class="flex">
-            <span
-              class="flex hover:border-s-4 border-gray-800 hover:ps-5 text-3xl ease transition-all duration-300"
-              @click="toggleIsOpen(false)"
-            >
-              <nuxt-link :to="localePath(navObj.link)">
-                {{ $t(navObj.label) }}
-              </nuxt-link>
+          <header class="flex cursor-pointer" @click="onCategoryClick(navObj, idx)">
+            <span class="flex hover:border-s-4 border-gray-800 hover:ps-5 text-3xl ease transition-all duration-300">
+              {{ $t(navObj.label) }}
             </span>
-            <button
-              v-if="navObj.subCategories.length > 0"
-              type="button"
-              class="px-2 focus:outline-none lg:hidden z-20"
-              @click="expandSubcategories(idx)"
-            >
+            <button v-if="navObj.subCategories.length > 0" type="button" class="px-2 focus:outline-none lg:hidden z-20">
               <svg
                 class="h-6 w-6 fill-current transform ease duration-300"
                 :class="expandedCategoryIdx === idx ? 'rotate-0' : closedSubcategoriesClass"
@@ -59,8 +49,19 @@
           <ul
             v-if="navObj.subCategories.length > 0"
             class="h-0 overflow-hidden ease transition-all duration-300"
-            :class="{ [`h-${4 * 2 * navObj.subCategories.length}`]: expandedCategoryIdx === idx }"
+            :class="{ [`h-${4 * 2 * (navObj.subCategories.length + 1)}`]: expandedCategoryIdx === idx }"
           >
+            <li
+              class="cursor-pointer max-w-content my-1"
+              @click="
+                toggleIsOpen(false);
+                expandSubcategories(idx);
+              "
+            >
+              <nuxt-link :to="localePath(`${navObj.link}`)">
+                {{ $t('navbar.to_all_items') }}
+              </nuxt-link>
+            </li>
             <li
               v-for="sub in navObj.subCategories"
               :key="`${navObj.link}_${sub}`"
@@ -110,29 +111,46 @@ import NavMenuIcon from '@/components/NavMenuIcon.vue';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
 import navDataList from '@/constatnts/navData';
+import { NavData } from '@/types';
 
 export default defineComponent({
   components: { NavMenuIcon, LanguageSwitcher },
-  setup(props, ctx) {
+  setup(props, { root }) {
     const navData = navDataList;
     const isOpen = ref(false);
     const show = ref(false);
     const expandedCategoryIdx = ref<number | null>(null);
 
     const closedSubcategoriesClass = computed(() => {
-      const isRtl = ctx.root.$dir() === 'rtl';
+      const isRtl = root.$dir() === 'rtl';
       return isRtl ? 'rotate-90' : '-rotate-90';
     });
 
-    function expandSubcategories(navItemIdx: number): void {
+    const expandSubcategories = (navItemIdx: number): void => {
       expandedCategoryIdx.value = expandedCategoryIdx.value === navItemIdx ? null : navItemIdx;
-    }
+    };
 
-    function toggleIsOpen(flag: boolean) {
+    const toggleIsOpen = (flag: boolean): void => {
       isOpen.value = flag;
-    }
+    };
 
-    return { navData, isOpen, show, expandSubcategories, expandedCategoryIdx, closedSubcategoriesClass, toggleIsOpen };
+    const onCategoryClick = (navObj: NavData, catIdx: number) => {
+      if (navObj.subCategories.length === 0) {
+        root.$router.push({ path: navObj.link });
+      } else {
+        expandSubcategories(catIdx);
+      }
+    };
+    return {
+      navData,
+      isOpen,
+      show,
+      expandedCategoryIdx,
+      closedSubcategoriesClass,
+      expandSubcategories,
+      toggleIsOpen,
+      onCategoryClick
+    };
   }
 });
 </script>
