@@ -1,15 +1,16 @@
 import ProductSubCategoriesList from '@/constatnts/productSubCategories';
 import ProductCategoriesList from '@/constatnts/productCategories';
 
+export type ProductCategories = typeof ProductCategoriesList[number];
+export type ProductSubCategories = typeof ProductSubCategoriesList[number];
+
 export interface NavData {
   link: string;
   label: string;
+  category: ProductCategories;
   subCategories: typeof ProductSubCategoriesList | [];
   isLastItem?: boolean; // need it for breadcrumbs.
 }
-
-export type ProductCategories = typeof ProductCategoriesList[number];
-export type ProductSubCategories = typeof ProductSubCategoriesList[number];
 
 interface ProductDescription {
   en: string;

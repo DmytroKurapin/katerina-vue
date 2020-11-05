@@ -38,6 +38,18 @@ export const setActiveFilterProp = (filter: {
   }
 };
 
+export const initSubCategoryFromUrl = (subCat: ProductSubCategories) => {
+  if (subCat) {
+    // set active filter if specific query param exists in url
+    if (ProductSubCategoriesList.includes(subCat)) {
+      setActiveFilterProp({ prop: 'subCat', value: subCat });
+    }
+  } else if (filterState.subCat !== null) {
+    // reset active filter if url does not contain specific filter query param, but object has value
+    setActiveFilterProp({ prop: 'subCat', value: null });
+  }
+};
+
 export const setActivePage = (num: number) => {
   filterState.activePage = num;
 };

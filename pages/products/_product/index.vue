@@ -26,10 +26,10 @@ import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
 import Pagination from '@/components/Pagination.vue';
 import { applyFilterToProductList, filteredList$, initProductsPage, setActiveProduct } from '@/composables/useProducts';
-import { activePage$, setActiveFilterProp, setActivePage } from '@/composables/useFilter';
+import { activePage$, setActiveFilterProp, setActivePage, initSubCategoryFromUrl } from '@/composables/useFilter';
 import { isLoading } from '@/composables/useApiService';
 import { createSEOMeta } from '@/utils/seo.js';
-import { Product, ProductSubCategories } from '@/types';
+import { Product, ProductFilter, ProductSubCategories } from '@/types';
 
 export default defineComponent({
   components: { ProductCard, Breadcrumbs, Pagination, LoadingIcon },
@@ -42,8 +42,9 @@ export default defineComponent({
     https://github.com/nuxt/nuxt.js/pull/8132
     */
     const { root } = ctx as any;
+    const prodCategory = root.$route.params.product;
 
-    const metaTitle = root.$t(`navbar.${root.$toKebabCase(ctx.root.$route.params.product)}`);
+    const metaTitle = root.$t(`navbar.${root.$toKebabCase(prodCategory)}`);
     const metaDescription = root.$t('general.site_description');
     const pagesAmount$ = computed(() => Math.ceil(filteredList$.value.length));
 
@@ -53,7 +54,7 @@ export default defineComponent({
         title: metaTitle,
         description: metaDescription,
         image: '/logo.png',
-        url: ctx.root.$route.path
+        url: root.$route.path
       })
     });
 
@@ -63,9 +64,12 @@ export default defineComponent({
       setActiveProduct(vendorCode, prodData);
     };
 
+    setActiveFilterProp({ prop: 'currCategory', value: prodCategory as ProductFilter[keyof ProductFilter] });
+    initSubCategoryFromUrl(root.$route.query.s);
+
     // watcher on query subCategory change
     watch(
-      () => ctx.root.$route.query.s,
+      () => root.$route.query.s,
       selectedSub => {
         const value = selectedSub === undefined ? null : (selectedSub as ProductSubCategories);
         setActiveFilterProp({ prop: 'subCat', value });

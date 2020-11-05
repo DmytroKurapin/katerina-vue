@@ -20,7 +20,6 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import navDataList from '@/constatnts/navData';
 
 export default defineComponent({
   setup() {
@@ -28,7 +27,7 @@ export default defineComponent({
       { label: "עב'", iso: 'he' },
       { label: 'EN', iso: 'en' }
     ];
-    return { navData: navDataList, languagesList };
+    return { languagesList };
   }
 });
 </script>
