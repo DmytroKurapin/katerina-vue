@@ -2,7 +2,9 @@
   <nav>
     <NavMenuSmall class="lg:hidden flex self-start" />
 
-    <NavMenuLarge class="hidden lg:flex" />
+    <NavMenuLarge class="hidden lg:flex">
+      <slot name="favorites"></slot>
+    </NavMenuLarge>
   </nav>
 </template>
 
