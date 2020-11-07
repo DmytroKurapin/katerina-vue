@@ -103,10 +103,10 @@ module.exports = {
       animation: {
         showUp: 'show-up 1s 0.2s ease-in-out forwards',
         loading: 'loading 2.5s linear infinite'
+      },
+      boxShadow: {
+        'outline-primary': '0 0 0px 1px #ad726f;'
       }
-    },
-    boxShadow: {
-      'outline-primary': '0 0 0px 1px #ad726f;'
     }
   },
   variants: {
