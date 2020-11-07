@@ -13,12 +13,12 @@
       </nuxt-link>
       <div
         :class="
-          `z-10 invisible origin-top-right absolute rounded-md shadow-lg
+          `z-10 invisible origin-top-right absolute shadow-lg
            transition ease-out duration-300 transform opacity-0 translate-y-4 scale-80
            group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100`
         "
       >
-        <div class="rounded-md bg-white bg-opacity-80 shadow-xs">
+        <div class="bg-white bg-opacity-80 shadow-xs">
           <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
             <client-only>
               <nuxt-link
