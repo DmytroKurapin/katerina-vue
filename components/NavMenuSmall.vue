@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <NavMenuIcon :class="isOpen ? 'fixed' : null" class="focus:outline-none z-20" @toggle="toggleIsOpen(!isOpen)">
+  <nav>
+    <NavMenuIcon class="focus:outline-none z-20" @toggle="toggleIsOpen(!isOpen)">
       <path
         v-if="isOpen"
         fill-rule="evenodd"
@@ -22,7 +22,7 @@
 
     <aside
       :class="[
-        `fixed z-10 flex flex-col justify-between top-0 start-0 bg-white bg-opacity-80 h-full overflow-auto
+        `fixed z-10 flex flex-col justify-between top-0 start-0 bg-white bg-opacity-80 h-screen overflow-auto
          transform ease-in-out transition-all duration-300`,
         isOpen ? 'opacity-100 ps-10 pb-20 pt-40 w-full' : 'opacity-0 w-0'
       ]"
@@ -103,14 +103,14 @@
         </nuxt-link>
       </section>
     </aside>
-  </div>
+  </nav>
 </template>
 
 <script lang="ts">
 import NavMenuIcon from '@/components/NavMenuIcon.vue';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
-import navDataList from '@/constatnts/navData';
+import navDataList from '@/constants/navData';
 import { NavData } from '@/types';
 
 export default defineComponent({

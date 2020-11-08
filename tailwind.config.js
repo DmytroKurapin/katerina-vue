@@ -11,6 +11,8 @@
 // * minHeight - as example. What about width
 // * screens
 
+import mobileBreakpoint from './constants/mobileBreakpoint';
+
 module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
@@ -23,7 +25,7 @@ module.exports = {
     screens: {
       sm: '640px',
       md: '768px',
-      lg: '1024px',
+      lg: `${mobileBreakpoint}px`,
       xl: '1150px'
     },
     extend: {

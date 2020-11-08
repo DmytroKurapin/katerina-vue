@@ -1,5 +1,5 @@
-import ProductSubCategoriesList from '@/constatnts/productSubCategories';
-import ProductCategoriesList from '@/constatnts/productCategories';
+import ProductSubCategoriesList from '@/constants/productSubCategories';
+import ProductCategoriesList from '@/constants/productCategories';
 
 export type ProductCategories = typeof ProductCategoriesList[number];
 export type ProductSubCategories = typeof ProductSubCategoriesList[number];

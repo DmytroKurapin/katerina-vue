@@ -1,4 +1,4 @@
-import ProductSubCategoriesList from '@/constatnts/productSubCategories';
+import ProductSubCategoriesList from '@/constants/productSubCategories';
 import { NavData } from '@/types';
 
 export default (() => {

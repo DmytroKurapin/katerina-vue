@@ -1,8 +1,8 @@
 import { ProductCategories, ProductFilter, ProductSubCategories } from '@/types';
 import { computed, reactive } from '@nuxtjs/composition-api';
 import { ComputedRef } from '@vue/composition-api';
-import ProductCategoriesList from '@/constatnts/productCategories';
-import ProductSubCategoriesList from '@/constatnts/productSubCategories';
+import ProductCategoriesList from '@/constants/productCategories';
+import ProductSubCategoriesList from '@/constants/productSubCategories';
 
 const INITIAL_FILTER_STATE: ProductFilter = {
   currCategory: 'wedding',
