@@ -14,7 +14,12 @@
     <div class="">
       <!--    <div class="inline-flex items-center justify-end flex-1 px-4">-->
       <nuxt-link :to="localePath('/')" class="inline-flex">
-        <img src="/logo.jpg" alt="Katerina Kurapin" class="h-8 lg:h-20 w-auto" />
+        <img
+          src="/logo.jpg"
+          alt="Katerina Kurapin"
+          :class="fullPath === '/' ? 'h-24 lg:h-40' : 'h-16 lg:h-24'"
+          class="w-auto"
+        />
       </nuxt-link>
     </div>
 
@@ -30,13 +35,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
+import { computed, defineComponent } from '@nuxtjs/composition-api';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 
 export default defineComponent({
   components: { LanguageSwitcher },
-  setup() {
-    return {};
+  setup(props, { root }) {
+    return { fullPath: computed(() => root.$route.fullPath) };
   }
 });
 </script>

@@ -2,7 +2,6 @@
   <header>
     <TopPanel
       v-resize
-      :dir="isMobileView ? 'ltr' : null"
       :style="{ marginTop: isMobileView ? 0 : `${headerMarginTop}px` }"
       :class="{
         'shadow-xl lg:mt-auto': isMobileView && didScrolled,
@@ -14,7 +13,7 @@
     >
       <template slot="small-navbar">
         <!-- Navigation Bar For Small Screens -->
-        <NavMenuSmall class="lg:hidden py-3 flex self-start" />
+        <NavMenuSmall class="lg:hidden flex" />
       </template>
       <template slot="favorites">
         <FavoritesNavigationIcon class="relative flex justify-center py-1" />

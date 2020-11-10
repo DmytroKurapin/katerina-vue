@@ -27,7 +27,7 @@
         isOpen ? 'opacity-100 ps-10 pb-20 pt-40 w-full' : 'opacity-0 w-0'
       ]"
     >
-      <LanguageSwitcher class="inline-flex absolute end-0 -my-32 me-2" />
+      <LanguageSwitcher class="inline-flex absolute start-0 -my-32 ms-2" />
 
       <section>
         <article v-for="(navObj, idx) in navData" :key="navObj.link" class="flex-column text-gray-800">
