@@ -4,14 +4,19 @@
       <nuxt-link
         :key="`lang_${idx}`"
         :to="switchLocalePath(lang.iso)"
-        :class="[
-          $i18n.locale == lang.iso ? 'bg-gray-300' : 'bg-white',
-          idx === 0 ? 'rounded-s-md' : 'rounded-e-md',
-          `px-2 py-0 border border-gray-300 text-sm font-bold text-gray-800 hover:text-gray-500 focus:border-blue-300`
-        ]"
+        :dir="lang.iso === 'he' ? 'rtl' : null"
+        class="flex"
       >
-        <span :dir="lang.iso === 'he' ? 'rtl' : null">
-          {{ lang.label }}
+        <span :class="['flex', $i18n.locale === lang.iso ? 'items-center' : 'items-end']">
+          <span v-if="$i18n.locale !== lang.iso" class="text-primary-light px-2">|</span>
+          <span
+            :class="{
+              'underscored-label font-semibold': $i18n.locale === lang.iso
+            }"
+            class="relative text-sm text-gray-800 hover:text-primary"
+          >
+            {{ lang.label }}
+          </span>
         </span>
       </nuxt-link>
     </template>

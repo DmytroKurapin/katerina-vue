@@ -4,7 +4,7 @@
       <li v-for="navObj in navData" :key="navObj.link" class="relative group menu-item-hover px-10 py-1 text-gray-900">
         <nuxt-link
           :to="localePath(navObj.link)"
-          :class="{ 'pb-1 relative': true, 'active-category': currCategory === navObj.category }"
+          :class="{ 'pb-1 relative': true, 'underscored-label': currCategory === navObj.category }"
         >
           {{ $t(navObj.label) }}
         </nuxt-link>
@@ -55,15 +55,5 @@ export default defineComponent({
 }
 .menu-item-hover:hover {
   @apply text-primary;
-}
-.active-category:before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background: #ad726f;
-  border-radius: 5px;
 }
 </style>

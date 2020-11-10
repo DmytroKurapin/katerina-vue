@@ -4,8 +4,11 @@
       v-resize
       :dir="isMobileView ? 'ltr' : null"
       :style="{ marginTop: isMobileView ? 0 : `${headerMarginTop}px` }"
-      :class="{ 'shadow-xl lg:mt-auto': isMobileView && didScrolled }"
-      class="flex items-center relative justify-between transition-all duration-500 ease-in-out transform mt-0 z-10"
+      :class="{
+        'shadow-xl lg:mt-auto': isMobileView && didScrolled,
+        'flex items-center relative justify-between mt-0 z-10 px-6': true,
+        'transform transition-all duration-500 ease-in-out': true
+      }"
       @init-size="onHeaderResize"
       @resize="onHeaderResize"
     >
@@ -14,17 +17,17 @@
         <NavMenuSmall class="lg:hidden py-3 px-4 flex self-start" />
       </template>
       <template slot="favorites">
-        <FavoritesNavigationIcon />
+        <FavoritesNavigationIcon class="relative flex justify-center py-1" />
       </template>
     </TopPanel>
 
     <!-- Navigation Bar For Large Screens -->
     <NavMenuLarge
       :class="{ 'shadow-xl': didScrolled }"
-      class="hidden lg:flex justify-center py-5 px-4 transition-shadow duration-700 ease"
+      class="hidden lg:flex relative justify-center py-2 px-4 transition-shadow duration-700 ease"
     >
       <transition name="fade">
-        <FavoritesNavigationIcon v-show="didScrolled" class="absolute end-0" />
+        <FavoritesNavigationIcon v-show="didScrolled" class="absolute flex end-0 me-6" />
       </transition>
     </NavMenuLarge>
   </header>

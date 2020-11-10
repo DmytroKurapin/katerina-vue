@@ -52,4 +52,21 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Firefox */
+main {
+  scrollbar-width: thin;
+  scrollbar-color: #ad726f #ad726f5e; /* scroll thumb (primary color) & track (primary-light) */
+}
+
+/* Chrome/Safari/Edge */
+main::-webkit-scrollbar {
+  @apply w-1;
+}
+main::-webkit-scrollbar-track {
+  @apply bg-primary-light; /* color of the tracking area */
+}
+main::-webkit-scrollbar-thumb {
+  @apply bg-primary; /* color of the scroll thumb */
+}
+</style>
