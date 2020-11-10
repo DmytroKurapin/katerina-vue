@@ -14,7 +14,7 @@
     >
       <template slot="small-navbar">
         <!-- Navigation Bar For Small Screens -->
-        <NavMenuSmall class="lg:hidden py-3 px-4 flex self-start" />
+        <NavMenuSmall class="lg:hidden py-3 flex self-start" />
       </template>
       <template slot="favorites">
         <FavoritesNavigationIcon class="relative flex justify-center py-1" />

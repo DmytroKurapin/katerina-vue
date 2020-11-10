@@ -1,9 +1,13 @@
 <template>
   <section>
     <!--  Tel and Email  -->
-    <div dir="ltr" class="inline-flex flex-col">
+    <div dir="ltr" class="hidden lg:inline-flex flex-col">
       <span class="py-1">+972 58 888 88 88</span>
       <span class="py-1">email@email.email</span>
+    </div>
+
+    <div class="block lg:hidden">
+      <slot name="favorites" />
     </div>
 
     <!-- Logo -->
@@ -14,9 +18,8 @@
       </nuxt-link>
     </div>
 
-    <div class="">
-      <!--    <div class="inline-flex flex-col">-->
-      <LanguageSwitcher class="hidden lg:inline-flex my-1 py-1" />
+    <div class="hidden lg:block">
+      <LanguageSwitcher class="inline-flex my-1 py-1" />
 
       <slot name="favorites" />
     </div>
