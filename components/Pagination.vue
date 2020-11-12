@@ -4,7 +4,7 @@
     class="flex-1 flex px-4 py-3 mt-8 border-gray-200 sm:px-6 justify-center"
   >
     <nav class="relative z-0 inline-flex shadow-sm">
-      <PaginationButton
+      <ButtonPagination
         v-for="(page, idx) in pageButtons"
         :key="`${page}_${idx}`"
         :page="page"
@@ -32,19 +32,19 @@
             />
           </svg>
         </template>
-      </PaginationButton>
+      </ButtonPagination>
     </nav>
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api';
-import PaginationButton from '@/components/PaginationButton.vue';
+import ButtonPagination from '@/components/ButtonPagination.vue';
 
 const MAX_VISIBLE_PAGES = 3;
 
 export default defineComponent({
-  components: { PaginationButton },
+  components: { ButtonPagination },
   props: {
     amount: {
       type: Number,

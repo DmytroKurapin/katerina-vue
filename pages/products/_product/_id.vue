@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 sm:px-4">
+  <div class="px-6 sm:px-5">
     <Breadcrumbs />
 
     <section v-if="productData" class="sm:flex mb-3">

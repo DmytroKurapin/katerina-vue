@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Breadcrumbs class="ps-4" />
+    <Breadcrumbs class="ps-5" />
 
     <LoadingIcon v-show="isLoading" />
 

@@ -3,11 +3,19 @@
     <HeaderSection :did-scrolled="didScrolled" />
 
     <main
+      ref="mainSection"
       class="flex flex-wrap justify-center overflow-x-hidden"
       role="main"
       @scroll="onScroll($event.target.scrollTop)"
     >
-      <nuxt class="min-h-100 w-full" />
+      <section class="relative min-h-100 w-full">
+        <!-- MAIN CONTENT -->
+        <nuxt />
+
+        <transition name="fade">
+          <ButtonScrollTop v-show="didScrolled" @click="scrollToTop" />
+        </transition>
+      </section>
 
       <Footer class="h-64 w-full mx-4 mt-4 py-8 border-t" />
     </main>
@@ -18,11 +26,12 @@
 import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import Footer from '@/components/Footer.vue';
 import HeaderSection from '@/components/HeaderSection.vue';
+import ButtonScrollTop from '@/components/ButtonScrollTop.vue';
 import { createSEOMeta } from '@/utils/seo.js';
 import { initFavorites } from '@/composables/useFavorites';
 
 export default defineComponent({
-  components: { Footer, HeaderSection },
+  components: { Footer, HeaderSection, ButtonScrollTop },
   head: {},
   setup(props, ctx) {
     const { root } = ctx as any;
@@ -30,6 +39,7 @@ export default defineComponent({
     const metaTitle = root.$t('general.site_title');
     const metaDescription = root.$t('general.site_description');
     const didScrolled = ref(false);
+    const mainSection = ref(null);
 
     useMeta({
       title: metaTitle,
@@ -47,7 +57,12 @@ export default defineComponent({
       }
     };
 
-    return { didScrolled, onScroll };
+    const scrollToTop = () => {
+      // FIXME smooth behavior does not work in Safari
+      mainSection.value.scroll({ top: 0, behavior: 'smooth' });
+    };
+
+    return { didScrolled, mainSection, onScroll, scrollToTop };
   }
 });
 </script>

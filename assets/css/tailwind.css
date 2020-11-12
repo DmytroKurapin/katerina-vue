@@ -14,4 +14,13 @@
     left: 0;
     background: #ad726f;
   }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    @apply transition-opacity duration-500;
+  }
+  .fade-enter,
+  .fade-leave-to {
+    @apply opacity-0;
+  }
 }
