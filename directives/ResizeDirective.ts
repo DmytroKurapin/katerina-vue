@@ -6,8 +6,9 @@ export default {
     // @ts-ignore
     const observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
       entries.forEach(entry => {
-        const entryHeight = entry.contentRect.height;
-        const entryWidth = entry.contentRect.width;
+        const { bottom, right, left } = entry.contentRect;
+        const entryHeight = bottom; // includes margin
+        const entryWidth = right + left; // includes margin
         const emitObj = {};
         if (elHeight !== entryHeight) {
           elHeight = entryHeight;

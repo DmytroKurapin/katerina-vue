@@ -5,7 +5,7 @@
       :style="{ marginTop: isMobileView ? 0 : `${headerMarginTop}px` }"
       :class="{
         'shadow-xl lg:mt-auto': isMobileView && didScrolled,
-        'flex items-center relative justify-between mt-0 z-10 px-6': true,
+        'flex items-center relative justify-between z-10 px-6': true,
         'transform transition-all duration-500 ease-in-out': true
       }"
       @init-size="onHeaderResize"

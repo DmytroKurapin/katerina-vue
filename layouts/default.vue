@@ -1,5 +1,7 @@
 <template>
   <div :dir="$dir()" class="flex flex-col h-screen">
+    <InformationalBlock />
+
     <HeaderSection :did-scrolled="didScrolled" />
 
     <main
@@ -27,11 +29,12 @@ import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
 import Footer from '@/components/Footer.vue';
 import HeaderSection from '@/components/HeaderSection.vue';
 import ButtonScrollTop from '@/components/ButtonScrollTop.vue';
+import InformationalBlock from '@/components/InformationalBlock.vue';
 import { createSEOMeta } from '@/utils/seo.js';
 import { initFavorites } from '@/composables/useFavorites';
 
 export default defineComponent({
-  components: { Footer, HeaderSection, ButtonScrollTop },
+  components: { InformationalBlock, Footer, HeaderSection, ButtonScrollTop },
   head: {},
   setup(props, ctx) {
     const { root } = ctx as any;

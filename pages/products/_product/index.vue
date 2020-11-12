@@ -71,6 +71,9 @@ export default defineComponent({
     watch(
       () => root.$route.query.s,
       selectedSub => {
+        console.log('~~~~~~~~~~~~~sss~~~~~~~~~~~~~~~~~~~~');
+        console.log(selectedSub);
+        console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
         const value = selectedSub === undefined ? null : (selectedSub as ProductSubCategories);
         setActiveFilterProp({ prop: 'subCat', value });
         applyFilterToProductList();

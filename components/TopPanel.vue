@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section :class="fullPath === '/' ? 'main-page-logo-height' : 'products-page-logo-height'">
     <!--  Tel and Email  -->
     <div dir="ltr" class="hidden lg:inline-flex flex-col">
       <span class="py-1">+972 58 888 88 88</span>
@@ -11,14 +11,14 @@
     </div>
 
     <!-- Logo -->
-    <div class="">
+    <div class="-translate-x-1/2 absolute left-1/2 transform">
       <!--    <div class="inline-flex items-center justify-end flex-1 px-4">-->
       <nuxt-link :to="localePath('/')" class="inline-flex">
         <img
           src="/logo.jpg"
           alt="Katerina Kurapin"
-          :class="fullPath === '/' ? 'h-24 lg:h-40' : 'h-16 lg:h-24'"
-          class="w-auto"
+          :class="fullPath === '/' ? 'main-page-logo-height' : 'products-page-logo-height'"
+          class="w-auto py-2"
         />
       </nuxt-link>
     </div>
@@ -46,4 +46,20 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.main-page-logo-height {
+  @apply h-32;
+}
+.products-page-logo-height {
+  @apply h-20;
+}
+
+@screen lg {
+  .main-page-logo-height {
+    @apply h-48;
+  }
+  .products-page-logo-height {
+    @apply h-32;
+  }
+}
+</style>
