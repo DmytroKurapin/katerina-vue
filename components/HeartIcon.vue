@@ -1,7 +1,7 @@
 <template>
   <svg
-    :class="isLiked ? 'text-primary' : 'text-primary-light'"
-    class="cursor-pointer fill-current"
+    :class="isLiked ? 'fill-current' : 'fill-none stroke-1 stroke-current'"
+    class="cursor-pointer text-primary"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     @click="$emit('click')"

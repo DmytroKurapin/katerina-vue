@@ -115,6 +115,9 @@ module.exports = {
       },
       boxShadow: {
         'outline-primary': '0 0 0px 1px #ad726f;'
+      },
+      fill: {
+        none: 'none'
       }
     }
   },
