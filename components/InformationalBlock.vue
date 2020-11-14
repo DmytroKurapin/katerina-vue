@@ -31,7 +31,7 @@ export default defineComponent({
     });
 
     const hideInfoBlock = () => {
-      sessionStorage.setItem(STORAGE_TOGGLE_PROP_NAME, true);
+      sessionStorage.setItem(STORAGE_TOGGLE_PROP_NAME, 'true');
       isInfoBlockHidden.value = true;
     };
 

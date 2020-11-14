@@ -25,13 +25,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
+import { defineComponent, useMeta } from '@nuxtjs/composition-api';
 import Footer from '@/components/Footer.vue';
 import HeaderSection from '@/components/HeaderSection.vue';
 import ButtonScrollTop from '@/components/ButtonScrollTop.vue';
 import InformationalBlock from '@/components/InformationalBlock.vue';
 import { createSEOMeta } from '@/utils/seo.js';
 import { initFavorites } from '@/composables/useFavorites';
+import { didScrolled, mainSection, scrollToTop, toggleDidScrolled } from '@/composables/usePageScroll';
 
 export default defineComponent({
   components: { InformationalBlock, Footer, HeaderSection, ButtonScrollTop },
@@ -41,8 +42,6 @@ export default defineComponent({
 
     const metaTitle = root.$t('general.site_title');
     const metaDescription = root.$t('general.site_description');
-    const didScrolled = ref(false);
-    const mainSection = ref(null);
 
     useMeta({
       title: metaTitle,
@@ -54,17 +53,11 @@ export default defineComponent({
 
     const onScroll = (scrollTop: number) => {
       if (!didScrolled.value && scrollTop > 0) {
-        didScrolled.value = true;
+        toggleDidScrolled(true);
       } else if (didScrolled.value && scrollTop === 0) {
-        didScrolled.value = false;
+        toggleDidScrolled(false);
       }
     };
-
-    const scrollToTop = () => {
-      // FIXME smooth behavior does not work in Safari
-      mainSection.value.scroll({ top: 0, behavior: 'smooth' });
-    };
-
     return { didScrolled, mainSection, onScroll, scrollToTop };
   }
 });
