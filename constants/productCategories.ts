@@ -1,1 +1,1 @@
-export default ['wedding', 'batMitzvah', 'barMitzvah', 'giftcard'] as const;
+export default ['wedding', 'batMitzvah', 'barMitzvah', 'forBusinesses'] as const;

@@ -12,7 +12,7 @@ const INITIAL_PRODUCTS_STATE: ProductsState = {
     wedding: [],
     batMitzvah: [],
     barMitzvah: [],
-    giftcard: []
+    forBusinesses: []
   },
   activeProduct: null,
   filteredList: []

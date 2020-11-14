@@ -22,10 +22,10 @@ export default (() => {
       subCategories: ProductSubCategoriesList
     },
     {
-      link: '/products/giftcard',
-      label: 'navbar.giftcard',
-      category: 'giftcard',
-      subCategories: ProductSubCategoriesList
+      link: '/products/forBusinesses',
+      label: 'navbar.for_businesses',
+      category: 'forBusinesses',
+      subCategories: []
     }
   ];
 })() as Array<NavData>;

@@ -34,7 +34,7 @@ export interface ProductsState {
     wedding: Product[];
     batMitzvah: Product[];
     barMitzvah: Product[];
-    giftcard: Product[];
+    forBusinesses: Product[];
   };
   activeProduct: Product | null;
   filteredList: Array<Product[]>;
