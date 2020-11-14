@@ -4,12 +4,13 @@
 
     <LoadingIcon v-show="isLoading" />
 
-    <section class="flex flex-wrap px-1">
+    <section class="flex flex-wrap -mx-6 sm:-mx-4">
       <ProductCard
         v-for="(prod, index) in productData[currPage]"
         :key="`${prod.vendorCode}_${index}`"
         :product="prod"
         :class="index === 0 ? 'pt-3 sm:pt-0' : null"
+        class="w-full my-4 px-6 sm:px-4 sm:w-1/2 sm:my-4 lg:w-1/3 opacity-0"
         @select="chooseProduct(prod.vendorCode, prod)"
       />
     </section>

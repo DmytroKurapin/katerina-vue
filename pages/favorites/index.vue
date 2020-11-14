@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap flex-col sm:-mx-1 lg:-mx-4 mx-1">
+  <div class="flex flex-wrap flex-col">
     <section>
       <div class="divide-y divide-gray-400">
         <template v-if="favoriteProducts.length > 0">
@@ -23,7 +23,7 @@
               </p>
             </div>
 
-            <button class="w-full py-2 px-6 mt-4 bg-green-400" @click="orderViaWassap">
+            <button class="w-full py-2 px-6 mt-4 bg-primary-light" @click="orderViaWassap">
               {{ $t('general.order_via_wassap') }}
             </button>
           </div>

@@ -10,7 +10,7 @@
       role="main"
       @scroll="onScroll($event.target.scrollTop)"
     >
-      <section class="relative min-h-100 w-full">
+      <section class="relative min-h-100 w-full px-6 sm:px-5">
         <!-- MAIN CONTENT -->
         <nuxt />
 
