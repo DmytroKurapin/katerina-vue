@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <ul class="flex px-2 pt-2 pb-5 lg:border-b-0 lg:py-0 lg:px-0 border-b border-gray-800">
+    <ul class="flex px-2 pt-2 pb-5 text-lg lg:border-b-0 lg:py-0 lg:px-0 border-b border-gray-800">
       <li v-for="navObj in navData" :key="navObj.link" class="relative group menu-item-hover px-10 py-1 text-gray-900">
         <nuxt-link
           :to="localePath(navObj.link)"
