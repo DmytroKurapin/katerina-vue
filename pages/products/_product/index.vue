@@ -30,7 +30,6 @@ import { activePage$, setActiveFilterProp, setActivePage, initSubCategoryFromUrl
 import { isLoading } from '@/composables/useApiService';
 import { createSEOMeta } from '@/utils/seo.js';
 import { Product, ProductFilter, ProductSubCategories } from '@/types';
-import { goTopPosition } from '@/composables/usePageScroll';
 
 export default defineComponent({
   components: { ProductCard, Breadcrumbs, Pagination, LoadingIcon },
@@ -70,13 +69,11 @@ export default defineComponent({
         setActiveFilterProp({ prop: 'subCat', value });
         applyFilterToProductList();
         setActivePage(0);
-        goTopPosition();
       }
     );
 
     // listen on change of current page
     watch(activePage$, newVal => {
-      goTopPosition();
       const queries = JSON.parse(JSON.stringify(root.$route.query));
       // newVal === 0 - means first page
       if (newVal === 0 && !queries.p) {
@@ -97,7 +94,6 @@ export default defineComponent({
     onMounted(() => {
       // init products list for current product page
       initProductsPage();
-      goTopPosition();
     });
 
     // onUnmounted(() => {

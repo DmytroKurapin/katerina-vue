@@ -25,14 +25,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useMeta } from '@nuxtjs/composition-api';
+import { defineComponent, useMeta, watch } from '@nuxtjs/composition-api';
 import Footer from '@/components/Footer.vue';
 import HeaderSection from '@/components/HeaderSection.vue';
 import ButtonScrollTop from '@/components/ButtonScrollTop.vue';
 import InformationalBlock from '@/components/InformationalBlock.vue';
 import { createSEOMeta } from '@/utils/seo.js';
 import { initFavorites } from '@/composables/useFavorites';
-import { didScrolled, mainSection, scrollToTop, toggleDidScrolled } from '@/composables/usePageScroll';
+import { didScrolled, goTopPosition, mainSection, scrollToTop, toggleDidScrolled } from '@/composables/usePageScroll';
 
 export default defineComponent({
   components: { InformationalBlock, Footer, HeaderSection, ButtonScrollTop },
@@ -58,6 +58,13 @@ export default defineComponent({
         toggleDidScrolled(false);
       }
     };
+
+    // watcher on change url or query params
+    watch(
+      () => root.$route.fullPath,
+      () => goTopPosition()
+    );
+
     return { didScrolled, mainSection, onScroll, scrollToTop };
   }
 });
