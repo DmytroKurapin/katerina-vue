@@ -1,58 +1,43 @@
 <template>
-  <div class="flex flex-wrap flex-col">
-    <section>
-      <div class="divide-y divide-gray-400">
-        <template v-if="favoriteProducts.length > 0">
-          <div v-for="(prod, idx) in favoriteProducts" :key="`favorite_${idx}`" class="flex flex-wrap py-4">
-            <figure class="w-1/3">
-              <img :src="prod.thumbnail" :alt="prod.title[$i18n.locale]" class="" />
-            </figure>
-
-            <div class="w-2/3 ps-4 lg:ps-8">
-              <p class="flex my-2 justify-between">
-                <span>{{ prod.title[$i18n.locale] }}</span>
-
-                <HeartIcon :is-liked="true" class="w-6 h-6 me-5" @click="removeFromFavorites(prod)" />
-              </p>
-              <p>{{ prod.shortDescription[$i18n.locale] }}</p>
-              <p>
-                <b>{{ prod.vendorCode }}</b>
-              </p>
-              <p class="my-4 text-xl">
-                <i>{{ prod.price }} ₪</i>
-              </p>
-            </div>
-
-            <button class="w-full py-2 px-6 mt-4 bg-primary-light" @click="orderViaWassap">
-              {{ $t('general.order_via_wassap') }}
-            </button>
-          </div>
-        </template>
-        <template v-else-if="!isLoading">
-          <div class="text-center">
-            {{ $t('general.no_favorites_selected') }}
-          </div>
-        </template>
-        <template v-else>
-          <LoadingIcon />
-        </template>
+  <div class="flex flex-wrap -mx-6 sm:-mx-4">
+    <template v-if="favoriteProducts.length > 0">
+      <div
+        v-for="(prod, idx) in favoriteProducts"
+        :key="`favorite_${idx}`"
+        class="w-full px-6 md:px-4 md:w-1/2 border-gray-400"
+      >
+        <FavoriteProductCard
+          :product="prod"
+          :class="[
+            idx === 0 ? 'border-none' : 'border-t',
+            idx !== 0 && idx % 2 === 0 ? 'md:border-t' : 'md:border-none'
+          ]"
+          class="flex flex-wrap border-gray-400 py-4"
+        />
       </div>
-    </section>
+    </template>
+    <template v-else-if="!isLoading">
+      <div class="text-center">
+        {{ $t('general.no_favorites_selected') }}
+      </div>
+    </template>
+    <template v-else>
+      <LoadingIcon />
+    </template>
   </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, ref, useMeta } from '@nuxtjs/composition-api';
-import Breadcrumbs from '@/components/Breadcrumbs.vue';
+import FavoriteProductCard from '@/components/FavoriteProductCard.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
 import HeartIcon from '@/components/HeartIcon.vue';
-import { favoriteProducts$, pushPopFavorites } from '@/composables/useFavorites';
+import { favoriteProducts$ } from '@/composables/useFavorites';
 import { isLoading } from '@/composables/useApiService';
 import { createSEOMeta } from '@/utils/seo';
-import { Product } from '@/types';
 
 export default defineComponent({
-  components: { Breadcrumbs, LoadingIcon, HeartIcon },
+  components: { FavoriteProductCard, LoadingIcon, HeartIcon },
   head: {},
   setup(props, ctx) {
     const { root } = ctx as any;
@@ -74,15 +59,7 @@ export default defineComponent({
       })
     });
 
-    const orderViaWassap = () => {
-      alert(root.$t('general.order_via_wassap'));
-    };
-
-    const removeFromFavorites = (prod: Product) => {
-      pushPopFavorites([prod], true);
-    };
-
-    return { favoriteProducts: favoriteProducts$, isLoading, orderViaWassap, removeFromFavorites };
+    return { favoriteProducts: favoriteProducts$, isLoading };
   }
 });
 </script>
