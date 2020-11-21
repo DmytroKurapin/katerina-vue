@@ -64,10 +64,9 @@ module.exports = {
         '1/2': '50%',
         '4/9': '45%'
       },
-      // fontSize: {
-      //   '7xl': '5rem',
-      //   '10xl': '10rem'
-      // },
+      fontSize: {
+        '08': '0.8rem'
+      },
       fontFamily: {
         body: ['Quicksand', 'Raleway', 'sans-serif']
       },
@@ -85,7 +84,7 @@ module.exports = {
         2000: '2000ms'
       },
       opacity: {
-        80: '.8'
+        95: '.95'
       },
       keyframes: {
         'show-up': {

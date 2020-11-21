@@ -19,7 +19,7 @@
         </transition>
       </section>
 
-      <Footer class="h-64 w-full mx-4 mt-4 py-8 border-t" />
+      <Footer class="w-full px-4 mt-4 py-8 border-t bg-primary-light" />
     </main>
   </div>
 </template>

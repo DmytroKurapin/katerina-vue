@@ -22,7 +22,7 @@
 
     <aside
       :class="[
-        `fixed z-10 flex flex-col justify-between top-0 start-0 bg-white bg-opacity-80 h-screen overflow-auto
+        `fixed z-10 flex flex-col justify-between top-0 start-0 bg-white bg-opacity-95 h-screen overflow-auto
          transform ease-in-out transition-all duration-300`,
         isOpen ? 'opacity-100 ps-10 pb-20 pt-40 w-full' : 'opacity-0 w-0'
       ]"

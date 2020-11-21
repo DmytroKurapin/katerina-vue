@@ -1,6 +1,6 @@
 <template>
   <section>
-    <nav class="h-0 invisible sm:h-auto sm:visible sm:mb-2 " aria-label="Breadcrumbs">
+    <nav class="h-0 invisible sm:h-auto sm:visible sm:mb-2" aria-label="Breadcrumbs">
       <ol class="list-none p-0 text-xs inline-flex">
         <li
           v-for="(bData, idx) in breadcrumbsList"

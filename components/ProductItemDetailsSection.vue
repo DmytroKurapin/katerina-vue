@@ -1,9 +1,9 @@
 <template>
   <section>
+    <p class="text-sm" v-html="$sanitize(prodObj.description[$i18n.locale])"></p>
     <p class="my-4 text-xl">
       <b>{{ prodObj.price }} ₪</b>
     </p>
-    <p class="text-sm" v-html="$sanitize(prodObj.description[$i18n.locale])"></p>
   </section>
 </template>
 

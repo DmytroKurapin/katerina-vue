@@ -23,7 +23,7 @@
                   :key="`${navObj.link}_${sub}`"
                   :to="localePath(`${navObj.link}?s=${sub}`)"
                   role="menuitem"
-                  class="menu-item-hover bg-white bg-opacity-80 pe-16 ps-10 mt-px py-2 text-sm leading-4 text-gray-700"
+                  class="menu-item-hover bg-white bg-opacity-95 pe-16 ps-10 mt-px py-2 text-sm leading-4 text-gray-700"
                 >
                   {{ $t(`navbar.${sub}`) }}
                 </nuxt-link>

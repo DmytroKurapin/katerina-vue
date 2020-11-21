@@ -1,25 +1,29 @@
 <template>
   <article>
-    <figure class="w-1/3">
+    <figure class="w-1/3 pb-4 cursor-pointer" @click="navigateToProductPage">
       <img :src="prod.thumbnail" :alt="prod.title[$i18n.locale]" />
     </figure>
 
-    <div class="w-2/3 ps-4 lg:ps-8">
-      <p class="flex my-2 justify-between">
-        <span class="flex-1">{{ prod.title[$i18n.locale] }}</span>
+    <div class="w-2/3 ps-4 lg:ps-8 flex flex-col justify-between">
+      <div>
+        <p class="flex justify-between">
+          <span class="flex-1 cursor-pointer" @click="navigateToProductPage">
+            {{ prod.title[$i18n.locale] }}
+          </span>
 
-        <HeartIcon :is-liked="true" class="w-6 h-6" @click="removeFromFavorites()" />
-      </p>
-      <p>{{ prod.shortDescription[$i18n.locale] }}</p>
-      <p>
-        <b>{{ prod.vendorCode }}</b>
-      </p>
-      <p class="my-4 text-xl">
-        <i>{{ prod.price }} ₪</i>
-      </p>
+          <HeartIcon :is-liked="true" class="w-6 h-6" @click="removeFromFavorites()" />
+        </p>
+        <p class="text-08">{{ prod.shortDescription[$i18n.locale] }}</p>
+        <p>
+          <span dir="ltr">{{ prod.price }} ₪</span>
+        </p>
+      </div>
+
+      <button class="wassap-btn hidden lg:block" @click="orderViaWassap">
+        {{ $t('general.order_via_wassap') }}
+      </button>
     </div>
-
-    <button class="w-full py-2 px-6 mt-4 bg-primary-light" @click="orderViaWassap">
+    <button class="wassap-btn lg:hidden" @click="orderViaWassap">
       {{ $t('general.order_via_wassap') }}
     </button>
   </article>
@@ -51,9 +55,17 @@ export default defineComponent({
       alert(root.$t('general.order_via_wassap'));
     };
 
-    return { prod: product, removeFromFavorites, orderViaWassap };
+    const navigateToProductPage = () => {
+      root.$router.push({ path: `/products/${product.category}/${product.vendorCode}` });
+    };
+
+    return { prod: product, removeFromFavorites, orderViaWassap, navigateToProductPage };
   }
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.wassap-btn {
+  @apply w-full py-2 px-6 bg-primary-light;
+}
+</style>
