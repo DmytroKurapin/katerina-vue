@@ -137,6 +137,7 @@ export default defineComponent({
     const onCategoryClick = (navObj: NavData, catIdx: number) => {
       if (navObj.subCategories.length === 0) {
         root.$router.push({ path: navObj.link });
+        toggleIsOpen(false);
       } else {
         expandSubcategories(catIdx);
       }
