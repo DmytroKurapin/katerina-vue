@@ -13,7 +13,9 @@
 
           <HeartIcon :is-liked="true" class="w-6 h-6" @click="removeFromFavorites()" />
         </p>
-        <p class="text-08">{{ prod.shortDescription[$i18n.locale] }}</p>
+        <p class="text-08">
+          {{ prod.shortDescription[$i18n.locale] }}
+        </p>
         <p>
           <span dir="ltr">{{ prod.price }} ₪</span>
         </p>
@@ -56,7 +58,7 @@ export default defineComponent({
     };
 
     const navigateToProductPage = () => {
-      root.$router.push({ path: `/products/${product.category}/${product.vendorCode}` });
+      root.$router.push({ path: root.localePath(`/products/${product.category}/${product.vendorCode}`) });
     };
 
     return { prod: product, removeFromFavorites, orderViaWassap, navigateToProductPage };
