@@ -21,12 +21,13 @@
           <figure
             v-for="(img, idx) in productData.images"
             :key="idx"
-            class="py-2 m-2 max-w-1/5 cursor-pointer"
+            class="py-2 my-1 me-2 max-w-1/5 cursor-pointer"
             @click="selectedImgIdx = idx"
           >
             <img :src="img" alt="" class="min-w-10" />
           </figure>
         </div>
+        <ButtonToggleFavorites :product-data="productData" class="sm:hidden" />
       </section>
 
       <article class="hidden sm:block sm:w-3/5 md:w-1/2 px-8">
@@ -35,6 +36,7 @@
         </h1>
 
         <ProductItemDetailsSection :product-data="productData" />
+        <ButtonToggleFavorites :product-data="productData" />
       </article>
     </section>
 
@@ -47,10 +49,11 @@ import { defineComponent, ref, useMeta, watch } from '@nuxtjs/composition-api';
 import { activeProduct$, setActiveProduct } from '@/composables/useProducts';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
 import ProductItemDetailsSection from '@/components/ProductItemDetailsSection.vue';
+import ButtonToggleFavorites from '@/components/ButtonToggleFavorites.vue';
 import { createSEOMeta } from '@/utils/seo';
 
 export default defineComponent({
-  components: { Breadcrumbs, ProductItemDetailsSection },
+  components: { Breadcrumbs, ProductItemDetailsSection, ButtonToggleFavorites },
   head: {},
   setup(props, ctx) {
     const { root } = ctx as any;

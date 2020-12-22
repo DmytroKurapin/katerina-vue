@@ -59,3 +59,4 @@ export const initFavorites = async () => {
 
 export const favoriteProducts$ = computed<Product[]>(() => favorites.value.objs);
 export const favoriteVendorCodes$ = computed<string[]>(() => favorites.value.vendorCodes);
+export const isCurrentLiked = computed(() => (vendorCode: string) => favorites.value.vendorCodes.includes(vendorCode));

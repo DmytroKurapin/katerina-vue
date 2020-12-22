@@ -23,7 +23,8 @@
     "all": "הכל"
   },
   "product": {
-
+    "add_to_favorites": "הוספה למועדפים",
+    "remove_from_favorites": "הסר מהמועדפים"
   },
   "footer": {
     "info": "קישורים שימושיים",
