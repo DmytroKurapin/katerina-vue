@@ -13,6 +13,8 @@
 
           <HeartIcon :is-liked="true" class="w-6 h-6" @click="removeFromFavorites()" />
         </p>
+        <ProductSizesSection v-if="prod.sizes && prod.sizes.length > 0" :sizes="prod.sizes" class="text-xs my-2" />
+
         <p class="text-08">
           {{ prod.shortDescription[$i18n.locale] }}
         </p>
@@ -31,11 +33,12 @@
 import { defineComponent } from '@nuxtjs/composition-api';
 import HeartIcon from '@/components/HeartIcon.vue';
 import ButtonWassap from '@/components/ButtonWassap.vue';
+import ProductSizesSection from '@/components/ProductSizesSection.vue';
 import { pushPopFavorites } from '@/composables/useFavorites';
 import { Product } from '@/types';
 
 export default defineComponent({
-  components: { ButtonWassap, HeartIcon },
+  components: { ButtonWassap, HeartIcon, ProductSizesSection },
   props: {
     product: {
       type: Object as () => Product,
@@ -61,6 +64,6 @@ export default defineComponent({
 
 <style scoped>
 .wassap-btn {
-  @apply  py-2 px-6 bg-primary-light;
+  @apply py-2 px-6 bg-primary-light;
 }
 </style>
