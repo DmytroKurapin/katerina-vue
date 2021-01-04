@@ -24,7 +24,9 @@
   },
   "product": {
     "add_to_favorites": "הוספה למועדפים",
-    "remove_from_favorites": "הסר מהמועדפים"
+    "remove_from_favorites": "הסר מהמועדפים",
+    "cm": "ס”מ",
+    "sizes": "מידות"
   },
   "footer": {
     "info": "קישורים שימושיים",

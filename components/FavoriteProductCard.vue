@@ -21,24 +21,21 @@
         </p>
       </div>
 
-      <button class="wassap-btn hidden lg:block" @click="orderViaWassap">
-        {{ $t('general.order_via_wassap') }}
-      </button>
+      <ButtonWassap class="w-full hidden lg:block" />
     </div>
-    <button class="wassap-btn lg:hidden" @click="orderViaWassap">
-      {{ $t('general.order_via_wassap') }}
-    </button>
+    <ButtonWassap class="w-full lg:hidden" />
   </article>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
 import HeartIcon from '@/components/HeartIcon.vue';
+import ButtonWassap from '@/components/ButtonWassap.vue';
 import { pushPopFavorites } from '@/composables/useFavorites';
 import { Product } from '@/types';
 
 export default defineComponent({
-  components: { HeartIcon },
+  components: { ButtonWassap, HeartIcon },
   props: {
     product: {
       type: Object as () => Product,
@@ -53,21 +50,17 @@ export default defineComponent({
       pushPopFavorites([product], true);
     };
 
-    const orderViaWassap = () => {
-      alert(root.$t('general.order_via_wassap'));
-    };
-
     const navigateToProductPage = () => {
       root.$router.push({ path: root.localePath(`/products/${product.category}/${product.vendorCode}`) });
     };
 
-    return { prod: product, removeFromFavorites, orderViaWassap, navigateToProductPage };
+    return { prod: product, removeFromFavorites, navigateToProductPage };
   }
 });
 </script>
 
 <style scoped>
 .wassap-btn {
-  @apply w-full py-2 px-6 bg-primary-light;
+  @apply  py-2 px-6 bg-primary-light;
 }
 </style>

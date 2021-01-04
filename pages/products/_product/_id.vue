@@ -2,45 +2,50 @@
   <div class="px-6 sm:px-5">
     <Breadcrumbs />
 
-    <section v-if="productData" class="sm:flex mb-3">
-      <h1 class="sm:hidden text-3xl mb-3">
-        {{ productData.title[$i18n.locale] }}
-      </h1>
-      <section class="sm:w-2/5 md:w-1/2">
-        <div class="relative img-wrapper">
-          <figure
-            v-for="(img, idx) in productData.images"
-            :key="`main-pic${idx}`"
-            class="absolute inset-0 duration-2000 ease-in-out transition"
-            :class="selectedImgIdx === idx ? 'opacity-100' : 'opacity-0'"
-          >
-            <img :src="img" :alt="productData.title[$i18n.locale]" class="" />
-          </figure>
-        </div>
-        <div class="flex flex-row justify-start">
-          <figure
-            v-for="(img, idx) in productData.images"
-            :key="idx"
-            class="py-2 my-1 me-2 max-w-1/5 cursor-pointer"
-            @click="selectedImgIdx = idx"
-          >
-            <img :src="img" alt="" class="min-w-10" />
-          </figure>
-        </div>
-        <ButtonToggleFavorites :product-data="productData" class="sm:hidden" />
-      </section>
-
-      <article class="hidden sm:block sm:w-3/5 md:w-1/2 px-8">
-        <h1 class="text-3xl lg:text-4xl">
+    <template v-if="productData">
+      <section class="sm:flex mb-3">
+        <h1 class="sm:hidden text-3xl mb-3">
           {{ productData.title[$i18n.locale] }}
         </h1>
 
-        <ProductItemDetailsSection :product-data="productData" />
-        <ButtonToggleFavorites :product-data="productData" />
-      </article>
-    </section>
+        <section class="sm:w-2/5 md:w-1/2">
+          <div class="relative img-wrapper">
+            <figure
+              v-for="(img, idx) in productData.images"
+              :key="`main-pic${idx}`"
+              class="absolute inset-0 duration-2000 ease-in-out transition"
+              :class="selectedImgIdx === idx ? 'opacity-100' : 'opacity-0'"
+            >
+              <img :src="img" :alt="productData.title[$i18n.locale]" class="" />
+            </figure>
+          </div>
 
-    <ProductItemDetailsSection v-if="productData" :product-data="productData" class="block sm:hidden" />
+          <div class="flex flex-row justify-start">
+            <figure
+              v-for="(img, idx) in productData.images"
+              :key="idx"
+              class="py-2 my-1 me-2 max-w-1/5 cursor-pointer"
+              @click="selectedImgIdx = idx"
+            >
+              <img :src="img" alt="" class="min-w-10" />
+            </figure>
+          </div>
+
+          <ButtonToggleFavorites :product-data="productData" class="sm:hidden" />
+        </section>
+
+        <article class="hidden sm:block sm:w-3/5 md:w-1/2 px-8">
+          <h1 class="text-3xl lg:text-4xl">
+            {{ productData.title[$i18n.locale] }}
+          </h1>
+
+          <ProductItemDetailsSection :product-data="productData" />
+          <ButtonToggleFavorites :product-data="productData" />
+        </article>
+      </section>
+
+      <ProductItemDetailsSection :product-data="productData" class="sm:hidden" />
+    </template>
   </div>
 </template>
 

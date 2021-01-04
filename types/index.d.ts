@@ -27,6 +27,7 @@ export interface Product {
   category: ProductCategories;
   price: number;
   subCategories: string[];
+  sizes: string[];
 }
 
 export interface ProductsState {
