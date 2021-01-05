@@ -16,7 +16,7 @@
           "
         >
           <div class="shadow-xs">
-            <div role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            <div role="menu" aria-orientation="vertical" aria-labelledby="options-menu" class="whitespace-no-wrap">
               <client-only>
                 <nuxt-link
                   v-for="sub in navObj.subCategories"

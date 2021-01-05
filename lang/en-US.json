@@ -14,10 +14,15 @@
     "bat_mitzvah": "Bat Mitzvah",
     "for_businesses": "For Businesses",
     "to_all_items": "To All Items",
-    "digital": "Digital",
-    "physical": "Physical",
+    "digital": "Digital Invitations",
+    "physical": "Physical Invitations",
     "home_page": "Home page",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "save_the_date": "Save The Date",
+    "table_numbers": "Table Numbers",
+    "seating_cards": "Seating Cards",
+    "menus": "Menus",
+    "hina": "Invitations For Hina"
   },
   "products": {
     "all": "All"

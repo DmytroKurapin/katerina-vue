@@ -1,8 +1,10 @@
 import ProductSubCategoriesList from '@/constants/productSubCategories';
+// import ProductWeddingSubCategoriesList from '@/constants/productWeddingSubCategories';
 import ProductCategoriesList from '@/constants/productCategories';
 
 export type ProductCategories = typeof ProductCategoriesList[number];
 export type ProductSubCategories = typeof ProductSubCategoriesList[number];
+// export type ProductWeddingSubCategories = typeof ProductWeddingSubCategoriesList[number];
 
 export interface NavData {
   link: string;

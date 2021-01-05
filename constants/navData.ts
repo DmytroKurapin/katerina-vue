@@ -1,4 +1,5 @@
 import ProductSubCategoriesList from '@/constants/productSubCategories';
+import ProductWeddingSubCategoriesList from '@/constants/productWeddingSubCategories';
 import { NavData } from '@/types';
 
 export default (() => {
@@ -7,7 +8,7 @@ export default (() => {
       link: '/products/wedding',
       label: 'navbar.wedding',
       category: 'wedding',
-      subCategories: ProductSubCategoriesList
+      subCategories: ProductWeddingSubCategoriesList
     },
     {
       link: '/products/batMitzvah',

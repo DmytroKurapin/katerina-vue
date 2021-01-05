@@ -14,10 +14,15 @@
     "bat_mitzvah": "בת מצווה",
     "for_businesses": "לעסקים",
     "to_all_items": "לכל הפריטים",
-    "digital": "דיגיטלי",
-    "physical": "פיזי",
+    "digital": "הזמנות דיגיטלי",
+    "physical": "הזמנות פיזי",
     "home_page": "דף הבית",
-    "favorites": "מועדפים"
+    "favorites": "מועדפים",
+    "save_the_date": "Save The Date",
+    "table_numbers": "מספרי שולחן",
+    "seating_cards": "פתקיות הושבה",
+    "menus": "תפריטים",
+    "hina": "הזמנות לחינה"
   },
   "products": {
     "all": "הכל"

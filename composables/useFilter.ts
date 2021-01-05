@@ -2,7 +2,7 @@ import { ProductCategories, ProductFilter, ProductSubCategories } from '@/types'
 import { computed, reactive } from '@nuxtjs/composition-api';
 import { ComputedRef } from '@vue/composition-api';
 import ProductCategoriesList from '@/constants/productCategories';
-import ProductSubCategoriesList from '@/constants/productSubCategories';
+import ProductWeddingSubCategoriesList from '@/constants/productWeddingSubCategories';
 
 const INITIAL_FILTER_STATE: ProductFilter = {
   currCategory: 'wedding',
@@ -27,7 +27,8 @@ export const setActiveFilterProp = (filter: {
       break;
     }
     case 'subCat': {
-      if (ProductSubCategoriesList.includes(<ProductSubCategories>filterVal) || filterVal === null) {
+      // ProductWeddingSubCategoriesList includes ProductSubCategoriesList
+      if (ProductWeddingSubCategoriesList.includes(<ProductSubCategories>filterVal) || filterVal === null) {
         Object.assign(filterState, { [filterProp]: filterVal });
       }
       break;
@@ -41,7 +42,8 @@ export const setActiveFilterProp = (filter: {
 export const initSubCategoryFromUrl = (subCat: ProductSubCategories) => {
   if (subCat) {
     // set active filter if specific query param exists in url
-    if (ProductSubCategoriesList.includes(subCat)) {
+    // ProductWeddingSubCategoriesList includes ProductSubCategoriesList
+    if (ProductWeddingSubCategoriesList.includes(subCat)) {
       setActiveFilterProp({ prop: 'subCat', value: subCat });
     }
   } else if (filterState.subCat !== null) {
