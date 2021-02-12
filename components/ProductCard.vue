@@ -5,24 +5,26 @@
         <img
           :alt="product.title[$i18n.locale]"
           :data-url="product.thumbnail"
-          class="h-auto w-full"
+          class="w-full h-auto"
           @load="didLoad = !didLoad"
         />
 
-        <header class="flex items-center justify-between leading-tight p-2 sm:p-4">
+        <header class="flex items-center justify-between py-2 leading-tight">
           <h1 class="text-lg">
             {{ product.title[$i18n.locale] }}
           </h1>
-          <p class="text-grey-darker text-lg">{{ product.price }} ₪</p>
+
+          <!-- eslint-disable-next-line -->
+          <p class="text-lg text-grey-darker">{{ product.price }} ₪</p>
         </header>
       </figure>
     </nuxt-link>
-    <footer class="flex items-center justify-between p-2 sm:p-4">
+    <footer class="flex items-center justify-between">
       <p class="flex-1 truncate">
         {{ product.shortDescription[$i18n.locale] }}
       </p>
 
-      <HeartIcon :is-liked="isLiked" class="h-8 w-10" @click="toggleFavorites" />
+      <HeartIcon :is-liked="isLiked" class="w-10 h-8" @click="toggleFavorites" />
     </footer>
   </article>
 </template>
