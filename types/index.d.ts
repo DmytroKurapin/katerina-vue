@@ -30,6 +30,8 @@ export interface Product {
   price: number;
   subCategories: string[];
   sizes: string[];
+  related: string[]; // ids: complete your suite
+  similar: string[]; // ids: you may also like
 }
 
 export interface ProductsState {
@@ -39,7 +41,11 @@ export interface ProductsState {
     barMitzvah: Product[];
     forBusinesses: Product[];
   };
-  activeProduct: Product | null;
+  activeProduct: {
+    obj: Product | null;
+    relatedProducts: Product[];
+    similarProducts: Product[];
+  };
   filteredList: Array<Product[]>;
   // activeProduct: Product | null; // currently activeProduct has initial dummy value, coz setup() can't be async
 }

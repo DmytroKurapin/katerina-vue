@@ -14,19 +14,22 @@ export const isLoading = computed(() => {
   return requestsQueue.value > 0;
 });
 
-export const getProductsByVendorCode = async (vendorCodes: string[]): Promise<Product[]> => {
-  if (vendorCodes.length === 0) {
+export const getProductsByVendorCode = async (vendorCodes: string[] | { [vCode: string]: any }): Promise<Product[]> => {
+  const vCodesList = Array.isArray(vendorCodes) ? vendorCodes : Object.keys(vendorCodes);
+
+  if (vCodesList.length === 0) {
     return [];
   }
   requestsQueue.value++;
   const { $axios, error: nuxtError } = useContext();
   try {
     let prods: Product[] = [];
-    if (vendorCodes.length === 1) {
-      const response = await $axios.get(`/api/products/vendor/${vendorCodes[0]}`);
+
+    if (vCodesList.length === 1) {
+      const response = await $axios.get(`/api/products/vendor/${vCodesList[0]}`);
       prods = [response.data];
     } else {
-      const queryStr = vendorCodes.reduce((arrStr, vCode) => `${arrStr}vc[]=${vCode}&`, '?');
+      const queryStr = vCodesList.reduce((arrStr, vCode) => `${arrStr}vc[]=${vCode}&`, '?');
       const response = await $axios.get(`/api/products/vendors/${queryStr}`);
       prods = response.data;
     }
