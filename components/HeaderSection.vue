@@ -13,7 +13,7 @@
     >
       <template slot="small-navbar">
         <!-- Navigation Bar For Small Screens -->
-        <NavMenuSmall class="lg:hidden flex" />
+        <NavMenuSmall class="flex lg:hidden" />
       </template>
       <template slot="favorites">
         <FavoritesNavigationIcon class="relative flex justify-center py-1" />
@@ -23,7 +23,7 @@
     <!-- Navigation Bar For Large Screens -->
     <NavMenuLarge
       :class="{ 'shadow-xl': didScrolled }"
-      class="hidden lg:flex relative justify-center py-2 px-4 transition-shadow duration-700 ease"
+      class="relative justify-center hidden px-4 py-2 transition-shadow duration-700 lg:flex ease"
     >
       <transition name="fade">
         <FavoritesNavigationIcon v-show="didScrolled" class="absolute flex end-0 me-6" />

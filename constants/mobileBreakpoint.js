@@ -1,1 +1,1 @@
-export default 1024;
+module.exports = 1024;
