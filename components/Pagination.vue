@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="{ invisible: pagesAmount$ === 0 }"
-    class="flex-1 flex px-4 py-3 mt-8 border-gray-200 sm:px-6 justify-center"
-  >
+  <div :class="{ 'flex justify-center flex-1 px-4 py-3 border-gray-200 sm:px-6': true, invisible: pagesAmount$ === 0 }">
     <nav class="relative z-0 inline-flex shadow-sm">
       <ButtonPagination
         v-for="(page, idx) in pageButtons"

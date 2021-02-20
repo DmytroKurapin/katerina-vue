@@ -10,7 +10,7 @@
       role="main"
       @scroll="onScroll($event.target.scrollTop)"
     >
-      <section class="relative min-h-100 w-full px-6 sm:px-5">
+      <section class="relative w-full px-6 mb-4 min-h-100 sm:px-5">
         <!-- MAIN CONTENT -->
         <nuxt />
 
@@ -19,7 +19,7 @@
         </transition>
       </section>
 
-      <Footer class="w-full px-4 mt-4 py-8 border-t bg-primary-light" />
+      <Footer class="w-full px-4 py-8 border-t bg-primary-light" />
     </main>
   </div>
 </template>

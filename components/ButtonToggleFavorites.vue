@@ -1,9 +1,9 @@
 <template>
   <button
-    class="bg-transparent focus:outline-none flex space-s-2"
+    class="flex bg-transparent focus:outline-none space-s-2"
     @click="toggleFavorites(isLiked(prodObj.vendorCode))"
   >
-    <HeartIcon :is-liked="isLiked(prodObj.vendorCode)" class="h-6 w-6" />
+    <HeartIcon :is-liked="isLiked(prodObj.vendorCode)" class="w-8 h-6 -ms-1" />
     <span class="self-center text-sm">
       {{ isLiked(prodObj.vendorCode) ? $t('product.remove_from_favorites') : $t('product.add_to_favorites') }}
     </span>

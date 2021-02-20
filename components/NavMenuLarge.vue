@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <ul class="flex px-2 pt-2 pb-5 text-lg lg:border-b-0 lg:py-0 lg:px-0 border-b border-gray-800">
-      <li v-for="navObj in navData" :key="navObj.link" class="relative group menu-item-hover px-10 py-1 text-gray-900">
+    <ul class="flex px-2 pt-2 pb-5 text-lg border-b border-gray-800 lg:border-b-0 lg:py-0 lg:px-0">
+      <li v-for="navObj in navData" :key="navObj.link" class="relative px-10 py-1 text-gray-900 group menu-item-hover">
         <nuxt-link
           :to="localePath(navObj.link)"
           :class="{ 'pb-1 relative': true, 'underscored-label': currCategory === navObj.category }"
@@ -23,7 +23,7 @@
                   :key="`${navObj.link}_${sub}`"
                   :to="localePath(`${navObj.link}?s=${sub}`)"
                   role="menuitem"
-                  class="menu-item-hover bg-white bg-opacity-95 pe-16 ps-10 mt-px py-2 text-sm leading-4 text-gray-700"
+                  class="py-2 mb-px text-sm leading-4 text-gray-700 bg-white menu-item-hover bg-opacity-95 pe-16 ps-10"
                 >
                   {{ $t(`navbar.${sub}`) }}
                 </nuxt-link>

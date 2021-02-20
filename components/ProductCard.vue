@@ -24,7 +24,7 @@
         {{ product.shortDescription[$i18n.locale] }}
       </p>
 
-      <HeartIcon :is-liked="isLiked" class="w-10 h-8" @click="toggleFavorites" />
+      <HeartIcon :is-liked="isLiked" class="w-10 h-8 -me-1" @click="toggleFavorites" />
     </footer>
   </article>
 </template>
