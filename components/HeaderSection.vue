@@ -38,7 +38,7 @@ import NavMenuLarge from '@/components/NavMenuLarge.vue';
 import NavMenuSmall from '@/components/NavMenuSmall.vue';
 import FavoritesNavigationIcon from '@/components/FavoritesNavigationIcon.vue';
 import TopPanel from '@/components/TopPanel.vue';
-import mobileBreakpoint from '@/constants/mobileBreakpoint';
+import customBreakpoints from '@/constants/customBreakpoints';
 
 export default defineComponent({
   components: { NavMenuLarge, NavMenuSmall, FavoritesNavigationIcon, TopPanel },
@@ -58,7 +58,7 @@ export default defineComponent({
         initHeaderHeight.value = height;
       }
       if (typeof width !== 'undefined') {
-        isMobileView.value = width <= mobileBreakpoint;
+        isMobileView.value = width <= customBreakpoints.lg;
       }
     };
     return { initHeaderHeight, headerMarginTop, isMobileView, onHeaderResize };

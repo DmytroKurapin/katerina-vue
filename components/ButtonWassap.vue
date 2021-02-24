@@ -1,7 +1,9 @@
 <template>
-  <button class="py-2 px-6 bg-primary-light" @click="orderViaWassap">
-    {{ $t('general.order_via_wassap') }}
-  </button>
+  <div>
+    <button class="px-6 py-2 bg-primary-light" @click="orderViaWassap">
+      {{ $t('general.order_via_wassap') }}
+    </button>
+  </div>
 </template>
 
 <script lang="ts">

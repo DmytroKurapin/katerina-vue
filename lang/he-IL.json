@@ -25,7 +25,9 @@
     "hina": "הזמנות לחינה"
   },
   "products": {
-    "all": "הכל"
+    "all": "הכל",
+    "related": "השלם את הסט שלך",
+    "similar": "ייתכן גם רוצה"
   },
   "product": {
     "add_to_favorites": "הוספה למועדפים",

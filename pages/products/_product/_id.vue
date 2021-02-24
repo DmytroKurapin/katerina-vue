@@ -1,74 +1,29 @@
 <template>
-  <div class="px-6 sm:px-5">
+  <div class="xl:px-5">
     <Breadcrumbs />
 
-    <template v-if="productData">
-      <section class="sm:flex mb-3">
-        <h1 class="sm:hidden text-3xl mb-3">
-          {{ productData.title[$i18n.locale] }}
-        </h1>
-
-        <section class="sm:w-2/5 md:w-1/2">
-          <div class="relative img-wrapper">
-            <figure
-              v-for="(img, idx) in productData.images"
-              :key="`main-pic${idx}`"
-              class="absolute inset-0 duration-2000 ease-in-out transition"
-              :class="selectedImgIdx === idx ? 'opacity-100' : 'opacity-0'"
-            >
-              <img :src="img" :alt="productData.title[$i18n.locale]" class="" />
-            </figure>
-          </div>
-
-          <div class="flex flex-row justify-start">
-            <figure
-              v-for="(img, idx) in productData.images"
-              :key="idx"
-              class="py-2 my-1 me-2 max-w-1/5 cursor-pointer"
-              @click="selectedImgIdx = idx"
-            >
-              <img :src="img" alt="" class="min-w-10" />
-            </figure>
-          </div>
-
-          <ButtonToggleFavorites :product-data="productData" class="sm:hidden" />
-        </section>
-
-        <article class="hidden sm:block sm:w-3/5 md:w-1/2 px-8">
-          <h1 class="text-3xl lg:text-4xl">
-            {{ productData.title[$i18n.locale] }}
-          </h1>
-
-          <ProductItemDetailsSection :product-data="productData" />
-          <ButtonToggleFavorites :product-data="productData" />
-        </article>
-      </section>
-
-      <ProductItemDetailsSection :product-data="productData" class="sm:hidden" />
-    </template>
+    <SelectedProductPage v-if="productData" :product-data="productData" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, useMeta, watch } from '@nuxtjs/composition-api';
+import { defineComponent, useMeta, watch } from '@nuxtjs/composition-api';
 import { activeProduct$, setActiveProduct } from '@/composables/useProducts';
 import Breadcrumbs from '@/components/Breadcrumbs.vue';
-import ProductItemDetailsSection from '@/components/ProductItemDetailsSection.vue';
-import ButtonToggleFavorites from '@/components/ButtonToggleFavorites.vue';
+import SelectedProductPage from '@/components/SelectedProductPage.vue';
 import { createSEOMeta } from '@/utils/seo';
 
 export default defineComponent({
-  components: { Breadcrumbs, ProductItemDetailsSection, ButtonToggleFavorites },
+  components: { Breadcrumbs, SelectedProductPage },
   head: {},
   setup(props, ctx) {
     const { root } = ctx as any;
-
     const { id: vendorCode } = root.$route.params;
 
     setActiveProduct(vendorCode);
 
-    const selectedImgIdx = ref(0);
     const { title, meta } = useMeta();
+
     watch(activeProduct$, pObj => {
       if (!pObj) {
         return;
@@ -83,15 +38,7 @@ export default defineComponent({
       });
     });
 
-    return { productData: activeProduct$, selectedImgIdx };
+    return { productData: activeProduct$ };
   }
 });
 </script>
-
-<style scoped>
-.img-wrapper:before {
-  padding-bottom: 100%;
-  content: '';
-  display: block;
-}
-</style>

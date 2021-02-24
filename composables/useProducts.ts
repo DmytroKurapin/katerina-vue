@@ -49,7 +49,7 @@ const paginateFilteredList = (arr: Product[]): Array<Product[]> => {
 const convertListToVendorCodesObject = (vCodes: string[]): { [id: string]: number } =>
   vCodes.reduce((res, vCode, idx) => Object.assign(res, { [vCode]: idx }), {});
 
-const setRelatedSimilarProducts = async () => {
+export const setRelatedSimilarProducts = async () => {
   productsState.activeProduct.relatedProducts = [];
   productsState.activeProduct.similarProducts = [];
   const activeProdObj = productsState.activeProduct.obj;
@@ -128,8 +128,6 @@ export const setActiveProduct = async (vendorCode: string, prodData?: Product): 
   } else if (prodData) {
     productsState.activeProduct.obj = prodData;
   }
-
-  setRelatedSimilarProducts();
 };
 
 export const activeProduct$: ComputedRef<Product | null> = computed(() => productsState.activeProduct.obj);

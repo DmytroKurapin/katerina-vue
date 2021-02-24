@@ -4,7 +4,7 @@
 // * minHeight - as example. What about width
 // * screens
 
-const mobileBreakpoint = require('./constants/mobileBreakpoint');
+const customBreakpoints = require('./constants/customBreakpoints');
 
 module.exports = {
   future: {
@@ -34,9 +34,10 @@ module.exports = {
   presets: [],
   theme: {
     screens: {
+      xs: `${customBreakpoints.xs}px`,
       sm: '640px',
       md: '768px',
-      lg: `${mobileBreakpoint}px`,
+      lg: `${customBreakpoints.lg}px`,
       xl: '1150px'
     },
     colors: {
@@ -234,6 +235,7 @@ module.exports = {
       default: '1px',
       0: '0',
       2: '2px',
+      3: '3px',
       4: '4px',
       8: '8px'
     },
@@ -314,7 +316,8 @@ module.exports = {
       auto: 'auto',
       ...theme('spacing'),
       full: '100%',
-      screen: '100vh'
+      screen: '100vh',
+      36: '9rem'
     }),
     inset: {
       0: '0',
@@ -366,7 +369,8 @@ module.exports = {
     maxHeight: {
       full: '100%',
       screen: '100vh',
-      '1/5': '20%',
+      36: '9rem',
+      40: '10rem',
       content: 'max-content'
     },
     maxWidth: (theme, { breakpoints }) => ({
@@ -384,6 +388,7 @@ module.exports = {
       full: '100%',
       '1/5': '20%',
       '3/5': '60%',
+      '3/4': '75%',
       ...breakpoints(theme('screens'))
     }),
     minHeight: {
@@ -437,7 +442,10 @@ module.exports = {
       white: ['2px dotted white', '2px'],
       black: ['2px dotted black', '2px']
     },
-    padding: theme => theme('spacing'),
+    padding: theme => ({
+      '1/2': '50%',
+      ...theme('spacing')
+    }),
     placeholderColor: theme => theme('colors'),
     placeholderOpacity: theme => theme('opacity'),
     space: (theme, { negative }) => ({

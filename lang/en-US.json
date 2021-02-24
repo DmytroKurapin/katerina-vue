@@ -25,7 +25,9 @@
     "hina": "Invitations For Hina"
   },
   "products": {
-    "all": "All"
+    "all": "All",
+    "related": "Complete Your Suite",
+    "similar": "You May Also Like"
   },
   "product": {
     "add_to_favorites": "Add to Favorites",
