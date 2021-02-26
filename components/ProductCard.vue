@@ -10,7 +10,7 @@
         />
 
         <header class="flex items-center justify-between py-2 leading-tight">
-          <h1 class="text-lg">
+          <h1 class="text-lg hover:underline">
             {{ product.title[$i18n.locale] }}
           </h1>
 
