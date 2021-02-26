@@ -5,8 +5,22 @@
         {{ productTitle }}
       </h1>
 
-      <section class="sm:w-2/5 md:w-1/2">
-        <div class="relative img-wrapper">
+      <section class="flex flex-col-reverse md:flex-row justify-end sm:w-2/5 md:w-3/5">
+        <div class="flex md:flex-col flex-row justify-start pt-3 md:pt-0 md:max-w-1/5">
+          <figure
+            v-for="(img, idx) in productData.images"
+            :key="idx"
+            :class="{
+              'me-2 md:me-0 mt-0 md:mb-4 max-w-1/5 md:max-w-none transition-opacity duration-1000': true,
+              'cursor-pointer opacity-50': selectedImgIdx !== idx
+            }"
+            @click="selectedImgIdx = idx"
+          >
+            <img :src="img" alt="" class="min-w-10" />
+          </figure>
+        </div>
+
+        <div class="relative md:flex-grow md:ms-8 img-wrapper">
           <figure
             v-for="(img, idx) in productData.images"
             :key="`main-pic${idx}`"
@@ -16,20 +30,9 @@
             <img :src="img" :alt="productData.title[$i18n.locale]" class="" />
           </figure>
         </div>
-
-        <div class="flex flex-row justify-start pt-3">
-          <figure
-            v-for="(img, idx) in productData.images"
-            :key="idx"
-            class="cursor-pointer me-2 max-w-1/5"
-            @click="selectedImgIdx = idx"
-          >
-            <img :src="img" alt="" class="min-w-10" />
-          </figure>
-        </div>
       </section>
 
-      <ProductItemDetailsSection :product-data="productData" class="sm:ps-8 sm:w-3/5 md:w-1/2">
+      <ProductItemDetailsSection :product-data="productData" class="sm:ms-8 sm:w-3/5 md:w-2/5">
         <template slot="section-top">
           <h1 class="hidden text-3xl sm:block lg:text-4xl">
             {{ productTitle }}
