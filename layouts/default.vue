@@ -1,8 +1,8 @@
 <template>
-  <div :dir="$dir()" class="flex flex-col h-screen">
+  <div :dir="$dir()" class=" flex flex-col h-screen">
     <InformationalBlock />
 
-    <HeaderSection :did-scrolled="didScrolled" />
+    <HeaderSection :did-scrolled="didScrolled" class="xxl:container" />
 
     <main
       ref="mainSection"
@@ -10,7 +10,7 @@
       role="main"
       @scroll="onScroll($event.target.scrollTop)"
     >
-      <section class="relative w-full px-6 mb-4 min-h-100 sm:px-5">
+      <section class="xxl:container relative w-full px-6 mb-4 min-h-100 sm:px-5">
         <!-- MAIN CONTENT -->
         <nuxt />
 
@@ -19,7 +19,7 @@
         </transition>
       </section>
 
-      <Footer class="w-full px-4 py-8 border-t bg-primary-light" />
+      <Footer class="xxl:container w-full px-4 py-8 border-t bg-primary-light" />
     </main>
   </div>
 </template>

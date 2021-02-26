@@ -38,7 +38,8 @@ module.exports = {
       sm: '640px',
       md: '768px',
       lg: `${customBreakpoints.lg}px`,
-      xl: '1150px'
+      xl: '1150px',
+      xxl: `${customBreakpoints.xxl}px`
     },
     colors: {
       transparent: 'transparent',
