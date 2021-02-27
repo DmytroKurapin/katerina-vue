@@ -5,6 +5,27 @@
 // * screens
 
 const customBreakpoints = require('./constants/customBreakpoints');
+const screenBreakpoints = Object.entries(customBreakpoints).reduce((res, [currKey, currVal]) => {
+  res[currKey] = `${currVal}px`;
+  return res;
+}, {});
+
+const fractionToPct = {
+  '1/2': '50%',
+  '1/3': '33.333333%',
+  '2/3': '66.666667%',
+  '1/4': '25%',
+  '2/4': '50%',
+  '3/4': '75%',
+  '1/5': '20%',
+  '2/5': '40%',
+  '3/5': '60%',
+  '4/5': '80%'
+};
+const negativeFractionToPct = Object.entries(fractionToPct).reduce((res, [currKey, currVal]) => {
+  res[`-${currKey}`] = `-${currVal}`;
+  return res;
+}, {});
 
 module.exports = {
   future: {
@@ -33,14 +54,7 @@ module.exports = {
   separator: ':',
   presets: [],
   theme: {
-    screens: {
-      xs: `${customBreakpoints.xs}px`,
-      sm: '640px',
-      md: '768px',
-      lg: `${customBreakpoints.lg}px`,
-      xl: '1150px',
-      xxl: `${customBreakpoints.xxl}px`
-    },
+    screens: screenBreakpoints,
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -329,7 +343,7 @@ module.exports = {
       '90/100': '90%',
       '93/100': '93%',
       '95/100': '95%',
-      '1/2': '50%',
+      ...fractionToPct,
       '4/9': '45%',
       auto: 'auto'
     },
@@ -466,16 +480,7 @@ module.exports = {
     width: theme => ({
       auto: 'auto',
       ...theme('spacing'),
-      '1/2': '50%',
-      '1/3': '33.333333%',
-      '2/3': '66.666667%',
-      '1/4': '25%',
-      '2/4': '50%',
-      '3/4': '75%',
-      '1/5': '20%',
-      '2/5': '40%',
-      '3/5': '60%',
-      '4/5': '80%',
+      ...fractionToPct,
       '1/6': '16.666667%',
       '2/6': '33.333333%',
       '3/6': '50%',
@@ -667,7 +672,8 @@ module.exports = {
       ...negative(theme('spacing')),
       '-full': '-100%',
       '-1/2': '-50%',
-      '1/2': '50%',
+      ...fractionToPct,
+      ...negativeFractionToPct,
       full: '100%'
     }),
     skew: {
