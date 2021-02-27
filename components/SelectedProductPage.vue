@@ -53,17 +53,19 @@
       v-if="similarProducts$.length > 0"
       :products="similarProducts$"
       :title="$t('products.similar')"
-      class="xl:mt-8"
+      :visible-amount="similarProdsAmount$ || similarProducts$.length"
+      class="xl:mt-8 mb-4"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from '@nuxtjs/composition-api';
+import { computed, defineComponent, PropType, ref } from '@nuxtjs/composition-api';
 import ProductItemDetailsSection from '@/components/ProductItemDetailsSection.vue';
 import RelatedProductsGallery from '@/components/RelatedProductsGallery.vue';
 import { Product } from '@/types';
 import { relatedProducts$, similarProducts$, setRelatedSimilarProducts } from '@/composables/useProducts';
+import { currBreakpoint$ } from '@/composables/usePageHandler';
 
 export default defineComponent({
   props: {
@@ -77,10 +79,13 @@ export default defineComponent({
     const { root } = ctx as any;
     const selectedImgIdx = ref(0);
     const productTitle = productData.title[root.$i18n.locale as 'en' | 'he'];
+    const picsPerBreakpoint = { xs: 2, sm: 2, md: 3, lg: 4, default: 5 };
+
+    const similarProdsAmount$ = computed(() => picsPerBreakpoint[currBreakpoint$.value] || picsPerBreakpoint.default);
 
     setRelatedSimilarProducts();
 
-    return { productTitle, relatedProducts$, similarProducts$, selectedImgIdx };
+    return { productTitle, relatedProducts$, similarProdsAmount$, similarProducts$, selectedImgIdx };
   }
 });
 </script>

@@ -39,29 +39,23 @@ import NavMenuSmall from '@/components/NavMenuSmall.vue';
 import FavoritesNavigationIcon from '@/components/FavoritesNavigationIcon.vue';
 import TopPanel from '@/components/TopPanel.vue';
 import customBreakpoints from '@/constants/customBreakpoints';
+import { didScrolled$, currBreakpoint$, setBreakpoint } from '@/composables/usePageHandler';
 
 export default defineComponent({
   components: { NavMenuLarge, NavMenuSmall, FavoritesNavigationIcon, TopPanel },
-  props: {
-    didScrolled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  setup(props) {
-    const isMobileView = ref(false);
+  setup() {
+    const isMobileView = computed(() => customBreakpoints[currBreakpoint$.value] <= customBreakpoints.lg);
     const initHeaderHeight = ref(0);
-    const headerMarginTop = computed(() => (props.didScrolled ? -initHeaderHeight.value : 0));
+    const headerMarginTop = computed(() => (didScrolled$.value ? -initHeaderHeight.value : 0));
 
     const onHeaderResize = ({ height, width }: { height?: number; width?: number }) => {
       if (typeof height !== 'undefined') {
         initHeaderHeight.value = height;
       }
-      if (typeof width !== 'undefined') {
-        isMobileView.value = width <= customBreakpoints.lg;
-      }
+      setBreakpoint(width);
     };
-    return { initHeaderHeight, headerMarginTop, isMobileView, onHeaderResize };
+
+    return { didScrolled: didScrolled$, headerMarginTop, isMobileView, onHeaderResize };
   }
 });
 </script>

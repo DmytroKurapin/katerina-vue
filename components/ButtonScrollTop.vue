@@ -1,5 +1,7 @@
 <template>
-  <div class="sticky inline-flex bottom-6 start-85/100 sm:bottom-8 sm:start-90/100 md:start-93/100 xl:start-95/100">
+  <div
+    class="sticky inline-flex bottom-6 start-85/100 sm:bottom-8 sm:start-90/100 md:start-93/100 xl:start-95/100 z-50"
+  >
     <button
       class="focus:outline-none bg-primary-light py-3 px-3 rounded-full border border-white"
       :class="isClicking ? 'shadow-inner' : 'hover:bg-primary hover:text-white'"

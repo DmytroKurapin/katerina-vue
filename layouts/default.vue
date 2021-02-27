@@ -2,7 +2,7 @@
   <div :dir="$dir()" class=" flex flex-col h-screen">
     <InformationalBlock />
 
-    <HeaderSection :did-scrolled="didScrolled" class="xxl:container" />
+    <HeaderSection class="xxl:container" />
 
     <main
       ref="mainSection"
@@ -10,7 +10,7 @@
       role="main"
       @scroll="onScroll($event.target.scrollTop)"
     >
-      <section class="xxl:container relative w-full px-6 mb-4 min-h-100 sm:px-5">
+      <section class="xxl:container relative w-full px-6 pb-4 min-h-100 sm:px-5">
         <!-- MAIN CONTENT -->
         <nuxt />
 
@@ -32,7 +32,7 @@ import ButtonScrollTop from '@/components/ButtonScrollTop.vue';
 import InformationalBlock from '@/components/InformationalBlock.vue';
 import { createSEOMeta } from '@/utils/seo.js';
 import { initFavorites } from '@/composables/useFavorites';
-import { didScrolled, goTopPosition, mainSection, scrollToTop, toggleDidScrolled } from '@/composables/usePageScroll';
+import { didScrolled$, mainSection, goTopPosition, scrollToTop, toggleDidScrolled } from '@/composables/usePageHandler';
 
 export default defineComponent({
   components: { InformationalBlock, Footer, HeaderSection, ButtonScrollTop },
@@ -52,9 +52,9 @@ export default defineComponent({
     initFavorites(); // init favorites if it still not initialized from products page
 
     const onScroll = (scrollTop: number) => {
-      if (!didScrolled.value && scrollTop > 0) {
+      if (!didScrolled$.value && scrollTop > 0) {
         toggleDidScrolled(true);
-      } else if (didScrolled.value && scrollTop === 0) {
+      } else if (didScrolled$.value && scrollTop === 0) {
         toggleDidScrolled(false);
       }
     };
@@ -65,7 +65,7 @@ export default defineComponent({
       () => goTopPosition()
     );
 
-    return { didScrolled, mainSection, onScroll, scrollToTop };
+    return { didScrolled: didScrolled$, mainSection, onScroll, scrollToTop };
   }
 });
 </script>

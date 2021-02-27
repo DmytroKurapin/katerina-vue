@@ -16,8 +16,9 @@
           v-for="(prod, idx) in productsList"
           :key="`slide${idx}`"
           :class="[
-            'absolute inset-0 flex justify-center w-1/2 transition-all duration-1000 ease-in-out transform',
+            'absolute inset-0 flex justify-center transition-all duration-1000 ease-in-out transform',
             `bg-pink-${(idx + 1) * 100}`,
+            `w-1/${picsAmount}`,
             translateClass(idx)
           ]"
         >
@@ -45,15 +46,6 @@
 import { Product } from '@/types';
 import { computed, defineComponent, PropType, ref } from '@nuxtjs/composition-api';
 
-const NUM_VISIBLE_SLIDES = 2;
-type AVAILABLE_POSITIONS =
-  | 'start-0 z-20'
-  | 'start-0 translate-x-full z-10 opacity-0'
-  | 'start-0 -translate-x-full z-10 opacity-0'
-  | 'start-1/2 translate-x-full z-10 opacity-0'
-  | 'start-1/2 -translate-x-full z-10 opacity-0'
-  | 'start-1/2 z-20';
-
 export default defineComponent({
   props: {
     products: {
@@ -63,39 +55,50 @@ export default defineComponent({
     title: {
       type: String,
       default: ''
+    },
+    visibleAmount: {
+      type: Number,
+      default: 2
     }
   },
-  setup({ products }, { root }) {
+  setup(props, { root }) {
     const smallestVisibleSlideIdx = ref(0);
     const isRtl = computed(() => root.$dir() === 'rtl');
-    // const productsList = [1, 2, 3, 4, 5, 6, 7];
+    const picsAmount = computed(() =>
+      props.visibleAmount > props.products.length ? props.products.length : props.visibleAmount
+    );
 
-    const translateClass = computed(() => (idx: number): AVAILABLE_POSITIONS => {
-      if (smallestVisibleSlideIdx.value === idx) {
-        // the first visible slide
-        return 'start-0 z-20';
-      } else if (smallestVisibleSlideIdx.value > idx) {
+    const translateClass = computed(() => (idx: number): string => {
+      const firstVisIdx = smallestVisibleSlideIdx.value;
+      if (firstVisIdx > idx) {
         // slide is already scrolled
         return isRtl ? 'start-0 translate-x-full z-10 opacity-0' : 'start-0 -translate-x-full z-10 opacity-0';
-      } else if (smallestVisibleSlideIdx.value + NUM_VISIBLE_SLIDES <= idx) {
+      } else if (firstVisIdx + picsAmount.value <= idx) {
         // slide is not reached yet
-        return isRtl ? 'start-1/2 -translate-x-full z-10 opacity-0' : 'start-1/2 translate-x-full z-10 opacity-0';
+        return `${isRtl ? '-' : ''}translate-x-full start-${picsAmount.value - 1}/${picsAmount.value} z-10 opacity-0`;
       }
-      // second visible slide
-      return 'start-1/2 z-20';
+      const startPos = firstVisIdx === idx ? 'start-0' : `start-${idx - firstVisIdx}/${picsAmount.value}`;
+      return `${startPos} z-20`;
     });
 
     const nextSlide = () => {
-      products.length - 1 === smallestVisibleSlideIdx.value
+      props.products.length - picsAmount.value === smallestVisibleSlideIdx.value
         ? (smallestVisibleSlideIdx.value = 0)
         : smallestVisibleSlideIdx.value++;
     };
     const previousSlide = () => {
-      smallestVisibleSlideIdx.value === -1
-        ? (smallestVisibleSlideIdx.value = products.length - 1)
+      smallestVisibleSlideIdx.value === 0
+        ? (smallestVisibleSlideIdx.value = props.products.length - picsAmount.value)
         : smallestVisibleSlideIdx.value--;
     };
-    return { productsList: products, smallestVisibleSlideIdx, translateClass, previousSlide, nextSlide };
+    return {
+      productsList: props.products,
+      picsAmount,
+      smallestVisibleSlideIdx,
+      translateClass,
+      previousSlide,
+      nextSlide
+    };
   }
 });
 </script>
