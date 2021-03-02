@@ -4,25 +4,19 @@
 
     <!-- close icon -->
     <button type="button" class="absolute h-full top-0 end-4 focus:outline-none" @click="hideInfoBlock">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-3 h-3 fill-current">
-        <path
-          :d="
-            `M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071
-               1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z`
-          "
-        />
-      </svg>
+      <XIcon class="w-3 h-3" />
     </button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api';
+import XIcon from '@/components/XIcon.vue';
 
 const STORAGE_TOGGLE_PROP_NAME = 'hiddenInfoBlock';
 
 export default defineComponent({
-  components: {},
+  components: { XIcon },
   setup() {
     const isInfoBlockHidden = ref(true);
 

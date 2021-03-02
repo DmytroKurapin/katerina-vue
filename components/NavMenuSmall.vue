@@ -1,23 +1,18 @@
 <template>
   <nav>
     <NavMenuIcon class="focus:outline-none z-20" @toggle="toggleIsOpen(!isOpen)">
-      <path
-        v-if="isOpen"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        :d="
-          `M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1
-           1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z`
-        "
-      />
-      <path
-        v-else
-        fill-rule="evenodd"
-        :d="
-          `M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1
-           0-2z`
-        "
-      />
+      <XIcon v-if="isOpen" view-box="0 0 24 24" class="h-8 w-8" />
+
+      <svg v-else class="h-8 w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          :d="
+            `M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0
+            0 1 0-2z`
+          "
+        />
+      </svg>
     </NavMenuIcon>
 
     <aside
@@ -107,14 +102,15 @@
 </template>
 
 <script lang="ts">
+import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
 import NavMenuIcon from '@/components/NavMenuIcon.vue';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
-import { computed, defineComponent, ref } from '@nuxtjs/composition-api';
+import XIcon from '@/components/XIcon.vue';
 import navDataList from '@/constants/navData';
 import { NavData } from '@/types';
 
 export default defineComponent({
-  components: { NavMenuIcon, LanguageSwitcher },
+  components: { NavMenuIcon, LanguageSwitcher, XIcon },
   setup(props, { root }) {
     const navData = navDataList;
     const isOpen = ref(false);

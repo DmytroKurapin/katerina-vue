@@ -1,8 +1,6 @@
 <template>
   <button type="button" @click="$emit('toggle')">
-    <svg class="h-8 w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <slot></slot>
-    </svg>
+    <slot />
   </button>
 </template>
 
