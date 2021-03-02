@@ -15,7 +15,7 @@
         <nuxt />
 
         <transition name="fade">
-          <ButtonScrollTop v-show="didScrolled" @click="scrollToTop" />
+          <ButtonScrollTop v-show="didScrolled$" @click="scrollToTop" />
         </transition>
       </section>
 
@@ -64,8 +64,7 @@ export default defineComponent({
       () => root.$route.fullPath,
       () => goTopPosition()
     );
-
-    return { didScrolled: didScrolled$, mainSection, onScroll, scrollToTop };
+    return { didScrolled$, mainSection, onScroll, scrollToTop };
   }
 });
 </script>

@@ -1,6 +1,10 @@
 <template>
   <div>
     <section class="mb-3 sm:flex">
+      <transition name="fade">
+        <PreviewModal v-if="isModalShown$" :images="productData.images" :title="productTitle" @toggle="toggleModal" />
+      </transition>
+
       <h1 class="mb-3 text-3xl sm:hidden">
         {{ productTitle }}
       </h1>
@@ -24,8 +28,9 @@
           <figure
             v-for="(img, idx) in productData.images"
             :key="`main-pic${idx}`"
-            class="absolute inset-0 transition ease-in-out duration-2000"
+            class="absolute inset-0 transition ease-in-out duration-2000 cursor-pointer"
             :class="selectedImgIdx === idx ? 'opacity-100' : 'opacity-0'"
+            @click="toggleModal"
           >
             <img :src="img" :alt="productData.title[$i18n.locale]" class="" />
           </figure>
@@ -63,9 +68,10 @@
 import { computed, defineComponent, PropType, ref } from '@nuxtjs/composition-api';
 import ProductItemDetailsSection from '@/components/ProductItemDetailsSection.vue';
 import RelatedProductsGallery from '@/components/RelatedProductsGallery.vue';
+import PreviewModal from '@/components/PreviewModal.vue';
 import { Product } from '@/types';
 import { relatedProducts$, similarProducts$, setRelatedSimilarProducts } from '@/composables/useProducts';
-import { currBreakpoint$ } from '@/composables/usePageHandler';
+import { currBreakpoint$, isModalShown$, toggleModal } from '@/composables/usePageHandler';
 
 export default defineComponent({
   props: {
@@ -74,10 +80,11 @@ export default defineComponent({
       required: true
     }
   },
-  components: { ProductItemDetailsSection, RelatedProductsGallery },
+  components: { ProductItemDetailsSection, RelatedProductsGallery, PreviewModal },
   setup({ productData }, ctx) {
     const { root } = ctx as any;
     const selectedImgIdx = ref(0);
+    const isPreviewShown = ref(false);
     const productTitle = productData.title[root.$i18n.locale as 'en' | 'he'];
     const picsPerBreakpoint = { xs: 2, sm: 2, md: 3, lg: 4, default: 5 };
 
@@ -85,7 +92,16 @@ export default defineComponent({
 
     setRelatedSimilarProducts();
 
-    return { productTitle, relatedProducts$, similarProdsAmount$, similarProducts$, selectedImgIdx };
+    return {
+      productTitle,
+      isPreviewShown,
+      isModalShown$,
+      relatedProducts$,
+      similarProdsAmount$,
+      similarProducts$,
+      selectedImgIdx,
+      toggleModal
+    };
   }
 });
 </script>

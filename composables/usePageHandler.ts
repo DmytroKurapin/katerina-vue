@@ -1,22 +1,25 @@
 import customBreakpoints from '@/constants/customBreakpoints';
 import { computed, reactive, toRef } from '@nuxtjs/composition-api';
 
-const breakpointsList = [...Object.keys(customBreakpoints)] as const;
+const breakpointsList = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const;
 interface IPageState {
   scrollComponent: string | null;
   didScrolled: boolean;
   currBreakpoint: typeof breakpointsList[number] | undefined;
+  isModalShown: boolean;
 }
 
 const pageState = reactive<IPageState>({
   scrollComponent: null,
   didScrolled: false,
-  currBreakpoint: undefined
+  currBreakpoint: undefined,
+  isModalShown: false
 });
 
 export const mainSection = toRef(pageState, 'scrollComponent');
 export const didScrolled$ = computed(() => pageState.didScrolled);
 export const currBreakpoint$ = computed(() => pageState.currBreakpoint);
+export const isModalShown$ = computed(() => pageState.isModalShown);
 
 export const scrollToTop = () => {
   if (pageState.scrollComponent !== null) {
@@ -38,11 +41,13 @@ export const toggleDidScrolled = (isScrolled: boolean) => {
 };
 
 export const setBreakpoint = (width: number) => {
-  Object.entries(customBreakpoints).some(([key, val]) => {
-    const toStop = width < val;
+  breakpointsList.some(key => {
+    const toStop = width < customBreakpoints[key];
     if (toStop) {
       pageState.currBreakpoint = key;
     }
     return toStop;
   });
 };
+
+export const toggleModal = () => (pageState.isModalShown = !pageState.isModalShown);
