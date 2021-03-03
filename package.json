@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.4",
-    "@nuxtjs/composition-api": "^0.20.2",
+    "@nuxtjs/composition-api": "^0.21.0",
     "nuxt": "^2.14.12",
     "nuxt-i18n": "^6.16.0",
     "v-sanitize": "^0.0.4"
