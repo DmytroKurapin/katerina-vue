@@ -1,5 +1,5 @@
 <template>
-  <article v-lazyload :class="{ 'animate-showUp': didLoad }">
+  <article v-lazyload :class="{ 'opacity-0': true, 'animate-showUp': didLoad }">
     <nuxt-link :to="localePath(`/products/${$route.params.product}/${product.vendorCode}`)">
       <figure @click="$emit('select')">
         <img

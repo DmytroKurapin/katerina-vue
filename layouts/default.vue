@@ -6,7 +6,7 @@
 
     <main
       ref="mainSection"
-      class="flex flex-wrap justify-center overflow-x-hidden"
+      class="flex flex-wrap flex-grow justify-center overflow-x-hidden"
       role="main"
       @scroll="onScroll($event.target.scrollTop)"
     >

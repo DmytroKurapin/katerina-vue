@@ -12,7 +12,6 @@
 
     <!-- Logo -->
     <div class="-translate-x-1/2 absolute left-1/2 transform">
-      <!--    <div class="inline-flex items-center justify-end flex-1 px-4">-->
       <nuxt-link :to="localePath('/')" class="inline-flex">
         <img
           src="/logo.jpg"

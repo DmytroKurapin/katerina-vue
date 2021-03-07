@@ -10,7 +10,7 @@
         :key="`${prod.vendorCode}_${index}`"
         :product="prod"
         :class="index === 0 ? 'pt-3 sm:pt-0' : null"
-        class="w-full px-6 my-4 opacity-0 sm:px-4 sm:w-1/2 sm:my-4 lg:w-1/3"
+        class="w-full px-6 my-4 sm:px-4 sm:w-1/2 sm:my-4 lg:w-1/3"
         @select="chooseProduct(prod.vendorCode, prod)"
       />
     </section>
