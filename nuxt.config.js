@@ -105,6 +105,8 @@ export default {
    ** environment variables client side
    */
   env: {
-    ...appConfig
+    ...appConfig,
+    phone: '972587691795',
+    email: 'email@email.email'
   }
 };

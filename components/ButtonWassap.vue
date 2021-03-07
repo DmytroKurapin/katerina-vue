@@ -12,12 +12,18 @@ import HeartIcon from '@/components/HeartIcon.vue';
 
 export default defineComponent({
   components: { HeartIcon },
-  props: {},
+  props: {
+    message: {
+      type: String,
+      default: ''
+    }
+  },
   setup(props, ctx) {
     const { root } = ctx as any;
 
     const orderViaWassap = () => {
-      alert(root.$t('general.order_via_wassap'));
+      const msgTxt = props.message ? `${root.$t('general.wassap_msg_start')} ${props.message}` : '';
+      window.open(`https://wa.me/${process.env.phone}?text=${encodeURIComponent(msgTxt)}`, '_blank');
     };
 
     return { orderViaWassap };

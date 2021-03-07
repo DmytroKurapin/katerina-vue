@@ -1,14 +1,14 @@
 <template>
   <article>
     <figure class="w-1/3 pb-4 cursor-pointer" @click="navigateToProductPage">
-      <img :src="prod.thumbnail" :alt="prod.title[$i18n.locale]" />
+      <img :src="prod.thumbnail" :alt="prodTitle" />
     </figure>
 
     <div class="w-2/3 ps-4 lg:ps-8 flex flex-col justify-between">
       <div>
         <p class="flex justify-between">
           <span class="flex-1 cursor-pointer" @click="navigateToProductPage">
-            {{ prod.title[$i18n.locale] }}
+            {{ prodTitle }}
           </span>
 
           <HeartIcon :is-liked="true" class="w-6 h-6" @click="removeFromFavorites()" />
@@ -23,9 +23,9 @@
         </p>
       </div>
 
-      <ButtonWassap class="w-full hidden lg:block" />
+      <ButtonWassap :message="wassapMsgTxt" class="w-full hidden lg:block" />
     </div>
-    <ButtonWassap class="w-full lg:hidden" />
+    <ButtonWassap :message="wassapMsgTxt" class="w-full lg:hidden" />
   </article>
 </template>
 
@@ -48,6 +48,7 @@ export default defineComponent({
   setup(props, ctx) {
     const { root } = ctx as any;
     const { product } = props;
+    const prodTitle = product.title[root.$i18n.locale as 'en' | 'he'];
 
     const removeFromFavorites = () => {
       pushPopFavorites([product], true);
@@ -57,7 +58,13 @@ export default defineComponent({
       root.$router.push({ path: root.localePath(`/products/${product.category}/${product.vendorCode}`) });
     };
 
-    return { prod: product, removeFromFavorites, navigateToProductPage };
+    return {
+      prod: product,
+      prodTitle,
+      wassapMsgTxt: `${prodTitle} (${product.vendorCode}) `,
+      removeFromFavorites,
+      navigateToProductPage
+    };
   }
 });
 </script>

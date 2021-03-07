@@ -13,7 +13,7 @@
 
     <ButtonToggleFavorites :product-data="prodObj" class="hidden sm:block" />
 
-    <ButtonWassap class="py-4" />
+    <ButtonWassap class="py-4" :message="wassapMsgTxt" />
 
     <slot name="related-prod" />
   </section>
@@ -35,8 +35,14 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
-    return { prodObj: computed(() => props.productData) };
+  setup(props, ctx) {
+    const { root } = ctx as any;
+    const prodTitle = props.productData.title[root.$i18n.locale as 'en' | 'he'];
+
+    return {
+      wassapMsgTxt: `${prodTitle} (${props.productData.vendorCode}) `,
+      prodObj: computed(() => props.productData)
+    };
   }
 });
 </script>
