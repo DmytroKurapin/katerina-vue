@@ -5,16 +5,22 @@
 
       <div class="py-5 w-3/5 z-50">
         <div class="flex flex-col bg-white h-full modal-content">
-          <button class="pt-4 pr-4 focus:outline-none" type="button" @click="toggleModal">
-            <XIcon view-box="0 0 24 24" class="h-6 w-6 text-primary-light" />
-          </button>
+          <div class="text-right">
+            <button class="pt-4 pr-4 focus:outline-none" type="button" @click="toggleModal">
+              <XIcon view-box="0 0 24 24" class="h-6 w-6 text-primary-light" />
+            </button>
+          </div>
 
           <div class="flex-grow pb-4">
             <ImagesSlideshow :items="images" :visible-amount="1" class="h-full">
               <template v-slot="{ item, idx }">
                 <figure class="px-4">
-                  <!--                  -->
-                  <img :src="item" :alt="`${title} ${idx + 1}`" class="max-h-full mx-auto" onContextMenu="return false;" />
+                  <img
+                    :src="item"
+                    :alt="`${title} ${idx + 1}`"
+                    class="max-h-full mx-auto"
+                    onContextMenu="return false;"
+                  />
                 </figure>
               </template>
             </ImagesSlideshow>

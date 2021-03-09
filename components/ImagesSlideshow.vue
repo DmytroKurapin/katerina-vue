@@ -7,7 +7,7 @@
       ]"
       @click="$dir() === 'rtl' ? previousSlide() : nextSlide()"
     >
-      {{ $dir() === 'rtl' ? '&#x276E;' : '&#x276F;' }}
+      &#x276E;
     </div>
 
     <div :class="['relative flex-grow', picsWrapperClass]">
@@ -31,7 +31,7 @@
       ]"
       @click="$dir() === 'rtl' ? nextSlide() : previousSlide()"
     >
-      {{ $dir() === 'rtl' ? '&#x276F;' : '&#x276E;' }}
+      &#x276F;
     </div>
   </div>
 </template>
