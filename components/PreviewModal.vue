@@ -14,7 +14,7 @@
               <template v-slot="{ item, idx }">
                 <figure class="px-4">
                   <!--                  -->
-                  <img :src="item" :alt="`${title} ${idx + 1}`" class="max-h-full mx-auto" />
+                  <img :src="item" :alt="`${title} ${idx + 1}`" class="max-h-full mx-auto" onContextMenu="return false;" />
                 </figure>
               </template>
             </ImagesSlideshow>

@@ -18,6 +18,7 @@
           alt="Katerina Kurapin"
           :class="fullPath === '/' ? 'main-page-logo-height' : 'products-page-logo-height'"
           class="w-auto py-2"
+          onContextMenu="return false;"
         />
       </nuxt-link>
     </div>

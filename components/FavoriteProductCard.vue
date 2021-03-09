@@ -1,7 +1,7 @@
 <template>
   <article>
     <figure class="w-1/3 pb-4 cursor-pointer" @click="navigateToProductPage">
-      <img :src="prod.thumbnail" :alt="prodTitle" />
+      <img :src="prod.thumbnail" :alt="prodTitle" onContextMenu="return false;" />
     </figure>
 
     <div class="w-2/3 ps-4 lg:ps-8 flex flex-col justify-between">

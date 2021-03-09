@@ -11,7 +11,12 @@
     >
       <template v-slot="{ item }">
         <figure class="self-start px-4 cursor-pointer lg:px-5">
-          <img :src="item.thumbnail" :alt="item.title[$i18n.locale]" class="max-h-36 sm:max-h-40" />
+          <img
+            :src="item.thumbnail"
+            :alt="item.title[$i18n.locale]"
+            class="max-h-36 sm:max-h-40"
+            onContextMenu="return false;"
+          />
           <p class="pt-2">
             {{ item.title[$i18n.locale] }}
           </p>

@@ -20,7 +20,7 @@
             }"
             @click="selectedImgIdx = idx"
           >
-            <img :src="img" alt="" class="min-w-10" />
+            <img :src="img" alt="" class="min-w-10" onContextMenu="return false;" />
           </figure>
         </div>
 
@@ -32,7 +32,7 @@
             :class="selectedImgIdx === idx ? 'opacity-100' : 'opacity-0'"
             @click="toggleModal"
           >
-            <img :src="img" :alt="productData.title[$i18n.locale]" class="" />
+            <img :src="img" :alt="productData.title[$i18n.locale]" class="" onContextMenu="return false;" />
           </figure>
         </div>
       </section>

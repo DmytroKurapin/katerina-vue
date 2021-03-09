@@ -5,6 +5,7 @@
         <img
           :alt="product.title[$i18n.locale]"
           :data-url="product.thumbnail"
+          onContextMenu="return false;"
           class="w-full h-auto"
           @load="didLoad = !didLoad"
         />
