@@ -2,9 +2,9 @@
   <header>
     <TopPanel
       v-resize
-      :style="{ marginTop: isMobileView ? 0 : `${headerMarginTop}px` }"
+      :style="{ marginTop: isMobileView$ ? 0 : `${headerMarginTop}px` }"
       :class="{
-        'shadow-xl lg:mt-auto': isMobileView && didScrolled,
+        'shadow-xl lg:mt-auto': isMobileView$ && didScrolled,
         'flex items-center relative justify-between z-10 px-6': true,
         'transform transition-all duration-500 ease-in-out': true
       }"
@@ -38,13 +38,11 @@ import NavMenuLarge from '@/components/NavMenuLarge.vue';
 import NavMenuSmall from '@/components/NavMenuSmall.vue';
 import FavoritesNavigationIcon from '@/components/FavoritesNavigationIcon.vue';
 import TopPanel from '@/components/TopPanel.vue';
-import customBreakpoints from '@/constants/customBreakpoints';
-import { didScrolled$, currBreakpoint$, setBreakpoint } from '@/composables/usePageHandler';
+import { didScrolled$, isMobileView$, setBreakpoint } from '@/composables/usePageHandler';
 
 export default defineComponent({
   components: { NavMenuLarge, NavMenuSmall, FavoritesNavigationIcon, TopPanel },
   setup() {
-    const isMobileView = computed(() => customBreakpoints[currBreakpoint$.value] <= customBreakpoints.lg);
     const initHeaderHeight = ref(0);
     const headerMarginTop = computed(() => (didScrolled$.value ? -initHeaderHeight.value : 0));
 
@@ -55,7 +53,7 @@ export default defineComponent({
       setBreakpoint(width);
     };
 
-    return { didScrolled: didScrolled$, headerMarginTop, isMobileView, onHeaderResize };
+    return { didScrolled: didScrolled$, headerMarginTop, isMobileView$, onHeaderResize };
   }
 });
 </script>

@@ -2,7 +2,12 @@
   <div>
     <section class="mb-3 sm:flex">
       <transition name="fade">
-        <PreviewModal v-if="isModalShown$" :images="productData.images" :title="productTitle" @toggle="toggleModal" />
+        <PreviewModal
+          v-if="isModalShown$"
+          :images="productData.images"
+          :title="productTitle"
+          @toggle="togglePreviewModal"
+        />
       </transition>
 
       <h1 class="mb-3 text-3xl sm:hidden">
@@ -28,9 +33,9 @@
           <figure
             v-for="(img, idx) in productData.images"
             :key="`main-pic${idx}`"
-            class="absolute inset-0 transition ease-in-out duration-2000 cursor-pointer"
+            class="absolute inset-0 transition ease-in-out duration-2000 lg:cursor-pointer"
             :class="selectedImgIdx === idx ? 'opacity-100' : 'opacity-0'"
-            @click="toggleModal"
+            @click="togglePreviewModal"
           >
             <img :src="img" :alt="productData.title[$i18n.locale]" class="" onContextMenu="return false;" />
           </figure>
@@ -71,7 +76,7 @@ import RelatedProductsGallery from '@/components/RelatedProductsGallery.vue';
 import PreviewModal from '@/components/PreviewModal.vue';
 import { Product } from '@/types';
 import { relatedProducts$, similarProducts$, setRelatedSimilarProducts } from '@/composables/useProducts';
-import { currBreakpoint$, isModalShown$, toggleModal } from '@/composables/usePageHandler';
+import { currBreakpoint$, isMobileView$, isModalShown$, toggleModal } from '@/composables/usePageHandler';
 
 export default defineComponent({
   props: {
@@ -86,11 +91,13 @@ export default defineComponent({
     const selectedImgIdx = ref(0);
     const isPreviewShown = ref(false);
     const productTitle = productData.title[root.$i18n.locale as 'en' | 'he'];
-    const picsPerBreakpoint = { xs: 2, sm: 2, md: 3, lg: 4, default: 5 };
+    const picsPerBreakpoint = { xs: 2, sm: 2, md: 3, lg: 4, xl: 5, xxl: 5, default: 5 };
 
     const similarProdsAmount$ = computed(() => picsPerBreakpoint[currBreakpoint$.value] || picsPerBreakpoint.default);
 
     setRelatedSimilarProducts();
+
+    const togglePreviewModal = () => (isMobileView$.value && !isModalShown$.value ? null : toggleModal());
 
     return {
       productTitle,
@@ -100,7 +107,7 @@ export default defineComponent({
       similarProdsAmount$,
       similarProducts$,
       selectedImgIdx,
-      toggleModal
+      togglePreviewModal
     };
   }
 });

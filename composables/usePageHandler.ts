@@ -5,14 +5,14 @@ const breakpointsList = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const;
 interface IPageState {
   scrollComponent: string | null;
   didScrolled: boolean;
-  currBreakpoint: typeof breakpointsList[number] | undefined;
+  currBreakpoint: typeof breakpointsList[number];
   isModalShown: boolean;
 }
 
 const pageState = reactive<IPageState>({
   scrollComponent: null,
   didScrolled: false,
-  currBreakpoint: undefined,
+  currBreakpoint: 'xl',
   isModalShown: false
 });
 
@@ -20,6 +20,7 @@ export const mainSection = toRef(pageState, 'scrollComponent');
 export const didScrolled$ = computed(() => pageState.didScrolled);
 export const currBreakpoint$ = computed(() => pageState.currBreakpoint);
 export const isModalShown$ = computed(() => pageState.isModalShown);
+export const isMobileView$ = computed(() => customBreakpoints[currBreakpoint$.value] <= customBreakpoints.lg);
 
 export const scrollToTop = () => {
   if (pageState.scrollComponent !== null) {
@@ -40,7 +41,10 @@ export const toggleDidScrolled = (isScrolled: boolean) => {
   pageState.didScrolled = isScrolled;
 };
 
-export const setBreakpoint = (width: number) => {
+export const setBreakpoint = (width?: number) => {
+  if (typeof width === 'undefined') {
+    return;
+  }
   breakpointsList.some(key => {
     const toStop = width < customBreakpoints[key];
     if (toStop) {
