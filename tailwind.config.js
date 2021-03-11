@@ -301,7 +301,7 @@ module.exports = {
       default: '1'
     },
     fontFamily: {
-      body: ['Quicksand', 'Raleway', 'sans-serif']
+      sans: ['Tahoma', 'sans-serif']
     },
     fontSize: {
       xs: '0.75rem',
