@@ -32,6 +32,7 @@ export interface Product {
   sizes: string[];
   related: string[]; // ids: complete your suite
   similar: string[]; // ids: you may also like
+  video: string | null;
 }
 
 export interface ProductsState {

@@ -11,14 +11,29 @@
             </button>
           </div>
 
-          <div class="flex-grow pb-4">
-            <ImagesSlideshow :items="images" :visible-amount="1" class="h-full">
+          <div class="relative flex-grow pb-4">
+            <div v-if="videoSrc" class="h-full relative">
+              <figure class="flex absolute inset-0 justify-center">
+                <video
+                  class="shadow-lg"
+                  controls
+                  controlsList="nodownload"
+                  disablePictureInPicture
+                  @contextmenu.prevent
+                >
+                  <source :src="videoSrc" type="video/mp4" />
+                  <source :src="videoSrc" type="video/ogg" />
+                </video>
+              </figure>
+            </div>
+
+            <ImagesSlideshow v-else :items="images" :visible-amount="1" class="h-full">
               <template v-slot="{ item, idx }">
-                <figure class="px-4">
+                <figure class="flex px-4">
                   <img
                     :src="item"
                     :alt="`${title} ${idx + 1}`"
-                    class="max-h-full mx-auto"
+                    class="self-center max-h-full mx-auto"
                     onContextMenu="return false;"
                   />
                 </figure>
@@ -50,6 +65,10 @@ export default defineComponent({
     visibleAmount: {
       type: Number,
       default: 1
+    },
+    videoSrc: {
+      type: String,
+      default: null
     }
   },
   components: { XIcon, ImagesSlideshow },

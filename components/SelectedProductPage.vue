@@ -6,6 +6,7 @@
           v-if="isModalShown$"
           :images="productData.images"
           :title="productTitle"
+          :video-src="productData.video"
           @toggle="togglePreviewModal"
         />
       </transition>
@@ -14,8 +15,8 @@
         {{ productTitle }}
       </h1>
 
-      <section class="flex flex-col-reverse md:flex-row justify-end sm:w-2/5 md:w-3/5">
-        <div class="flex md:flex-col flex-row justify-start pt-3 md:pt-0 md:max-w-1/5">
+      <section :class="['flex flex-col-reverse md:flex-row justify-end sm:w-2/5', isVideo ? 'md:w-1/2' : 'md:w-3/5']">
+        <div v-if="!isVideo" class="flex md:flex-col flex-row justify-start pt-3 md:pt-0 md:max-w-1/5">
           <figure
             v-for="(img, idx) in productData.images"
             :key="idx"
@@ -29,7 +30,7 @@
           </figure>
         </div>
 
-        <div class="relative md:flex-grow md:ms-8 img-wrapper">
+        <div :class="{ 'relative md:flex-grow img-wrapper': true, 'md:ms-8': !isVideo }">
           <figure
             v-for="(img, idx) in productData.images"
             :key="`main-pic${idx}`"
@@ -42,7 +43,10 @@
         </div>
       </section>
 
-      <ProductItemDetailsSection :product-data="productData" class="sm:ms-8 sm:w-3/5 md:w-2/5">
+      <ProductItemDetailsSection
+        :product-data="productData"
+        :class="['sm:ms-8 sm:w-3/5', isVideo ? 'md:w-1/2' : 'md:w-2/5']"
+      >
         <template slot="section-top">
           <h1 class="hidden text-3xl sm:block lg:text-4xl">
             {{ productTitle }}
@@ -107,6 +111,7 @@ export default defineComponent({
       similarProdsAmount$,
       similarProducts$,
       selectedImgIdx,
+      isVideo: !!productData.video,
       togglePreviewModal
     };
   }
